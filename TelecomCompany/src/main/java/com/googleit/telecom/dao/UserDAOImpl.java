@@ -19,7 +19,7 @@ public class UserDAOImpl implements UserDAO {
 	public void insert(User user) {
 		String sql = "INSERT INTO user (email, password, last_name, first_name, reg_date)"
 	            + " VALUES (?, ?, ?, ?)";
-	jdbcTemplate.update(sql,);
+		//jdbcTemplate.update(sql,);
 		
 	}
 
