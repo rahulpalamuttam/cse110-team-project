@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header  th:fragment="header">
+	<nav class="navbar navbar-default navbar-fixed-top">
+	    <div class="container">
+	        <div class="navbar-header">
+	            <a class="navbar-brand" th:href="@{/}">Logo</a>
+	        </div>
+	        <div class="navbar-topics">
+	            <ul class="nav navbar-nav">
+	                <li><a th:href="@{/about}">About</a></li>
+	                <li><a th:href="@{/services}">Services</a></li>
+	            </ul>
+	            <ul class="nav navbar-nav navbar-right">
+	            <!-- TODO -->
+	            	<!-- If not logged in -->
+	            	<li><a th:href="@{/register}">Register</a></li>
+	                <li><a th:href="@{/auth/login}">Sign in</a></li>
+	                
+	                <!-- If logged in -->
+	                <!-- <li><a href="#">My account</a></li>
+	                <li><a href="#">Sign out</a></li> -->
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
+</header>
+</body>
+</html>
