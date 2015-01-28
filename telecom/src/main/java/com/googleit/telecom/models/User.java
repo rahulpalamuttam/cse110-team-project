@@ -47,10 +47,9 @@ public class User {
 
     public void setPassword(String password) {
         // Hash password using BCrypt algorithm. 
-        BCryptPasswordEncoder passEncryp = new BCryptPasswordEncoder();
+//        BCryptPasswordEncoder passEncryp = new BCryptPasswordEncoder();
         if(password.length() > 4)
-            this.password = passEncryp.encode(password);
-        else
+//            this.password = passEncryp.encode(password);
             this.password = password;
     }
 
