@@ -25,6 +25,13 @@ footer > .container > p {
 	margin: 0px;
 }
 
+/* Register Form */
+
+.reg_error {
+	color: red;
+	font-size: 12px;
+}
+
 /* Login Form */
 .form-login {
     margin: 0 auto;

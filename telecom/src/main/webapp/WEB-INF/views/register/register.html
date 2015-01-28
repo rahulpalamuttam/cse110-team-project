@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
-                <form th:action="@{/register}" method="post" class="form-horizontal" th:object="${user}">            
+                <form th:action="@{/register}" method="post" class="form-horizontal" th:object="${user}">
                     <fieldset>
                         <legend>Register</legend>
                         
@@ -16,6 +16,7 @@
                             <label class="col-md-4 col-sm-4" for="input01">E-mail</label>
                             <div class="col-md-8 col-sm-8">
                                 <input type="email" id="input01" class="form-control" name="email" th:field="*{email}" />
+                                <label th:errorclass="reg_error" th:errors="*{email}">Error</label>
                             </div>
                         </div>
                         
@@ -23,31 +24,35 @@
                         <div class="form-group">
                             <label class="col-md-4 col-sm-4" for="input03">Password</label>
                             <div class="col-md-8 col-sm-8">
-                                <input type="password" id="input03" class="form-control" name="password" th:field="*{password}" />
+                                <input th:type="password" id="input03" class="form-control" name="password" th:field="*{password}" />
+                                <label th:if="${#fields.hasErrors('password')}" th:errorclass="reg_error" th:errors="*{password}">Error</label>
                             </div>
                         </div>
-    
+
+                        <!-- TODO :: using javascript check matching in real-time feedback -->
                         <!-- Password Confirm -->
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <label class="col-md-4 col-sm-4" for="input04">Password Confirm</label>
                             <div class="col-md-8 col-sm-8">
-                                <input type="password" id="input04" class="form-control" name="password_confm" th:field="*{email}" />
+                                <input type="password" id="input04" class="form-control" name="confirm_pass" />
                             </div>
-                        </div> -->
+                        </div>
     
                         <!-- Last Name -->
                         <div class="form-group">
                             <label class="col-md-4 col-sm-4" for="input06">Last Name</label>
                             <div class="col-md-8 col-sm-8">
                                 <input type="text" id="input05" class="form-control" name="last_name" th:field="*{last_name}" />
+                                <label th:errorclass="reg_error" th:errors="*{last_name}">Error</label>
                             </div>
                         </div>
     
                         <!-- First Name -->
                         <div class="form-group">
-                            <label class="col-md-4 col-sm-4" for="input05">First Name</label>
+                            <label class="col-md-4 col-sm-4" for="input06">First Name</label>
                             <div class="col-md-8 col-sm-8">
                                 <input type="text" id="input06" class="form-control" name="first_name" th:field="*{first_name}" />
+                                <label th:errorclass="reg_error" th:errors="*{first_name}">Error</label>
                             </div>
                         </div>
     
