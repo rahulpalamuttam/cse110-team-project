@@ -12,15 +12,14 @@ public class UserDAOImpl implements UserDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	public UserDAOImpl(DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	@Override
 	public void insert(User user) {
-		String sql = "INSERT INTO user (email, password, last_name, first_name, reg_date)"
-	            + " VALUES (?, ?, ?, ?)";
-		//jdbcTemplate.update(sql,);
-		
+		String sql = "INSERT INTO users (email, password, last_name, first_name, reg_date)"
+	            + " VALUES (?, ?, ?, ?, ?)";
+		this.jdbcTemplate.update(sql, user.getEmail(), user.getPassword(),
+				user.getLast_name(), user.getFirst_name(), user.getReg_date());
 	}
-
 }
