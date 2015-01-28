@@ -1,0 +1,36 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+
+footer {
+    position: absolute;
+    margin: 0px;
+    bottom: 0px;
+    width:100%;
+    height: 40px;
+    background-color: #eeeeee;
+}
+
+footer > .container {
+    line-height: 40px;
+}
+
+footer > .container > p {
+	margin: 0px;
+}
+
+/* Login Form */
+.form-login {
+    margin: 0 auto;
+    padding: 15px;
+    width: 330px;
+}
+.form-login > .form-control {
+    margin-bottom: 5px;
+}

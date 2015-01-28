@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:include="inc/head :: head"></head>
+<body>
+<header th:replace="inc/header :: header"></header>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
+                <form th:action="@{/register}" method="post" class="form-horizontal" th:object="${user}">            
+                    <fieldset>
+                        <legend>Register</legend>
+                        
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4" for="input01">E-mail</label>
+                            <div class="col-md-8 col-sm-8">
+                                <input type="email" id="input01" class="form-control" name="email" th:field="*{email}" />
+                            </div>
+                        </div>
+                        
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4" for="input03">Password</label>
+                            <div class="col-md-8 col-sm-8">
+                                <input type="password" id="input03" class="form-control" name="password" th:field="*{password}" />
+                            </div>
+                        </div>
+    
+                        <!-- Password Confirm -->
+                        <!-- <div class="form-group">
+                            <label class="col-md-4 col-sm-4" for="input04">Password Confirm</label>
+                            <div class="col-md-8 col-sm-8">
+                                <input type="password" id="input04" class="form-control" name="password_confm" th:field="*{email}" />
+                            </div>
+                        </div> -->
+    
+                        <!-- Last Name -->
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4" for="input06">Last Name</label>
+                            <div class="col-md-8 col-sm-8">
+                                <input type="text" id="input05" class="form-control" name="last_name" th:field="*{last_name}" />
+                            </div>
+                        </div>
+    
+                        <!-- First Name -->
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4" for="input05">First Name</label>
+                            <div class="col-md-8 col-sm-8">
+                                <input type="text" id="input06" class="form-control" name="first_name" th:field="*{first_name}" />
+                            </div>
+                        </div>
+    
+                        <!-- Submit Button -->
+                        <div class="form-group">
+                            <div class="col-md-offset-8 col-md-4">
+                                <input type="submit" class="btn btn-primary btn-block" value="Register" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<footer th:replace="inc/footer :: footer"></footer>
+</body>
+</html>
