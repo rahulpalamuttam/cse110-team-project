@@ -15,5 +15,9 @@
  
     <bean id="userDAO" class="com.googleit.telecom.dao.UserDAOImpl">
         <constructor-arg ref="dataSource"/>
-    </bean>    
+    </bean>
+
+    <bean id="authDAO" class="com.googleit.telecom.dao.AuthDAOImpl">
+        <constructor-arg ref="dataSource"/>
+    </bean>
 </beans>
