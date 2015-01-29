@@ -46,7 +46,7 @@
     * **$ mysql -v**
 * Setup root user
     * **$ /usr/local/mysql/bin/mysqladmin -u root password 'your password'**
-    * *Note: single quote is included
+    * *Note: single quote is included*
 * Login as root
     * **$ mysql -u root -p**
 * Fix the 2002 MySQL Socket Error
@@ -59,6 +59,20 @@
     * **git clone https://jjl112@bitbucket.org/googleit/cse110-team-project.git**
 
 ## 5. Run Project ##
+### Set up database ###
+* **$ mysql -u root -p**
+* **mysql> CREATE DATABASE telecom;**
+* **mysql> CREATE USER 'git110'@'localhost';
+* **mysql> GRANT ALL ON telecom.* TO 'git110'@'localhost';**
+ * **mysql> quit**
+* **$ mysql -u root -p telecom < users.sql**
+### Check ###
+* **$ mysql -u git110**
+* **mysql>SHOW DATABASES;**
+* **mysql>USER telecom;**
+* **mysql>SHOW TABLES;**
+* There should be 'users' table.
+
 * Under the project directory, run the web app by following command line
     * **$ mvn tomcat:run**
 * The terminal will keep running and should not terminate.
