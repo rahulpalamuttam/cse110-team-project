@@ -62,7 +62,7 @@
 ### Set up database ###
 * **$ mysql -u root -p**
 * **mysql> CREATE DATABASE telecom;**
-* **mysql> CREATE USER 'git110'@'localhost';
+* **mysql> CREATE USER 'git110'@'localhost';**
 * **mysql> GRANT ALL ON telecom.* TO 'git110'@'localhost';**
  * **mysql> quit**
 * **$ mysql -u root -p telecom < users.sql**
@@ -81,4 +81,5 @@
 *  To terminate tomcat server, press ctrl+c
 
 
-## *If any confusion or error please send an email or leave message on slack* ##
+
+### *If any confusion or error please send an email or leave message on slack* ###
