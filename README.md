@@ -73,6 +73,7 @@
 * **mysql>SHOW TABLES;**
 * There should be 'users' table.
 
+### Run ###
 * Under the project directory, run the web app by following command line
     * **$ mvn tomcat:run**
 * The terminal will keep running and should not terminate.
