@@ -1,7 +1,7 @@
 # **Setting Up for the Project** #
 ## 1. Java/JDK ##
 
-* If you've already installed idk and set JAVA_HOME environment variable, skip this step.
+* If you've already installed jdk and set JAVA_HOME environment variable, skip this step.
 * [Download JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * Set JAVA_HOME environment variable
     * **$ export JAVA_HOME=$(/usr/libexec/java_home) >> ~/.bash_profile**
@@ -69,7 +69,7 @@
 ### Check ###
 * **$ mysql -u git110**
 * **mysql>SHOW DATABASES;**
-* **mysql>USER telecom;**
+* **mysql>USE telecom;**
 * **mysql>SHOW TABLES;**
 * There should be 'users' table.
 
