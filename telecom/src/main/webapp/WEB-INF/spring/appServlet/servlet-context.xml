@@ -36,7 +36,10 @@
 	</beans:bean>
 	
 	<!-- Database Configuration  -->
-	<beans:import resource="classpath:/databases/db.xml" />
+	<beans:import resource="classpath:/config/db-context.xml" />
+	
+	<!-- Security Configuration -->
+	<!-- <beans:import resource="classpath:/config/security-context.xml" /> -->
 	
 	<context:component-scan base-package="com.googleit.telecom" />
 </beans:beans>
