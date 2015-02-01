@@ -81,4 +81,35 @@ public class User {
     public void setReg_date(String reg_date) {
         this.reg_date = reg_date;
     }
+
+    /**
+     * Changes the first and last name
+     * @param firstName
+     * @param lastName
+     */
+    public void ChangeName(String firstName, String lastName){
+        this.first_name = firstName;
+        this.last_name = lastName;
+    }
+
+    /**
+     * User requests that they be deleted from the system.
+     */
+    public void RequestDelete(){
+        // Code to delete user from database
+    }
+
+    /**
+     * Changes the password of the user
+     * The user needs to confirm their changed
+     * password as well.
+     * @param newPassword
+     */
+    public void ChangePassword(String newPassword){
+        this.password = newPassword;
+    }
+
+
+
+
 }
