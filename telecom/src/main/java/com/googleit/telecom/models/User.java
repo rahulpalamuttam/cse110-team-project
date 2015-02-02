@@ -6,9 +6,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
-/* TODO:: password reg pattern */
-
 public class User {
     
     private int id;
@@ -50,10 +47,9 @@ public class User {
 
     public void setPassword(String password) {
         // Hash password using BCrypt algorithm. 
-//        BCryptPasswordEncoder passEncryp = new BCryptPasswordEncoder();
+        BCryptPasswordEncoder passEncryp = new BCryptPasswordEncoder();
         if(password.length() > 4)
-//            this.password = passEncryp.encode(password);
-            this.password = password;
+            this.password = passEncryp.encode(password);
         else
             this.password = password;
     }

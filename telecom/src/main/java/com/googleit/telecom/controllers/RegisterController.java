@@ -16,8 +16,6 @@ import com.googleit.telecom.models.User;
 
 /**
  * 
- * @author Jeongjoon Lee
- * 
  * Class : RegisterContorller
  * Pakage : com.googleit.telecom.controllers
  * 
@@ -57,10 +55,10 @@ public class RegisterController {
         // Invalid form -> show register form page
         if (bindingResult.hasErrors()) return "register/register";
         
+        System.out.println(user.getEmail() + " / " + user.getPassword() + " / " + user.getFirst_name() + " / " + user.getId());
+        
         /* TODO :: Password Confrim validation using javascript */
 
-        // Set current time having "yyy-MM-dd" format
-        user.setReg_date(new SimpleDateFormat("yyy-MM-dd").format(new Date()));
         userDAO.insert(user);
 
         /* TODO :: redirect to DASHBOARD when dashboard is ready */
