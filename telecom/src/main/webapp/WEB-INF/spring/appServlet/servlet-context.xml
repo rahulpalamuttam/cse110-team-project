@@ -16,8 +16,6 @@
 	<mvc:resources mapping="/css/**" location="/resources/css/" />
 	<mvc:resources mapping="/js/**" location="/resources/js/" />
 	<mvc:resources mapping="/img/**" location="/resources/img/" />
-	<mvc:resources mapping="/scss/**" location="/resources/scss/" />
-	
 	
 	<!-- Thymeleaf View Engine and Resolver Setup -->
 	<beans:bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
@@ -34,12 +32,6 @@
 	<beans:bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
   		<beans:property name="templateEngine" ref="templateEngine" />
 	</beans:bean>
-	
-	<!-- Database Configuration  -->
-	<beans:import resource="classpath:/config/db-context.xml" />
-	
-	<!-- Security Configuration -->
-	<!-- <beans:import resource="classpath:/config/security-context.xml" /> -->
-	
+
 	<context:component-scan base-package="com.googleit.telecom" />
 </beans:beans>

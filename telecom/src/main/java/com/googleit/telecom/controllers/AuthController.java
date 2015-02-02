@@ -28,17 +28,17 @@ public class AuthController {
     }
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
-    public String loginCheck(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
-        if(trial > 2) {
-            model.addAttribute("login_message", "You have more than 3 attempts.");
-            return "home";
-        }
-        if(authDAO.authenticate(email, password)) {
-            model.addAttribute("login_message", "YOU HAVE SUCCESSFULY LOGGED IN");
-            return "home";
-        }
+    public String loginCheck(/*@RequestParam("email") String email, @RequestParam("password") String password, Model model*/) {
+//        if(trial > 2) {
+//            model.addAttribute("login_message", "You have more than 3 attempts.");
+//            return "home";
+//        }
+//        if(authDAO.authenticate(email, password)) {
+//            model.addAttribute("login_message", "YOU HAVE SUCCESSFULY LOGGED IN");
+//            return "home";
+//        }
 
-        trial++;
+//        trial++;
 
         return "auth/login";
     }

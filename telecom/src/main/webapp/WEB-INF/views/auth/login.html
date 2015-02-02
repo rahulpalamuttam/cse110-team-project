@@ -3,10 +3,10 @@
 <head th:include="inc/head :: head">
 </head>
 <body class="log-bk">
-<header th:replace="inc/header :: header"></header>    
+<header th:replace="inc/header :: header"></header>
 <section>
 	<div class="container">
-	    <form  method="post" class="form-login" th:action="@{/auth/login}" autocomplete="off">
+	    <form  method="post" class="form-login" action="loginProcess" autocomplete="off">
 	        <input type="email" class="form-control" name="email" placeholder="E-mail" />
 	        <input type="password" class="form-control" name="password" placeholder="Passowrd" />
 	        <input type="submit" class="btn btn-primary btn-block" value="Log in" />
