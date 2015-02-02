@@ -12,8 +12,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.googleit.telecom.models.User;
+import com.googleit.telecom.models.users.User;
 
 public class UserDAOImpl implements UserDAO {
 
@@ -26,6 +27,9 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void insert(final User user) {
 
+        // Set
+        BCryptPasswordEncoder passEncryp = new BCryptPasswordEncoder();
+        user.setPassword(passEncryp.encode(user.getPassword()));
         // Set current time having "yyy-MM-dd" format
         user.setReg_date(new SimpleDateFormat("yyy-MM-dd").format(new Date()));
 
