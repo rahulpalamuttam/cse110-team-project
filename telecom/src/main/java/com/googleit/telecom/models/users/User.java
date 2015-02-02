@@ -1,10 +1,13 @@
-package com.googleit.telecom.models;
+package com.googleit.telecom.models.users;
 
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+
+/* TODO:: password reg pattern */
 
 public class User {
     
@@ -47,9 +50,10 @@ public class User {
 
     public void setPassword(String password) {
         // Hash password using BCrypt algorithm. 
-        BCryptPasswordEncoder passEncryp = new BCryptPasswordEncoder();
+//        BCryptPasswordEncoder passEncryp = new BCryptPasswordEncoder();
         if(password.length() > 4)
-            this.password = passEncryp.encode(password);
+//            this.password = passEncryp.encode(password);
+            this.password = password;
         else
             this.password = password;
     }
@@ -77,4 +81,35 @@ public class User {
     public void setReg_date(String reg_date) {
         this.reg_date = reg_date;
     }
+
+    /**
+     * Changes the first and last name
+     * @param firstName
+     * @param lastName
+     */
+    public void ChangeName(String firstName, String lastName){
+        this.first_name = firstName;
+        this.last_name = lastName;
+    }
+
+    /**
+     * User requests that they be deleted from the system.
+     */
+    public void RequestDelete(){
+        // Code to delete user from database
+    }
+
+    /**
+     * Changes the password of the user
+     * The user needs to confirm their changed
+     * password as well.
+     * @param newPassword
+     */
+    public void ChangePassword(String newPassword){
+        this.password = newPassword;
+    }
+
+
+
+
 }

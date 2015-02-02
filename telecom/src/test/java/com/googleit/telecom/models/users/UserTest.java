@@ -1,9 +1,12 @@
-package com.googleit.telecom.models;
+package com.googleit.telecom.models.users;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
 
 public class UserTest {
     private User user;
@@ -78,4 +81,19 @@ public class UserTest {
     public void testSetReg_date() {
     }
 
+
+    @Test
+    public void testChangeName() throws Exception {
+
+    }
+
+    @Test
+    public void testRequestDelete() throws Exception {
+
+    }
+
+    @Test
+    public void testChangePassword() throws Exception {
+
+    }
 }

@@ -9,7 +9,7 @@
  
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/telecom" />
-        <property name="username" value="git110" />
+        <property name="username" value="jjl112" />
         <property name="password" value="" />
     </bean>
     
