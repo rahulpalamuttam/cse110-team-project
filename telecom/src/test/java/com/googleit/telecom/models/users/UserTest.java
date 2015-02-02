@@ -1,4 +1,4 @@
-package com.googleit.telecom.models;
+package com.googleit.telecom.models.users;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -81,4 +81,19 @@ public class UserTest {
     public void testSetReg_date() {
     }
 
+
+    @Test
+    public void testChangeName() throws Exception {
+
+    }
+
+    @Test
+    public void testRequestDelete() throws Exception {
+
+    }
+
+    @Test
+    public void testChangePassword() throws Exception {
+
+    }
 }

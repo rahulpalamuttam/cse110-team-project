@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class Package {
     private ArrayList<Service> PackagedServices;
+    private String packageID;
 
     /**
      * Called when we want to package together a new service
@@ -18,5 +19,13 @@ public class Package {
         for(Service newService : services){
             PackagedServices.add(newService);
         }
+    }
+
+    /**
+     * Called when java collections API needs to
+     * do comparisons of packages
+     */
+    public boolean equals(Package comparePackage){
+        return (this.packageID.equals(comparePackage.packageID));
     }
 }

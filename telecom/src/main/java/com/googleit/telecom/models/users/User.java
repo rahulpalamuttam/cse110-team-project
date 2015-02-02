@@ -1,4 +1,4 @@
-package com.googleit.telecom.models;
+package com.googleit.telecom.models.users;
 
 import javax.validation.constraints.Size;
 
