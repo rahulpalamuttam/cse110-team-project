@@ -56,7 +56,7 @@
 ## 4. Git/Bitbucket Setup ##
 * Go to your workspace directory or if you do not have one create one.
 * In your workspace, clone project.
-    * **git clone https://jjl112@bitbucket.org/googleit/cse110-team-project.git**
+    * **git clone https://<bitbucket-account>@bitbucket.org/googleit/cse110-team-project.git**
 
 ## 5. Run Project ##
 ### Set up database ###
