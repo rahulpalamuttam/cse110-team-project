@@ -10,6 +10,7 @@
 	        <input type="email" class="form-control" name="email" placeholder="E-mail" />
 	        <input type="password" class="form-control" name="password" placeholder="Passowrd" />
 	        <input type="submit" class="btn btn-primary btn-block" value="Log in" />
+	        <label th:if="${param.error}" class="error">Username and Password don't match</label>
 	    </form>
 	</div>
 	

@@ -17,8 +17,10 @@ public class AuthController {
     @Autowired
     private AuthDAO authDAO;
 
-    @RequestMapping("/login")
-    public String login() {
+    @RequestMapping(value="/login", method = RequestMethod.GET)
+    public String login(@RequestParam(value="error", required=false) String error, Model model) {
+//        if(error!=null) model.addAttribute("error", "Email and Password don't match");
+
         return "auth/login";
     }
 
@@ -27,19 +29,9 @@ public class AuthController {
         return "auth/logout";
     }
 
-    @RequestMapping(value="/login", method = RequestMethod.POST)
-    public String loginCheck(/*@RequestParam("email") String email, @RequestParam("password") String password, Model model*/) {
-//        if(trial > 2) {
-//            model.addAttribute("login_message", "You have more than 3 attempts.");
-//            return "home";
-//        }
-//        if(authDAO.authenticate(email, password)) {
-//            model.addAttribute("login_message", "YOU HAVE SUCCESSFULY LOGGED IN");
-//            return "home";
-//        }
-
-//        trial++;
-
-        return "auth/login";
-    }
+//    @RequestMapping(value="/login", method = RequestMethod.POST)
+//    public String loginCheck(/*@RequestParam("email") String email, @RequestParam("password") String password, Model model*/) {
+//
+//        return "auth/login";
+//    }
 }

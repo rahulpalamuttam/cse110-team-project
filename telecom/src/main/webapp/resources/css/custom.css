@@ -27,7 +27,7 @@ footer > .container > p {
 
 /* Register Form */
 
-.reg_error {
+.error {
 	color: red;
 	font-size: 12px;
 }

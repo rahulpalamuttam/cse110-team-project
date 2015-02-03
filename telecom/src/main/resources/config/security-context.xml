@@ -8,7 +8,7 @@
                          http://www.springframework.org/schema/security
                          http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-     <http auto-config="true" use-expressions="true">
+     <http auto-config="true" use-expressions="true" disable-url-rewriting="true">
           <intercept-url pattern="/login" access="permitAll" />
           
           <access-denied-handler error-page="/403"/>
@@ -28,7 +28,7 @@
            <jdbc-user-service data-source-ref="dataSource"
                               users-by-username-query="select email, password, enabled from users where email=?"
                               authorities-by-username-query="select u1.email, u2.role from users u1, user_roles u2 where u1.email=u2.email and u1.email=?"/>
-            </authentication-provider>
+        </authentication-provider>
     </authentication-manager>
 
 </beans:beans>
