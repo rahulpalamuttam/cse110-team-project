@@ -23,12 +23,6 @@ public class User {
                     + "and legnth between 5-13")
     private String password;
 
-    @NotBlank(message = "*Please enter last name")
-    private String last_name;
-
-    @NotBlank(message = "*Please enter first name")
-    private String first_name;
-
     private String reg_date;
 
     public int getId() {
@@ -53,22 +47,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
     }
 
     public String getReg_date() {

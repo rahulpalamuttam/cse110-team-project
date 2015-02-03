@@ -16,7 +16,7 @@
           <form-login login-page="/auth/login"
                       username-parameter="email"
                       password-parameter="password"
-                      login-processing-url="/loginProcess"
+                      login-processing-url="/auth/loginProcess"
                       default-target-url="/"
                       authentication-failure-url="/auth/login?error" />
           <logout invalidate-session="true" logout-url="/logout" logout-success-url="/"/>

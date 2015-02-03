@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,7 +48,7 @@ public class RegisterController {
      * @return redirect to dashboard;
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@Valid User user, BindingResult bindingResult) {
+    public String register(@Valid User user, BindingResult bindingResult, Model model) {
 
         // Invalid form -> show register form page
         if (bindingResult.hasErrors()) return "register/register";
@@ -59,7 +60,12 @@ public class RegisterController {
             return "/register";
         }
 
-        userDAO.insert(user);
+        if(!userDAO.insert(user)) {
+            // Redirect to register form page when email already exists
+            model.addAttribute("duplicate", "Email already exists.");
+            return "register/register";
+        }
+        
         /* TODO :: redirect to DASHBOARD when dashboard is ready */
         return "register/register_success";
     }
