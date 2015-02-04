@@ -36,46 +36,94 @@ public class UserTest {
 
     @Test
     public void testGetEmail() {
+    	String testMail = "test123@ucsd.edu";
         // By default email should be null
         assertEquals(null, user.getEmail());
         
-        // 
+        // set email then test setEmail
+        user.setEmail(testMail);
+        assertEquals(user.getEmail(), testMail);
+        	
     }
 
     @Test
     public void testSetEmail() {
+    	String testMail = "test3456@ucsd.edu";
+    	 // set email then test setEmail
+        user.setEmail(testMail);
+        assertEquals(user.getEmail(), testMail);
     }
 
     @Test
     public void testGetPassword() {
+       String testPassword = "testpassword";
+       
+   	   // set email then test setEmail
+       user.setPassword(testPassword);
+       assertEquals(user.getPassword(), testPassword);
     }
 
     @Test
     public void testSetPassword() {
+       String testPassword = "testpassword";
+          
+       // set email then test setEmail
+       user.setPassword(testPassword);
+       assertEquals(user.getPassword(), testPassword);    	
     }
 
     @Test
     public void testGetLast_name() {
+       String testLast_name = "lastname";
+        
+       // set email then test setEmail
+       user.setLast_name(testLast_name);
+       assertEquals(user.getLast_name(), testLast_name);   
     }
 
     @Test
     public void testSetLast_name() {
+       String testLast_name = "namelast";
+          
+       // set email then test setEmail
+       user.setLast_name(testLast_name);
+       assertEquals(user.getLast_name(), testLast_name); 
     }
 
     @Test
     public void testGetFirst_name() {
+        String testFirst_name = "firstname";
+        
+        // set email then test setEmail
+        user.setFirst_name(testFirst_name);
+        assertEquals(user.getFirst_name(), testFirst_name);     	
     }
 
     @Test
     public void testSetFirst_name() {
+        String testFirst_name = "namefirst";
+        
+        // set email then test setEmail
+        user.setFirst_name(testFirst_name);
+        assertEquals(user.getFirst_name(), testFirst_name);  
     }
 
     @Test
     public void testGetReg_date() {
+        String testFirst_name = "namefirst";
+        
+        // set email then test setEmail
+        user.setFirst_name(testFirst_name);
+        assertEquals(user.getFirst_name(), testFirst_name);  
     }
 
     @Test
     public void testSetReg_date() {
+        String testFirst_name = "namefirst";
+        
+        // set email then test setEmail
+        user.setFirst_name(testFirst_name);
+        assertEquals(user.getFirst_name(), testFirst_name);  
     }
 
 
