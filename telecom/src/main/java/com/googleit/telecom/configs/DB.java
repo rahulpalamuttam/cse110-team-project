@@ -22,8 +22,8 @@ public class DB {
         try {
             Connection connection = dataSource.getConnection();
             Statement statement = connection.createStatement();
-            
-            // Create
+
+            // Create user table
             statement.executeUpdate("SET foreign_key_checks = 0;");
             statement.executeUpdate("DROP TABLE IF EXISTS users");
             statement.executeUpdate("SET foreign_key_checks = 1;");
@@ -31,13 +31,20 @@ public class DB {
                     + "id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
                     + "email VARCHAR(40) NOT NULL,"
                     + "password VARCHAR(60) NOT NULL,"
-                    + "last_name VARCHAR(20) NOT NULL,"
-                    + "first_name VARCHAR(20) NOT NULL,"
                     + "reg_date DATE NOT NULL,"
                     + "enabled BOOLEAN NOT NULL,"
                     + "PRIMARY KEY(`id`),"
                     + "UNIQUE KEY `email` (`email`) "
                     + ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+
+            // Create user attempts table
+            statement.executeUpdate("DROP TABLE IF EXISTS user_attempts;");
+            statement.executeUpdate("CREATE TABLE user_attempts ("
+                    + "id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
+                    + "email VARCHAR(40) NOT NULL,"
+                    + "attempts VARCHAR(45) NOT NULL,"
+                    + "PRIMARY KEY (id)"
+                    + ");");
             
             // Create user role table
             statement.executeUpdate("DROP TABLE IF EXISTS user_roles");
@@ -51,8 +58,8 @@ public class DB {
                     + ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
             
             // TEST USER
-            statement.executeUpdate("INSERT INTO users(email, password, last_name, first_name, reg_date, enabled) "
-                    + "VALUES ('git110@ucsd.edu', '$2a$10$.aA.L.gBMay4llqXPBbHEue4YIc6Sc80H3NJ0iVBQh0ZKTlRAKM86', 'hello', 'hello', '2015-01-01', 1);");
+            statement.executeUpdate("INSERT INTO users(email, password, reg_date, enabled) "
+                    + "VALUES ('git110@ucsd.edu', '$2a$10$.aA.L.gBMay4llqXPBbHEue4YIc6Sc80H3NJ0iVBQh0ZKTlRAKM86', '2015-01-01', 1);");
             statement.executeUpdate("INSERT INTO user_roles(email, role) "
                     + "VALUES ('git110@ucsd.edu', 'ROLE_USER');");
             statement.close();
