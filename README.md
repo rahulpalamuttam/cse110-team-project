@@ -65,7 +65,7 @@
 * **mysql> CREATE USER 'git110'@'localhost';**
 * **mysql> GRANT ALL ON telecom.* TO 'git110'@'localhost';**
  * **mysql> quit**
-* **$ mysql -u root -p telecom < users.sql**
+
 ### Check ###
 * **$ mysql -u git110**
 * **mysql>SHOW DATABASES;**
