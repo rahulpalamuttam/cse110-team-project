@@ -58,6 +58,8 @@ public class DB {
                     + ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
             
             // TEST USER
+            // Email : git110@ucsd.edu
+            // Password : hello
             statement.executeUpdate("INSERT INTO users(email, password, reg_date, enabled) "
                     + "VALUES ('git110@ucsd.edu', '$2a$10$.aA.L.gBMay4llqXPBbHEue4YIc6Sc80H3NJ0iVBQh0ZKTlRAKM86', '2015-01-01', 1);");
             statement.executeUpdate("INSERT INTO user_roles(email, role) "

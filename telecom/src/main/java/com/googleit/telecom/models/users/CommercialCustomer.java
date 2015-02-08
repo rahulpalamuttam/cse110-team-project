@@ -10,7 +10,7 @@ public class CommercialCustomer extends Customer{
         this.CompanyName = name;
     }
 
-    public String getCompanyName(String name){
+    public String getCompanyName(){
         return this.CompanyName;
     }
 }

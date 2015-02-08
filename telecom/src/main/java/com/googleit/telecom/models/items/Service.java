@@ -1,4 +1,4 @@
-package com.googleit.telecom.models;
+package com.googleit.telecom.models.items;
 
 import java.util.Date;
 import java.util.List;
@@ -13,14 +13,13 @@ public class Service {
     private Date serviceStartDate;
     private Date serviceEndDate;
     private UUID serviceID;
-    private List<Rule> serviceRules;
+
 
     public Service(){}
-    public Service(List<Rule> rules, String name,
+    public Service(String name,
                    String description, Date start,
                    Date end, Double price){
 
-        serviceRules = rules;
         serviceName = name;
         serviceDescription = description;
         serviceStartDate = start;
@@ -60,9 +59,6 @@ public class Service {
         return this.serviceID;
     }
 
-    public void addRule(List<Rule> newRules){
-        this.serviceRules = newRules;
-    }
 
     /**
      * Used by find operations in java api data-structures

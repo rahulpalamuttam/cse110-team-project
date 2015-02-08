@@ -1,4 +1,4 @@
-package com.googleit.telecom.models;
+package com.googleit.telecom.models.items;
 
 import org.junit.Test;
 

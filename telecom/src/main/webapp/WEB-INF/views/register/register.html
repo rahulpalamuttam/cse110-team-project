@@ -20,7 +20,7 @@
                                 <label th:if="${duplicate}" class="error" th:text="${duplicate}"></label>
                             </div>
                         </div>
-                        
+                        <!-- TODO :: use javscript to update password strength -->
                         <!-- Password -->
                         <div class="form-group">
                             <label class="col-md-4 col-sm-4" for="input03">Password</label>
@@ -36,6 +36,20 @@
                             <label class="col-md-4 col-sm-4" for="input04">Password Confirm</label>
                             <div class="col-md-8 col-sm-8">
                                 <input type="password" id="input04" class="form-control" name="confirm_pass" />
+                            </div>
+                        </div>
+
+                        <!-- User Type-->
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4" for="input04">Customer</label>
+                            <div class="col-md-8 col-sm-8">
+                                <input type="checkbox" id="input05" class="form-control" name="Customer" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4" for="input04">Sales Representative</label>
+                            <div class="col-md-8 col-sm-8">
+                                <input type="checkbox" id="input05" class="form-control" name="Sales Representative" />
                             </div>
                         </div>
 

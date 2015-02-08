@@ -1,7 +1,8 @@
 package com.googleit.telecom.models.users;
 
 import com.googleit.telecom.models.*;
-import com.googleit.telecom.models.Package;
+import com.googleit.telecom.models.items.Package;
+import com.googleit.telecom.models.items.Service;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public class Customer extends User {
     private Bill customerBill;
     public Customer(){
         subscribedServices = new ArrayList<Service>();
-
+        subscribedPackages = new ArrayList<Package>();
     }
 
     /**
@@ -58,13 +59,25 @@ public class Customer extends User {
         subscribedPackages.remove(newPackage);
     }
 
-    public void PayBill(Double amount){
-        customerBill.pay(amount);
-    }
 
     public void changeAddress(String newAddress){
         this.address = newAddress;
     }
 
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Bill getCustomerBill() {
+        return customerBill;
+    }
+
+    public void setCustomerBill(Bill customerBill) {
+        this.customerBill = customerBill;
+    }
 }

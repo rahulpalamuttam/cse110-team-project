@@ -16,23 +16,13 @@ public class UserTest {
     @Test
     public void testGetId() {
         // By default id should be 0
-        assertEquals(0, 0);
-        
+
         // Set id then test getId
-        for(int i=0; i<50; i++) {
-            user.setId(i);
-            assertEquals(i, user.getId());
-        }
+
+            user.setId(12321321);
+            assertEquals(12321321, user.getId());
     }
 
-    @Test
-    public void testSetId() {
-        // Set id then test with getID
-        for(int i=0; i<50; i++) {
-            user.setId(i);
-            assertEquals(user.getId(), i);
-        }
-    }
 
     @Test
     public void testGetEmail() {

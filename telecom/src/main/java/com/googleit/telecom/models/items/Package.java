@@ -1,4 +1,4 @@
-package com.googleit.telecom.models;
+package com.googleit.telecom.models.items;
 
 import java.util.ArrayList;
 
@@ -19,6 +19,14 @@ public class Package {
         for(Service newService : services){
             PackagedServices.add(newService);
         }
+    }
+
+    public String getPackageID() {
+        return packageID;
+    }
+
+    public void setPackageID(String packageID) {
+        this.packageID = packageID;
     }
 
     /**
