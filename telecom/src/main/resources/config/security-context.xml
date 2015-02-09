@@ -17,7 +17,8 @@
                       username-parameter="email"
                       password-parameter="password"
                       login-processing-url="/auth/loginProcess"
-                      default-target-url="/"
+                      <!-- URL for successful login -->
+                      default-target-url="/dashboard"
                       authentication-failure-url="/auth/login?error" />
           <logout invalidate-session="true" logout-url="/logout" logout-success-url="/"/>
      </http>

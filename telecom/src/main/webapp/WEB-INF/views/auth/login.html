@@ -4,6 +4,7 @@
 </head>
 <body class="log-bk">
 <header th:replace="inc/header :: header"></header>
+<!-- Many of these input type variables for security is in security-context.xml -->
 <section>
 	<div class="container">
 	    <form  method="post" class="form-login" action="loginProcess" autocomplete="off">
@@ -13,24 +14,6 @@
 	        <label th:if="${param.error}" class="error">Username and Password don't match</label>
 	    </form>
 	</div>
-	
-<!-- 	<form method="post" th:action="@{/auth/login}" class="login">
-	    <p>
-	      <label for="login">Email:</label>
-	      <input type="email" name="email" id="login" placeholder="E-mail" />
-	    </p>
-	    
-	    <p>
-	      <label for="password">Password:</label>
-	      <input type="password" name="password" id="password" placeholder="Password" />
-	    </p>
-	
-	    <p class="login-submit">
-	      <button type="submit" class="login-button">Login</button>
-	    </p>
-	
-	    <p class="forgot-password"><a href="index.html">Forgot your password?</a></p>
-    </form> -->
 	
 </section>
 <footer th:replace="inc/footer :: footer"></footer>
