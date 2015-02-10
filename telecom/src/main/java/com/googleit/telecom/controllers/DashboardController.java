@@ -17,14 +17,15 @@ public class DashboardController {
 
     @Autowired
     private UserDAO userDAO;
+
     @RequestMapping(value={"/","","/home"}, method = RequestMethod.GET)
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("user", auth.getName());
-        
+
         String email = auth.getName();
         User dude = userDAO.get(email);
-        System.out.println(dude);
+
+        model.addAttribute("user", dude.getPassword());
 
         // TODO :: We need to take the data in dude and add it to home
         return "dashboard/home";

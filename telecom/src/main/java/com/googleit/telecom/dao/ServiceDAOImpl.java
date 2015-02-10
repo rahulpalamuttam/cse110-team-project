@@ -18,13 +18,17 @@ public class ServiceDAOImpl implements ServiceDAO {
 
     @Override
     public List<Service> getUnsubscribedService(int user_id) {
-        String sql = "SELECT * FROM services";
-
+        // TODO :: return list of Unsubscribed Service
+        // For SQL statement try using "join"
+        // If there's better solution use that statement
         return null;
     }
 
     @Override
     public List<Service> getSubscribedService(int user_id) {
+        // TODO :: return list of Unsubscribed Service
+        // For SQL statement try using "join"
+        // If there's better solution use that statement
         return null;
     }
 }
