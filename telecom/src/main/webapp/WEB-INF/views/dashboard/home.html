@@ -22,6 +22,14 @@
             <h2 class="sub-header">My Subscriptions</h2>
             <div class="table">
                 <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
                     <tbody>
                     <tr th:each="service : ${subscribedServices}">
                         <td th:text="${service.getServiceID()}"></td>

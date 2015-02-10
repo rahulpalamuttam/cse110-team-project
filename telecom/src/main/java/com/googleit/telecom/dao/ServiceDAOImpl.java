@@ -25,17 +25,8 @@ public class ServiceDAOImpl implements ServiceDAO {
          * This is actually funding the disjunction of the two sets.
          * I don't know if a JOIN is necessary here.
          */
-
-        // If there's better solution use that statement
-        return null;
-    }
-
-    @Override
-    public List<Service> getSubscribedService(long user_id) {
-        // TODO :: return list of Unsubscribed Service
-        // For SQL statement try using "join"
-        String sql = "SELECT subscriptions.service_id AS id, service_name, price, start_date, end_date, service_description from subscriptions "  +
-                "INNER JOIN services ON subscriptions.service_id=services.service_id " +
+        String sql = "SELECT services.service_id AS id, service_name, price, start_date, end_date, service_description FROM services "  +
+                "INNER JOIN subscriptions ON subscriptions.service_id!=services.service_id " +
                 "WHERE subscriptions.customer_id=?";
 
         List<Map<String,Object>> queried = new ArrayList<>();
@@ -48,6 +39,30 @@ public class ServiceDAOImpl implements ServiceDAO {
         return MapServicesToList(queried);
     }
 
+    @Override
+    public List<Service> getSubscribedService(long user_id) {
+        // TODO :: return list of Unsubscribed Service
+        // For SQL statement try using "join"
+        String sql = "SELECT services.service_id AS id, service_name, price, start_date, end_date, service_description from services "  +
+                "INNER JOIN subscriptions ON subscriptions.service_id=services.service_id " +
+                "WHERE subscriptions.customer_id=?";
+
+        List<Map<String,Object>> queried = new ArrayList<>();
+        try {
+            queried = this.jdbcTemplate.queryForList(sql, new Object[]{user_id});
+        } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
+        }
+
+        return MapServicesToList(queried);
+    }
+
+    /**
+     * Extracts the data from a SQL query and encapsulates it within
+     * a List of Service Objects.
+     * @param tuples
+     * @return
+     */
     public List<Service> MapServicesToList(List<Map<String,Object>> tuples){
         List<Service> services = new ArrayList<>();
         for(Map<String,Object> tuple : tuples){

@@ -29,7 +29,9 @@ public class DashboardController {
         String email = auth.getName();
         User dude = userDAO.getUser(email);
         List<Service> subscribedServices = serviceDAO.getSubscribedService(dude.getId());
+        List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(dude.getId());
         model.addAttribute("subscribedServices", subscribedServices);
+        model.addAttribute("unsubscribedServices", unsubscribedServices);
         model.addAttribute("user", dude.getEmail());
 
         // TODO :: We need to take the data in dude and add it to home
