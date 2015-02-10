@@ -23,7 +23,6 @@ public class UserTest {
             assertEquals(12321321, user.getId());
     }
 
-
     @Test
     public void testGetEmail() {
     	String testMail = "test123@ucsd.edu";
@@ -37,14 +36,6 @@ public class UserTest {
     }
 
     @Test
-    public void testSetEmail() {
-    	String testMail = "test3456@ucsd.edu";
-    	 // set email then test setEmail
-        user.setEmail(testMail);
-        assertEquals(user.getEmail(), testMail);
-    }
-
-    @Test
     public void testGetPassword() {
        String testPassword = "testpassword";
        
@@ -52,15 +43,14 @@ public class UserTest {
        user.setPassword(testPassword);
        assertEquals(user.getPassword(), testPassword);
     }
-
+    
     @Test
-    public void testSetPassword() {
-       String testPassword = "testpassword";
-          
-       // set email then test setEmail
-       user.setPassword(testPassword);
-       assertEquals(user.getPassword(), testPassword);    	
-    }
+    public void testgetReg_date() {
+        String testDate = "February 19th";
+    	   // set email then test setEmail
+        user.setReg_date(testDate);
+        assertEquals(user.getReg_date(), testDate);
+     }
 
 
 }

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class SalesRep {
     /**
-     * TODO:
+     * TODO: needs to extend user
      */
     public void CreateService(String serviceName,
                               String serviceDescription, Date start,
