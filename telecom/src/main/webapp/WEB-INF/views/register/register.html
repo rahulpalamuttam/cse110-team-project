@@ -26,7 +26,8 @@
                             <label class="col-md-4 col-sm-4" for="input03">Password</label>
                             <div class="col-md-8 col-sm-8">
                                 <input th:type="password" id="input03" class="form-control" name="password" th:field="*{password}" />
-                                <label th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}">Error</label>
+                                <label th:errors="*{password}" th:errorclass="error">Error</label>
+                                <!--th:if="${#fields.hasErrors('password')}" -->
                             </div>
                         </div>
 

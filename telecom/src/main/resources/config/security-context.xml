@@ -19,13 +19,18 @@
                       login-processing-url="/auth/loginProcess"
                       default-target-url="/"
                       authentication-failure-url="/auth/login?error" />
-          <logout invalidate-session="true" logout-url="/logout" logout-success-url="/"/>
+
+          <logout invalidate-session="true" logout-url="/logout" logout-success-url="/" />
+
+         <session-management>
+            <concurrency-control max-sessions="1" />
+         </session-management>
      </http>
 
-    <authentication-manager>
+    <authentication-manager alias="authenticationManager">
         <authentication-provider>
-        <password-encoder hash="bcrypt"/>
-           <jdbc-user-service data-source-ref="dataSource"
+            <password-encoder hash="bcrypt"/>
+            <jdbc-user-service data-source-ref="dataSource"
                               users-by-username-query="select email, password, enabled from users where email=?"
                               authorities-by-username-query="select u1.email, u2.role from users u1, user_roles u2 where u1.email=u2.email and u1.email=?"/>
         </authentication-provider>

@@ -3,12 +3,14 @@ package com.googleit.telecom.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.sql.DataSource;
 
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -26,7 +28,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean insert(final User user) {
+    public void insert(final User user) {
 
         // Encrypte password
         BCryptPasswordEncoder passEncryp = new BCryptPasswordEncoder();
@@ -35,32 +37,39 @@ public class UserDAOImpl implements UserDAO {
         // Set current time having "yyy-MM-dd" format
         user.setReg_date(new SimpleDateFormat("yyy-MM-dd").format(new Date()));
 
-        final String sql = "INSERT INTO users (email, password, reg_date, enabled)"
+        final String sql1 = "INSERT INTO users (email, password, reg_date, enabled)"
                 + " VALUES (?, ?, ?, ?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        try {
-            jdbcTemplate.update(new PreparedStatementCreator() {
-                @Override
-                public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                    PreparedStatement ps = connection.prepareStatement(sql, new String[] { "id" });
-                    ps.setString(1, user.getEmail());
-                    ps.setString(2, user.getPassword());
-                    ps.setString(3, user.getReg_date());
-                    ps.setBoolean(4, true);
-                    return ps;
-                }
-            }, keyHolder);
-        } catch (DuplicateKeyException dke) {
-            return false;
-        }
+        this.jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement ps = connection.prepareStatement(sql1, new String[] { "id" });
+                ps.setString(1, user.getEmail());
+                ps.setString(2, user.getPassword());
+                ps.setString(3, user.getReg_date());
+                ps.setBoolean(4, true);
+                return ps;
+            }
+        }, keyHolder);
 
         // Set primary key id to user
         user.setId(keyHolder.getKey().intValue());
-        
-        String sql1 = "INSERT INTO user_roles (email, role)" + " VALUES (?,?)";
-        this.jdbcTemplate.update(sql1, user.getEmail(), "ROLE_USER");
-        
+
+        String sql2 = "INSERT INTO user_roles (email, role)" + " VALUES (?,?)";
+        this.jdbcTemplate.update(sql2, user.getEmail(), "ROLE_USER");
+    }
+
+    @Override
+    public boolean isDuplicate(String email) {
+        String sql = "SELECT email FROM users WHERE email=?";
+
+        try {
+            this.jdbcTemplate.queryForObject(sql, new Object[] {email}, String.class);
+        } catch (EmptyResultDataAccessException e) {
+            return false;
+        }
+
         return true;
     }
 }

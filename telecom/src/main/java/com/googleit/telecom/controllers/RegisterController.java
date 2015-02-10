@@ -1,25 +1,31 @@
 package com.googleit.telecom.controllers;
 
-import javax.validation.Valid;
-
+import com.googleit.telecom.dao.UserDAO;
+import com.googleit.telecom.models.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.googleit.telecom.dao.UserDAO;
-import com.googleit.telecom.models.users.User;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 /**
- * 
+ *
  * Class : RegisterContorller
  * Pakage : com.googleit.telecom.controllers
- * 
+ *
  * The RegisterController class manages user registeration and insert
  * user's data where the form follows User model.
- * 
+ *
  */
 
 @Controller
@@ -27,10 +33,13 @@ public class RegisterController {
 
     @Autowired
     private UserDAO userDAO;
-    private static int registration = 0;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
     /**
      * Shows the registeration form
-     * 
+     *
      * @param User
      * @return string of regiter.html path
      */
@@ -42,44 +51,39 @@ public class RegisterController {
     /**
      * Upon POST request register user
      * when form validation pass.
-     * 
+     *
      * @param User
      * @param BindingResult
      * @return redirect to dashboard;
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@Valid User user, BindingResult bindingResult, Model model) {
+    public String register(@Valid User user, BindingResult bindingResult, HttpServletRequest request, Model model) {
+        boolean duplicate = false;
+        String email = user.getEmail();
+        String password = user.getPassword();
+
+        if ( duplicate = userDAO.isDuplicate(user.getEmail()) ) {
+            model.addAttribute("duplicate", "Email already exists.");
+        }
 
         // Invalid form -> show register form page
-        if (bindingResult.hasErrors()) return "register/register";
-        
+        if (bindingResult.hasErrors() || duplicate) return "register/register";
+
         /* TODO :: Password Confrim validation using javascript */
 
-        if(!(this.CheckPassword(user.getPassword()))){
-            System.out.println("Bad password");
-            return "/register";
-        }
+        userDAO.insert(user);
 
-        if(!userDAO.insert(user)) {
-            // Redirect to register form page when email already exists
-            model.addAttribute("duplicate", "Email already exists.");
-            return "register/register";
-        }
-        
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
+
+        // generate session if one doesn't exist
+        request.getSession();
+
+        token.setDetails(new WebAuthenticationDetails(request));
+        Authentication authenticatedUser = authenticationManager.authenticate(token);
+
+        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+
         /* TODO :: redirect to DASHBOARD when dashboard is ready */
         return "register/register_success";
-    }
-
-    public boolean CheckPassword(String password){
-//        Logger.info("Welcome home! The client locale is {}.");
-//        if(password.length() < 10){
-//            Logger.info("Create a better password length");
-//            return false;
-//        }
-//        if(password.contains("bad")){
-//            Logger.info("create a better password");
-//            return false;
-//        }
-        return true;
     }
 }
