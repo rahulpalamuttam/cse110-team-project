@@ -78,6 +78,9 @@ public class DB {
                     + "PRIMARY KEY (service_id)"
                     + ");");
 
+            // TEST service
+            statement.executeUpdate("INSERT INTO services(service_name, price, start_date, end_date, service_description)"
+                    + "VALUES ('Freenet', '29.00', '2015-01-01', '2015-02-02', 'This is a a freebie services! Take advanage.');");
 
             statement.close();
             connection.close();
