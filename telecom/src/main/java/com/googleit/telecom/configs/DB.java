@@ -6,6 +6,9 @@ import java.sql.Statement;
 
 import javax.sql.DataSource;
 
+/**
+ * TODO :: We should drop all the tables first before creation.
+ */
 public class DB {
     private DataSource dataSource;
 
@@ -22,7 +25,9 @@ public class DB {
         try {
             Connection connection = dataSource.getConnection();
             Statement statement = connection.createStatement();
+            // subscriptions has a foreign key constraint so we need to drop it first
 
+            statement.executeUpdate("DROP TABLE IF EXISTS subscriptions;");
             // Create user table
             statement.executeUpdate("SET foreign_key_checks = 0;");
             statement.executeUpdate("DROP TABLE IF EXISTS users");
@@ -80,8 +85,23 @@ public class DB {
 
             // TEST service
             statement.executeUpdate("INSERT INTO services(service_name, price, start_date, end_date, service_description)"
-                    + "VALUES ('Freenet', '29.00', '2015-01-01', '2015-02-02', 'This is a a freebie services! Take advanage.');");
+                    + "VALUES ('Freenet', '29.00', '2015-01-01', '2015-02-02', 'This is a freebie services! Take advantage.');");
 
+            // Create a subscription table
+            // TODO :: Currently only service_id is a foreign key constraint - we need customer to also be one
+
+            statement.executeUpdate("CREATE TABLE subscriptions ("
+                    + "subscription_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
+                    + "service_id INT UNSIGNED NOT NULL,"
+                    + "customer_id INT UNSIGNED NOT NULL,"
+                    + "PRIMARY KEY (subscription_id),"
+                    + "KEY fk_subscriptions (service_id, customer_id),"
+                    + "CONSTRAINT fk_subscriptions FOREIGN KEY (service_id) REFERENCES services(service_id)"
+                    + ");");
+
+            // test a subscription table
+            statement.executeUpdate("INSERT INTO subscriptions (service_id, customer_id)"
+                    + "VALUES ('1', '1')");
             statement.close();
             connection.close();
 
