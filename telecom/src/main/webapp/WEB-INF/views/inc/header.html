@@ -3,7 +3,7 @@
 <body>
 <header  th:fragment="header">
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" th:href="@{/}">Logo</a>
             </div>
@@ -15,14 +15,14 @@
 
                 <!-- If logged in -->
                 <ul class="nav navbar-nav navbar-right" sec:authorize="hasRole('ROLE_USER')">
-                    <li><a href="#">My account</a></li>
+                    <li><a href="/dashboard/">Dashboard</a></li>
                     <li><a href="/auth/logout">Sign out</a></li>
                 </ul>
 
                 <!-- If not logged in -->
                 <ul class="nav navbar-nav navbar-right" sec:authorize="!hasRole('ROLE_USER')">
-                    <li><a th:href="@{/register}">Register</a></li>
-                    <li><a th:href="@{/auth/login}">Sign in</a></li>
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="/auth/login">Sign in</a></li>
                 </ul>
             </div>
         </div>

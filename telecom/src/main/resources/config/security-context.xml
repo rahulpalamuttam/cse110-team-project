@@ -10,7 +10,7 @@
 
      <http auto-config="true" use-expressions="true" disable-url-rewriting="true">
           <intercept-url pattern="/login" access="permitAll" />
-         <intercept-url pattern="/dashboard/customer" access="SALE" />
+          <intercept-url pattern="/dashboard" access="hasRole('ROLE_USER')" />
           
           <access-denied-handler error-page="/403"/>
           
