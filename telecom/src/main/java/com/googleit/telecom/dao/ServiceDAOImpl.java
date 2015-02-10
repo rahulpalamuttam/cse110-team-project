@@ -19,15 +19,12 @@ public class ServiceDAOImpl implements ServiceDAO {
 
     @Override
     public List<Service> getUnsubscribedService(long user_id) {
-        // TODO :: return list of Unsubscribed Service
-        // For SQL statement try using JOIN
-        /**
-         * This is actually funding the disjunction of the two sets.
-         * I don't know if a JOIN is necessary here.
-         */
-        String sql = "SELECT DISTINCT services.service_id AS id, service_name, price, start_date, end_date, service_description FROM services "  +
-                "INNER JOIN subscriptions ON subscriptions.service_id!=services.service_id " +
-                "WHERE subscriptions.customer_id=?";
+        // No join necessary here
+
+        String sql = "SELECT services.service_id AS id, service_name, price, start_date, end_date, service_description FROM services "  +
+                "WHERE NOT EXISTS (" +
+                "SELECT * FROM subscriptions WHERE subscriptions.service_id=services.service_id AND subscriptions.customer_id=?" +
+                " )";
 
         List<Map<String,Object>> queried = new ArrayList<>();
         try {
@@ -41,11 +38,10 @@ public class ServiceDAOImpl implements ServiceDAO {
 
     @Override
     public List<Service> getSubscribedService(long user_id) {
-        // TODO :: return list of Unsubscribed Service
-        // For SQL statement try using "join"
-        String sql = "SELECT services.service_id AS id, service_name, price, start_date, end_date, service_description from services "  +
-                "INNER JOIN subscriptions ON subscriptions.service_id=services.service_id " +
-                "WHERE subscriptions.customer_id=?";
+        String sql = "SELECT services.service_id AS id, service_name, price, start_date, end_date, service_description FROM services "  +
+                "WHERE EXISTS(" +
+                "SELECT * FROM subscriptions WHERE subscriptions.service_id=services.service_id AND subscriptions.customer_id=?" +
+                " )";
 
         List<Map<String,Object>> queried = new ArrayList<>();
         try {
