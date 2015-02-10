@@ -21,11 +21,10 @@ public class DashboardController {
     @RequestMapping(value={"/","","/home"}, method = RequestMethod.GET)
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
         String email = auth.getName();
-        User dude = userDAO.get(email);
+        User user = userDAO.getUser(email);
 
-        model.addAttribute("user", dude.getPassword());
+        model.addAttribute("user", user.getEmail());
 
         // TODO :: We need to take the data in dude and add it to home
         return "dashboard/home";

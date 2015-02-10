@@ -7,21 +7,21 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Overview</a></li>
+                <li class="active"><a href="#">Summary</a></li>
                 <li><a href="#">Service</a></li>
                 <li><a href="#">Packages</a></li>
             </ul>
             <ul class="nav nav-sidebar">
                 <li><a href="">Change Password</a></li>
-                <li><a href="">FML</a></li>
+                <li><a href="">Delete Account</a></li>
             </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-2 main">
             <h1 class="page-header" th:text="'Welcome ' + ${user} + '!'"></h1>
 
-            <h2 class="sub-header">Service or Package</h2>
+            <h2 class="sub-header">Services</h2>
 
-            <div class="table-responsive">
+            <div class="table">
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -36,6 +36,18 @@
                         <td>need to use database</td>
                         <td>need to use database</td>
                         <td>need to use database</td>
+                        <td>need to use database</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2 main">
+            <h2 class="sub-header">My Subscriptions</h2>
+            <div class="table">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
                         <td>need to use database</td>
                     </tr>
                     </tbody>

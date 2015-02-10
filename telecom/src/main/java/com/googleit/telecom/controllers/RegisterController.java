@@ -69,12 +69,15 @@ public class RegisterController {
         // Invalid form -> show register form page
         if (bindingResult.hasErrors() || duplicate) return "register/register";
 
-        /* TODO :: Password Confrim validation using javascript */
-
         /* TODO :: Check for SQL error exception */
-
         userDAO.insert(user);
 
+        autoLogin(email, password, request);
+
+        return "register/register_success";
+    }
+
+    public void autoLogin(String email, String password, HttpServletRequest request) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
 
         // generate session if one doesn't exist
@@ -84,8 +87,5 @@ public class RegisterController {
         Authentication authenticatedUser = authenticationManager.authenticate(token);
 
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
-
-        /* TODO :: redirect to DASHBOARD when dashboard is ready */
-        return "register/register_success";
     }
 }

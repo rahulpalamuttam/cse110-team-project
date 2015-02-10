@@ -62,7 +62,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User get(String email){
+    public User getUser(String email){
         String sql = "SELECT id, email, reg_date FROM users WHERE email=?";
         Map queried = new HashMap();
         try {
@@ -72,7 +72,7 @@ public class UserDAOImpl implements UserDAO {
         }
 
         Customer cust = new Customer();
-        cust.setId((int)queried.get("id"));
+        cust.setId((long)queried.get("id"));
         cust.setEmail((String) queried.get("email"));
         cust.setReg_date(queried.get("reg_date").toString());
 

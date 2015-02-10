@@ -8,28 +8,28 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class User {
     
-    private int id;
+    private long id;
 
-    @NotBlank(message = "*Please enter e-mail address")
-    @Email(message = "*Invalid e-mail form")
+//    @NotBlank(message = "*Please enter e-mail address")
+//    @Email(message = "*Invalid e-mail form")
     private String email;
 
-    @Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).{5,13})",
-            message = "*Password must contain "
-                    + "digit, "
-                    + "lowercase letter, "
-                    + "uppercase letter, "
-                    + "special character, "
-                    + "and legnth between 5-13")
+//    @Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).{5,13})",
+//            message = "*Password must contain "
+//                    + "digit, "
+//                    + "lowercase letter, "
+//                    + "uppercase letter, "
+//                    + "special character, "
+//                    + "and legnth between 5-13")
     private String password;
 
     private String reg_date;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

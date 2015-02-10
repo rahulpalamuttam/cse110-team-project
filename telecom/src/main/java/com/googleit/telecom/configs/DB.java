@@ -70,6 +70,13 @@ public class DB {
             statement.executeUpdate("INSERT INTO user_roles(email, role) "
                     + "VALUES ('git110@ucsd.edu', 'ROLE_USER');");
 
+            // Email : a
+            // Password : a
+            statement.executeUpdate("INSERT INTO users(email, password, reg_date, enabled) "
+                    + "VALUES ('a', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', '2015-02-01', 1);");
+            statement.executeUpdate("INSERT INTO user_roles(email, role) "
+                    + "VALUES ('a', 'ROLE_USER');");
+
 
             // Create services table
             statement.executeUpdate("DROP TABLE IF EXISTS services;");
