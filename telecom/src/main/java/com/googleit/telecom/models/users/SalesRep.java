@@ -18,9 +18,9 @@ public class SalesRep extends User {
      */
     public void CreateService(String serviceName,
                               String serviceDescription, Date start,
-                              Date end, Double price){
+                              Date end, Double price, Long id){
         // the sales representative needs to create a service
-        Service newOne = new Service(serviceName, serviceDescription, start, end, price);
+        Service newOne = new Service(serviceName, serviceDescription, start, end, price, id);
         // What do we do with the service once its created?
     }
 

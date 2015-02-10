@@ -24,4 +24,9 @@
     <bean id="authDAO" class="com.googleit.telecom.dao.AuthDAOImpl">
         <constructor-arg ref="dataSource"/>
     </bean>
+
+    <bean id="serviceDAO" class="com.googleit.telecom.dao.ServiceDAOImpl">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
 </beans>

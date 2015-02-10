@@ -92,7 +92,9 @@ public class DB {
 
             // TEST service
             statement.executeUpdate("INSERT INTO services(service_name, price, start_date, end_date, service_description)"
-                    + "VALUES ('Freenet', '29.00', '2015-01-01', '2015-02-02', 'This is a freebie services! Take advantage.');");
+                    + "VALUES ('Freenet', '29.00', '2015-01-01', '2015-02-02', 'This is a freebie service! Take advantage.');");
+            statement.executeUpdate("INSERT INTO services(service_name, price, start_date, end_date, service_description)"
+                    + "VALUES ('Freebie', '35.01', '2015-01-01', '2015-02-02', 'This is a newbie service! Take advantage.');");
 
             // Create a subscription table
             // TODO :: Currently only service_id is a foreign key constraint - we need customer to also be one
@@ -109,6 +111,8 @@ public class DB {
             // test a subscription table
             statement.executeUpdate("INSERT INTO subscriptions (service_id, customer_id)"
                     + "VALUES ('1', '1')");
+            statement.executeUpdate("INSERT INTO subscriptions (service_id, customer_id)"
+                    + "VALUES ('2', '1')");
             statement.close();
             connection.close();
 

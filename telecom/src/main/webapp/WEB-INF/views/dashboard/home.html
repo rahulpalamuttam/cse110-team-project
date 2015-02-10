@@ -16,8 +16,25 @@
                 <li><a href="">Delete Account</a></li>
             </ul>
         </div>
+
         <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-2 main">
             <h1 class="page-header" th:text="'Welcome ' + ${user} + '!'"></h1>
+            <h2 class="sub-header">My Subscriptions</h2>
+            <div class="table">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr th:each="service : ${subscribedServices}">
+                        <td th:text="${service.getServiceID()}"></td>
+                        <td th:text="${service.getServiceName()}"></td>
+                        <td th:text="${service.getServiceDescription()}">need to use database</td>
+                        <td th:text="${service.getPrice()}">need to use database</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-2 main">
 
             <h2 class="sub-header">Services</h2>
 
@@ -32,28 +49,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>need to use database</td>
-                        <td>need to use database</td>
-                        <td>need to use database</td>
-                        <td>need to use database</td>
+                    <tr th:each="service : ${unsubscribedServices}">
+                        <td th:text="${service.getServiceID()}"></td>
+                        <td th:text="${service.getServiceName()}"></td>
+                        <td th:text="${service.getServiceDescription()}">need to use database</td>
+                        <td th:text="${service.getPrice()}">need to use database</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="col-md-2 main">
-            <h2 class="sub-header">My Subscriptions</h2>
-            <div class="table">
-                <table class="table table-striped">
-                    <tbody>
-                    <tr>
-                        <td>need to use database</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+
     </div>
 </div>
 <footer th:replace="inc/footer :: footer"></footer>

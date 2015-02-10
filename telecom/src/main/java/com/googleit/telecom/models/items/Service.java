@@ -12,13 +12,13 @@ public class Service {
     private double servicePrice;
     private Date serviceStartDate;
     private Date serviceEndDate;
-    private UUID serviceID;
+    private Long serviceID;
 
 
     public Service(){}
     public Service(String name,
                    String description, Date start,
-                   Date end, Double price){
+                   Date end, Double price, Long id){
 
         serviceName = name;
         serviceDescription = description;
@@ -26,7 +26,7 @@ public class Service {
         serviceEndDate = end;
         servicePrice = price;
         // need to check if UUID's have been repeated
-        serviceID = UUID.randomUUID();
+        serviceID = id;
 
     }
     public void setPrice(Double price){
@@ -51,14 +51,25 @@ public class Service {
      * The service ID is a unique identifier.
      * It will be the basis of the .equals method.
      */
-    public void setServiceID(UUID newId){
+    public void setServiceID(Long newId){
         this.serviceID = newId;
     }
 
-    public UUID getServiceID(){
+    public Long getServiceID(){
         return this.serviceID;
     }
 
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public String getServiceDescription() {
+        return serviceDescription;
+    }
+
+    public double getServicePrice() {
+        return servicePrice;
+    }
 
     /**
      * Used by find operations in java api data-structures
