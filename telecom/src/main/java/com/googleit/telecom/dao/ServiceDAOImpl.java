@@ -25,7 +25,7 @@ public class ServiceDAOImpl implements ServiceDAO {
          * This is actually funding the disjunction of the two sets.
          * I don't know if a JOIN is necessary here.
          */
-        String sql = "SELECT services.service_id AS id, service_name, price, start_date, end_date, service_description FROM services "  +
+        String sql = "SELECT DISTINCT services.service_id AS id, service_name, price, start_date, end_date, service_description FROM services "  +
                 "INNER JOIN subscriptions ON subscriptions.service_id!=services.service_id " +
                 "WHERE subscriptions.customer_id=?";
 
