@@ -1,7 +1,8 @@
 package com.googleit.telecom.controllers;
 
 
-import com.googleit.telecom.dao.ServiceDAO;
+import com.googleit.telecom.dao.UserDAO;
+import com.googleit.telecom.models.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,10 +15,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/dashboard")
 public class DashboardController {
 
-    @RequestMapping(value={"", "/", "/home"})
+    @Autowired
+    private UserDAO userDAO;
+    @RequestMapping(value={"/","","/home"}, method = RequestMethod.GET)
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("user", auth.getName());
+        
+        String email = auth.getName();
+        User dude = userDAO.get(email);
+        System.out.println(dude);
+
+        // TODO :: We need to take the data in dude and add it to home
         return "dashboard/home";
     }
 

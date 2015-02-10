@@ -5,10 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 import javax.sql.DataSource;
 
+import com.googleit.telecom.models.users.Customer;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -61,6 +62,29 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public User get(String email){
+        String sql = "SELECT email, reg_date FROM users WHERE email=?";
+        Map queried = new HashMap();
+        try {
+            queried = this.jdbcTemplate.queryForMap(sql, new Object[]{email});
+        } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
+        }
+
+        Customer cust = new Customer();
+        cust.setEmail((String) queried.get("email"));
+        cust.setReg_date(queried.get("reg_date").toString());
+        //System.out.println(queried);
+        return cust;
+    }
+
+    /**
+     * Currently this doesn't exactly check for duplicates.
+     * All it does is check for
+     * @param email
+     * @return
+     */
+    @Override
     public boolean isDuplicate(String email) {
         String sql = "SELECT email FROM users WHERE email=?";
 
@@ -72,4 +96,6 @@ public class UserDAOImpl implements UserDAO {
 
         return true;
     }
+
+
 }
