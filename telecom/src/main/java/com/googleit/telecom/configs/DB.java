@@ -47,7 +47,7 @@ public class DB {
                     + ");");
             
             // Create user role table
-            statement.executeUpdate("DROP TABLE IF EXISTS user_roles");
+            statement.executeUpdate("DROP TABLE IF EXISTS user_roles;");
             statement.executeUpdate("CREATE TABLE user_roles ("
                     + "role_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
                     + "email VARCHAR(40) NOT NULL,"
@@ -64,8 +64,24 @@ public class DB {
                     + "VALUES ('git110@ucsd.edu', '$2a$10$.aA.L.gBMay4llqXPBbHEue4YIc6Sc80H3NJ0iVBQh0ZKTlRAKM86', '2015-01-01', 1);");
             statement.executeUpdate("INSERT INTO user_roles(email, role) "
                     + "VALUES ('git110@ucsd.edu', 'ROLE_USER');");
+
+
+            // Create services table
+            statement.executeUpdate("DROP TABLE IF EXISTS services;");
+            statement.executeUpdate("CREATE TABLE services ("
+                    + "service_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
+                    + "service_name VARCHAR(40) NOT NULL,"
+                    + "price DOUBLE NOT NULL,"
+                    + "start_date DATE NOT NULL,"
+                    + "end_date DATE NOT NULL,"
+                    + "service_description VARCHAR(200) NOT NULL,"
+                    + "PRIMARY KEY (service_id)"
+                    + ");");
+
+
             statement.close();
             connection.close();
+
 
         } catch (SQLException e) {
             e.printStackTrace();

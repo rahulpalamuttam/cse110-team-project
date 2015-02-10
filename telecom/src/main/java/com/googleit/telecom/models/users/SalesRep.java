@@ -12,7 +12,7 @@ import java.util.List;
  * We need to implement a buyable interface!
  * Created by rahul on 2/1/15.
  */
-public class SalesRep {
+public class SalesRep extends User {
     /**
      * TODO: needs to extend user
      */

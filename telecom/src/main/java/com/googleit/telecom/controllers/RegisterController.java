@@ -71,6 +71,8 @@ public class RegisterController {
 
         /* TODO :: Password Confrim validation using javascript */
 
+        /* TODO :: Check for SQL error exception */
+
         userDAO.insert(user);
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
