@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="inc/head :: head"></head>
+<body>
+<header th:replace="inc/header :: header"></header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="#">Packages</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="">Change Password</a></li>
+                <li><a href="">FML</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Welcome username</h1>
+
+            <h2 class="sub-header">Service or Package</h2>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>need to use database</td>
+                        <td>need to use database</td>
+                        <td>need to use database</td>
+                        <td>need to use database</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="inc/footer :: footer"></footer>
+</body>
+</html>

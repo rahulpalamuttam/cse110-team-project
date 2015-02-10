@@ -6,11 +6,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping("/dashboard")
 public class DashboardController {
 
-    @RequestMapping(value="/dashboard", method = RequestMethod.GET)
-    public String login() {
-        return "dashboard/Customer_Dashboard";
+    @RequestMapping(value={"/", "/home"}, method = RequestMethod.GET)
+    public String home() {
+        return "dashboard/home";
+    }
+
+    @RequestMapping(value="/services")
+    public String service() {
+        return "dashboard/services";
     }
 
 }
