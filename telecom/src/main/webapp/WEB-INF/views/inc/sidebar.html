@@ -6,7 +6,7 @@
     <ul class="nav nav-sidebar">
         <li class="active"><a href="/dashboard/">Summary</a></li>
         <li sec:authorize="hasRole('ROLE_CUSTOMER_REP')"><a href="/dashboard/customer">Customer</a></li>
-        <li><a href="/dashboard/services">Service</a></li>
+        <li sec:authorize="hasAnyRole('ROLE_USER','ROLE_CUSTOMER')"><a href="/dashboard/services">Service</a></li>
         <li><a href="#">Packages</a></li>
     </ul>
     <ul class="nav nav-sidebar">
