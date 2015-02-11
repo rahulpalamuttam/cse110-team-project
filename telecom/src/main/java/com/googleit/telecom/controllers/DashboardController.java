@@ -29,14 +29,20 @@ public class DashboardController {
     @Autowired
     private CustomerDAO customerDAO;
 
-    @RequestMapping(value={"/","","/home"}, method = RequestMethod.GET)
-    public String home(Model model) {
+    /**
+     * Fetches the authenticated user
+     */
+    private User getAuthenticated(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User dude = userDAO.getUser(email);
+        return dude;
+    }
 
-        model.addAttribute("user", dude.getEmail());
-
+    @RequestMapping(value={"/","","/home"}, method = RequestMethod.GET)
+    public String home(Model model) {
+        User currentAuthenticated = getAuthenticated();
+        model.addAttribute("user", currentAuthenticated.getEmail());
         return "dashboard/home";
     }
 
@@ -44,10 +50,9 @@ public class DashboardController {
     public String updateSubscription(@RequestParam(value = "subscribe", required = false) String[] subscribe,
                         @RequestParam(value = "cancel",    required = false) String[] cancel) {
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
-        User dude = userDAO.getUser(email);
-        long user_id = dude.getId();
+
+        User currentAuthenticated = getAuthenticated();
+        long user_id = currentAuthenticated.getId();
 
         if(subscribe != null && subscribe.length >0)
             for(String service_id : subscribe)
@@ -62,8 +67,19 @@ public class DashboardController {
 
     @RequestMapping(value="/services")
     public String service(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
+        User dude = getAuthenticated();
+        long user_id = dude.getId();
+        List<Service> subscribedServices = serviceDAO.getSubscribedService(dude.getId());
+        List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(dude.getId());
+        model.addAttribute("subscribedServices", subscribedServices);
+        model.addAttribute("unsubscribedServices", unsubscribedServices);
+        model.addAttribute("user", dude.getEmail());
+        return "dashboard/services";
+    }
+
+    @RequestMapping(value={"/customerServices"}, method = RequestMethod.POST)
+    public String updateCustomerSubscription(@RequestParam(value = "email", required = false) String email, Model model) {
+        System.out.println(email);
         User dude = userDAO.getUser(email);
         long user_id = dude.getId();
         List<Service> subscribedServices = serviceDAO.getSubscribedService(dude.getId());
@@ -74,11 +90,10 @@ public class DashboardController {
         return "dashboard/services";
     }
 
+
     @RequestMapping("/customers")
     public String customer(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
-        User dude = userDAO.getUser(email);
+        User dude = getAuthenticated();
         long user_id = dude.getId();
 
         List<Customer> myCustomers = customerDAO.getCustomers(user_id, userDAO);
