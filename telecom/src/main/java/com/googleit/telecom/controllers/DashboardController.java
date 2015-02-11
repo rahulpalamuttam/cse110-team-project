@@ -39,7 +39,8 @@ public class DashboardController {
 
     @RequestMapping(value={"/services"}, method = RequestMethod.POST)
     public String updateSubscription(@RequestParam(value = "subscribe", required = false) String[] subscribe,
-                        @RequestParam(value = "cancel",    required = false) String[] cancel) {
+                                     @RequestParam(value = "cancel",    required = false) String[] cancel,
+                                     @RequestParam(value = "param",     required = false) String id) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
@@ -73,7 +74,6 @@ public class DashboardController {
 
     @RequestMapping("/customers")
     public String customer(Model model) {
-
 
         return "dashboard/customers";
     }
