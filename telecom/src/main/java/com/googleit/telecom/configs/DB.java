@@ -107,7 +107,7 @@ public class DB {
 
             // TEST customer_rep relations
             statement.executeUpdate("INSERT INTO customer_relations(customer_id,customer_rep_id)" +
-                    "VALUES ('3','2');");
+                    "VALUES ('2','3');");
 
             // TEST service
             statement.executeUpdate("INSERT INTO services(service_name, price, start_date, end_date, service_description)"
