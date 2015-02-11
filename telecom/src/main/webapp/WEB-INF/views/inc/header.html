@@ -14,13 +14,13 @@
                 </ul>
 
                 <!-- If logged in -->
-                <ul class="nav navbar-nav navbar-right" sec:authorize="hasRole('ROLE_USER')">
+                <ul class="nav navbar-nav navbar-right" sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_CUSTOMER_REP') or hasRole('ROLE_CUSTOMER')">
                     <li><a href="/dashboard/">Dashboard</a></li>
                     <li><a href="/auth/logout">Sign out</a></li>
                 </ul>
 
                 <!-- If not logged in -->
-                <ul class="nav navbar-nav navbar-right" sec:authorize="!hasRole('ROLE_USER')">
+                <ul class="nav navbar-nav navbar-right" sec:authorize="!hasAnyRole('ROLE_USER','ROLE_CUSTOMER_REP','ROLE_CUSTOMER')">
                     <li><a href="/register">Register</a></li>
                     <li><a href="/auth/login">Sign in</a></li>
                 </ul>
