@@ -25,6 +25,14 @@ footer > .container > p {
 	margin: 0px;
 }
 
+.linkButton {
+    background: none;
+    border: none;
+    color: #428bca;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 /* Register Form */
 
 .error {
@@ -99,6 +107,11 @@ footer > .container > p {
     color: #fff;
     background-color: #428bca;
 }
+
+.container-fluid > .row > .table > a {
+    text-decoration: none;
+}
+
 
 
 /*
