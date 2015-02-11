@@ -77,12 +77,12 @@ public class DB {
             statement.executeUpdate("INSERT INTO user_roles(email, role) "
                     + "VALUES ('a', 'ROLE_USER');");
 
-            // Email : b
+            // Email : customerRep@gmail.com
             // Password : a
             statement.executeUpdate("INSERT INTO users(email, password, reg_date, enabled) "
-                    + "VALUES ('b', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', '2015-02-01', 1);");
+                    + "VALUES ('customerRep@gmail.com', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', '2015-02-01', 1);");
             statement.executeUpdate("INSERT INTO user_roles(email, role) "
-                    + "VALUES ('b', 'ROLE_CUSTOMER_REP');");
+                    + "VALUES ('customerRep@gmail.com', 'ROLE_CUSTOMER_REP');");
 
             // Create services table
             statement.executeUpdate("DROP TABLE IF EXISTS services;");
