@@ -96,6 +96,19 @@ public class DB {
                     + "PRIMARY KEY (service_id)"
                     + ");");
 
+            // Create customer_rep relations table
+            statement.executeUpdate("DROP TABLE IF EXISTS customer_relations;");
+            statement.executeUpdate("CREATE TABLE customer_relations ("
+                    + "relation_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
+                    + "customer_id INT UNSIGNED NOT NULL,"
+                    + "customer_rep_id INT UNSIGNED NOT NULL,"
+                    + "PRIMARY KEY (relation_id)"
+                    + ");");
+
+            // TEST customer_rep relations
+            statement.executeUpdate("INSERT INTO customer_relations(customer_id,customer_rep_id)" +
+                    "VALUES ('3','2');");
+
             // TEST service
             statement.executeUpdate("INSERT INTO services(service_name, price, start_date, end_date, service_description)"
                     + "VALUES ('Freenet', '00.00', '2015-01-01', '2015-02-02', 'This is a freebie service! Take advantage.');");
