@@ -25,14 +25,13 @@ public class DashboardController {
     @Autowired
     private ServiceDAO serviceDAO;
 
-    private long user_id;
 
     @RequestMapping(value={"/","","/home"}, method = RequestMethod.GET)
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User dude = userDAO.getUser(email);
-        this.user_id = dude.getId();
+        long user_id = dude.getId();
         List<Service> subscribedServices = serviceDAO.getSubscribedService(dude.getId());
         List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(dude.getId());
         model.addAttribute("subscribedServices", subscribedServices);
@@ -45,6 +44,11 @@ public class DashboardController {
     @RequestMapping(value={"/home"}, method = RequestMethod.POST)
     public String home2(@RequestParam(value = "subscribe", required = false) String[] subscribe,
                         @RequestParam(value = "cancel",    required = false) String[] cancel) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User dude = userDAO.getUser(email);
+        long user_id = dude.getId();
 
         if(subscribe != null && subscribe.length >0)
             for(String service_id : subscribe)
