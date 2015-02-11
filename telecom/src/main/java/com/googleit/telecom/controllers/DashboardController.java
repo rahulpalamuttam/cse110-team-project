@@ -31,18 +31,14 @@ public class DashboardController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User dude = userDAO.getUser(email);
-        long user_id = dude.getId();
-        List<Service> subscribedServices = serviceDAO.getSubscribedService(dude.getId());
-        List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(dude.getId());
-        model.addAttribute("subscribedServices", subscribedServices);
-        model.addAttribute("unsubscribedServices", unsubscribedServices);
+
         model.addAttribute("user", dude.getEmail());
 
         return "dashboard/home";
     }
 
-    @RequestMapping(value={"/home"}, method = RequestMethod.POST)
-    public String home2(@RequestParam(value = "subscribe", required = false) String[] subscribe,
+    @RequestMapping(value={"/services"}, method = RequestMethod.POST)
+    public String updateSubscription(@RequestParam(value = "subscribe", required = false) String[] subscribe,
                         @RequestParam(value = "cancel",    required = false) String[] cancel) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -58,11 +54,20 @@ public class DashboardController {
             for(String service_id : cancel)
                 serviceDAO.unsubscribeService(Long.valueOf(service_id), user_id);
 
-        return "redirect:/dashboard/home";
+        return "redirect:/dashboard/services";
     }
 
     @RequestMapping(value="/services")
-    public String service() {
+    public String service(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User dude = userDAO.getUser(email);
+        long user_id = dude.getId();
+        List<Service> subscribedServices = serviceDAO.getSubscribedService(dude.getId());
+        List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(dude.getId());
+        model.addAttribute("subscribedServices", subscribedServices);
+        model.addAttribute("unsubscribedServices", unsubscribedServices);
+        model.addAttribute("user", dude.getEmail());
         return "dashboard/services";
     }
 }
