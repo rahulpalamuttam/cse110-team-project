@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Joon on 2/11/2015.
  */
-public class CUStomerDAOImpl implements  CustomerDAO {
+public class CustomerDAOImpl implements  CustomerDAO {
 
     @Override
     public List<Customer> getCustomers(long customer_rep_id) {
