@@ -70,4 +70,11 @@ public class DashboardController {
         model.addAttribute("user", dude.getEmail());
         return "dashboard/services";
     }
+
+    @RequestMapping("/customers")
+    public String customer(Model model) {
+
+
+        return "dashboard/customers";
+    }
 }

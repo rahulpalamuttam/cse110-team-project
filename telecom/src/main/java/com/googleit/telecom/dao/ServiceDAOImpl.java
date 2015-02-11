@@ -7,9 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 import java.util.*;
 
-/**
- * Created by Joon on 2/10/2015.
- */
 public class ServiceDAOImpl implements ServiceDAO {
     private JdbcTemplate jdbcTemplate;
 

@@ -29,4 +29,8 @@
         <constructor-arg ref="dataSource"/>
     </bean>
 
+    <bean id="customerDAO" class="com.googleit.telecom.dao.CustomerDAOImpl">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
 </beans>
