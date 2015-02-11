@@ -80,4 +80,5 @@ public class Customer extends User {
     public void setCustomerBill(Bill customerBill) {
         this.customerBill = customerBill;
     }
+    public boolean equals(Customer customer) {return this.getId() == customer.getId();}
 }

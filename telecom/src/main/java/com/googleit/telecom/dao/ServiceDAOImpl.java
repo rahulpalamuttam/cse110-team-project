@@ -61,7 +61,7 @@ public class ServiceDAOImpl implements ServiceDAO {
     }
 
     @Override
-    public void unsubscriveService(long service_id, long user_id) {
+    public void unsubscribeService(long service_id, long user_id) {
         String sql = "DELETE FROM subscriptions WHERE service_id=? AND customer_id=?";
         this.jdbcTemplate.update(sql, service_id, user_id);
     }
