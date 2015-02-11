@@ -28,6 +28,7 @@
                         <th>Title</th>
                         <th>Description</th>
                         <th>Price</th>
+                        <th>Click to Cancel</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -36,6 +37,7 @@
                         <td th:text="${service.getServiceName()}"></td>
                         <td th:text="${service.getServiceDescription()}">need to use database</td>
                         <td th:text="${service.getPrice()}">need to use database</td>
+                        <td> <input type="checkbox" class="form_control" value="login"/></td>
                     </tr>
                     </tbody>
                 </table>
@@ -54,6 +56,7 @@
                         <th>Title</th>
                         <th>Description</th>
                         <th>Price</th>
+                        <th>Click to Subscribe</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,6 +65,7 @@
                         <td th:text="${service.getServiceName()}"></td>
                         <td th:text="${service.getServiceDescription()}">need to use database</td>
                         <td th:text="${service.getPrice()}">need to use database</td>
+                        <td> <input type="checkbox" class="form_control" value="login"/></td>
                     </tr>
                     </tbody>
                 </table>
