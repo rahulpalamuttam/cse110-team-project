@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,18 +24,36 @@ public class DashboardController {
     private UserDAO userDAO;
     @Autowired
     private ServiceDAO serviceDAO;
+
+    private long user_id;
+
     @RequestMapping(value={"/","","/home"}, method = RequestMethod.GET)
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User dude = userDAO.getUser(email);
+        this.user_id = dude.getId();
         List<Service> subscribedServices = serviceDAO.getSubscribedService(dude.getId());
         List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(dude.getId());
         model.addAttribute("subscribedServices", subscribedServices);
         model.addAttribute("unsubscribedServices", unsubscribedServices);
         model.addAttribute("user", dude.getEmail());
 
-        // TODO :: We need to take the data in dude and add it to home
+        return "dashboard/home";
+    }
+
+    @RequestMapping(value={"/","","/home"}, method = RequestMethod.POST)
+    public String home2(@RequestParam(value = "subscribe", required = false) String[] subscribe,
+                        @RequestParam(value = "cancel",    required = false) String[] cancel) {
+
+        if(subscribe.length >0)
+            for(String service_id : subscribe)
+                serviceDAO.addService(Long.valueOf(service_id), user_id);
+
+        if(cancel.length>0)
+            for(String service_id : cancel)
+                serviceDAO.unsubscriveService(Long.valueOf(service_id), user_id);
+
         return "dashboard/home";
     }
 

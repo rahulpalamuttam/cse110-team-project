@@ -5,6 +5,7 @@
 <header th:replace="inc/header :: header"></header>
 <div class="container-fluid">
     <div class="row">
+        <!-- Side navigation bar-->
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="#">Summary</a></li>
@@ -16,62 +17,59 @@
                 <li><a href="">Delete Account</a></li>
             </ul>
         </div>
-
-        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-2 main">
-            <h1 class="page-header" th:text="'Welcome ' + ${user} + '!'"></h1>
-            <h2 class="sub-header">My Subscriptions</h2>
-            <div class="table">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Click to Cancel</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="service : ${subscribedServices}">
-                        <td th:text="${service.getServiceID()}"></td>
-                        <td th:text="${service.getServiceName()}"></td>
-                        <td th:text="${service.getServiceDescription()}">need to use database</td>
-                        <td th:text="${service.getPrice()}">need to use database</td>
-                        <td> <input type="checkbox" class="form_control" value="login"/></td>
-                    </tr>
-                    </tbody>
-                </table>
+        <form action="/dashboard/home" method="post">
+        <!-- Subscription List-->
+            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-2 main">
+                <h1 class="page-header" th:text="'Welcome ' + ${user} + '!'"></h1>
+                <h2 class="sub-header">My Subscriptions</h2>
+                <div class="table">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Click to Cancel</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="service : ${subscribedServices}">
+                            <td th:text="${service.getServiceName()}"></td>
+                            <td th:text="${service.getServiceDescription()}">need to use database</td>
+                            <td th:text="${service.getPrice()}">need to use database</td>
+                            <td><input type="checkbox" th:name="cancel" th:value="${service.getServiceID()}" /></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-2 main">
-
-            <h2 class="sub-header">Services</h2>
-
-            <div class="table">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Click to Subscribe</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="service : ${unsubscribedServices}">
-                        <td th:text="${service.getServiceID()}"></td>
-                        <td th:text="${service.getServiceName()}"></td>
-                        <td th:text="${service.getServiceDescription()}">need to use database</td>
-                        <td th:text="${service.getPrice()}">need to use database</td>
-                        <td> <input type="checkbox" class="form_control" value="login"/></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <!-- Service List -->
+            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-2 main">
+                <h2 class="sub-header">Services</h2>
+                <div class="table">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Click to Subscribe</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="service : ${unsubscribedServices}">
+                            <td th:text="${service.getServiceName()}"></td>
+                            <td th:text="${service.getServiceDescription()}">need to use database</td>
+                            <td th:text="${service.getPrice()}">need to use database</td>
+                            <td><input type="checkbox" th:value="${service.getServiceID()}" /></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-
+            <input type="submit" class="btn btn-primary btn-block" value="Register" />
+        </form>
     </div>
 </div>
 <footer th:replace="inc/footer :: footer"></footer>

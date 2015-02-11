@@ -53,6 +53,19 @@ public class ServiceDAOImpl implements ServiceDAO {
         return MapServicesToList(queried);
     }
 
+    @Override
+    public void addService(long service_id, long user_id) {
+        String sql = "INSERT INTO subscriptions (service_id, customer_id) VALUES (?,?)";
+
+        this.jdbcTemplate.update(sql, service_id, user_id);
+    }
+
+    @Override
+    public void unsubscriveService(long service_id, long user_id) {
+        String sql = "DELETE FROM subscriptions WHERE service_id=? AND customer_id=?";
+        this.jdbcTemplate.update(sql, service_id, user_id);
+    }
+
     /**
      * Extracts the data from a SQL query and encapsulates it within
      * a List of Service Objects.
