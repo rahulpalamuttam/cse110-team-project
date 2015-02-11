@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Side navigation bar-->
+<div class="col-sm-3 col-md-2 sidebar" th:fragment="sidebar">
+    <ul class="nav nav-sidebar">
+        <li class="active"><a href="/dashboard/">Summary</a></li>
+        <li sec:authorize="hasRole('ROLE_REP')"><a href="#">Customer</a></li>
+        <li><a href="/dashboard/services">Service</a></li>
+        <li><a href="#">Packages</a></li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li><a href="">Change Password</a></li>
+        <li><a href="">Delete Account</a></li>
+    </ul>
+</div>
+</body>
+</html>

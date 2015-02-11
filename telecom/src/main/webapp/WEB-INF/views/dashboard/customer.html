@@ -7,7 +7,7 @@
     <div class="row">
         <div th:replace="inc/sidebar"></div>
 
-        <form action="/dashboard/services" method="post">
+        <form action="/dashboard/home" method="post">
             <!-- Subscription List-->
             <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 class="page-header">Customers</h1>
@@ -22,12 +22,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>
-                                <form id="hello" action="/dashboard/services" method="post" >
-                                    <input th:type="hidden" th:name="param" th:value="customer_id"/>
-                                    <input type="submit" class="linkButton" th:value="'hello@example.com'"/>
-                                </form>
-                            </td>
+                            <td><a style="text-decoration: none" href="#">hello@email.com</a></td>
                             <td>2015-01-01</td>
                         </tr>
                         </tbody>
