@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 @Controller
@@ -74,19 +77,52 @@ public class DashboardController {
         model.addAttribute("subscribedServices", subscribedServices);
         model.addAttribute("unsubscribedServices", unsubscribedServices);
         model.addAttribute("user", dude.getEmail());
+        String type = "services";
+        model.addAttribute("type", type);
         return "dashboard/services";
     }
 
     @RequestMapping(value={"/customerServices"}, method = RequestMethod.POST)
-    public String updateCustomerSubscription(@RequestParam(value = "email", required = false) String email, Model model) {
-        System.out.println(email);
-        User dude = userDAO.getUser(email);
-        long user_id = dude.getId();
-        List<Service> subscribedServices = serviceDAO.getSubscribedService(dude.getId());
-        List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(dude.getId());
+    public String updateCustomerSubscription(@RequestParam(value = "identification", required = false) String user_id, Model model) {
+//        System.out.println(email);
+//        User dude = userDAO.getUser(email);
+//        long user_id = dude.getId();
+        System.out.println("customer id : " + user_id );
+        List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
+        List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(Long.valueOf(user_id));
         model.addAttribute("subscribedServices", subscribedServices);
         model.addAttribute("unsubscribedServices", unsubscribedServices);
-        model.addAttribute("user", dude.getEmail());
+//        model.addAttribute("user", dude.getEmail());
+        String type = "customerServicesUpdate";
+
+        model.addAttribute("type", type);
+        model.addAttribute("user_id", user_id);
+        return "dashboard/services";
+    }
+
+    @RequestMapping(value={"/customerServicesUpdate"}, method = RequestMethod.POST)
+    public String customerUpdateSubscription(@RequestParam(value = "subscribe", required = false) String[] subscribe,
+                                     @RequestParam(value = "cancel",    required = false) String[] cancel,
+                                     @RequestParam(value = "identification", required = false) String user_id,
+                                     Model model) {
+
+        System.out.println("customer id : " + user_id );
+        if(subscribe != null && subscribe.length >0)
+            for(String service_id : subscribe)
+                serviceDAO.addService(Long.valueOf(service_id), Long.valueOf(user_id));
+
+        if(cancel != null && cancel.length>0)
+            for(String service_id : cancel)
+                serviceDAO.unsubscribeService(Long.valueOf(service_id), Long.valueOf(user_id));
+
+        List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
+        List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(Long.valueOf(user_id));
+        model.addAttribute("subscribedServices", subscribedServices);
+        model.addAttribute("unsubscribedServices", unsubscribedServices);
+//        model.addAttribute("user", dude.getEmail());
+        String type = "customerServicesUpdate";
+        model.addAttribute("type", type);
+        model.addAttribute("user_id", user_id);
         return "dashboard/services";
     }
 

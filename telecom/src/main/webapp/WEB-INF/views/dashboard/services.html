@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="row">
         <div th:replace="inc/sidebar"></div>
-        <form action="/dashboard/services" method="post">
+        <form th:action="'/dashboard/' + ${type} " method="post">
             <!-- Subscription List-->
             <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h2 class="sub-header">My Subscriptions</h2>
@@ -57,6 +57,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+                <input th:if="${user_id}" th:type="hidden" th:name="identification" th:value="${user_id}" />
                 <button class="btn btn-default" type="submit">Submit</button>
             </div>
         </form>
