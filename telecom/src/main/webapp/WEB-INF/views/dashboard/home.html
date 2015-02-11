@@ -62,7 +62,7 @@
                             <td th:text="${service.getServiceName()}"></td>
                             <td th:text="${service.getServiceDescription()}">need to use database</td>
                             <td th:text="${service.getPrice()}">need to use database</td>
-                            <td><input type="checkbox" th:value="${service.getServiceID()}" /></td>
+                            <td><input type="checkbox" th:name="subscribe" th:value="${service.getServiceID()}" /></td>
                         </tr>
                         </tbody>
                     </table>

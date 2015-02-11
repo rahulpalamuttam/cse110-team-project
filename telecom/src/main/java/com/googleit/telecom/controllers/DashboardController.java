@@ -42,19 +42,19 @@ public class DashboardController {
         return "dashboard/home";
     }
 
-    @RequestMapping(value={"/","","/home"}, method = RequestMethod.POST)
+    @RequestMapping(value={"/home"}, method = RequestMethod.POST)
     public String home2(@RequestParam(value = "subscribe", required = false) String[] subscribe,
                         @RequestParam(value = "cancel",    required = false) String[] cancel) {
 
-        if(subscribe.length >0)
+        if(subscribe != null && subscribe.length >0)
             for(String service_id : subscribe)
                 serviceDAO.addService(Long.valueOf(service_id), user_id);
 
-        if(cancel.length>0)
+        if(cancel != null && cancel.length>0)
             for(String service_id : cancel)
-                serviceDAO.unsubscriveService(Long.valueOf(service_id), user_id);
+                serviceDAO.unsubscribeService(Long.valueOf(service_id), user_id);
 
-        return "dashboard/home";
+        return "redirect:/dashboard/home";
     }
 
     @RequestMapping(value="/services")
