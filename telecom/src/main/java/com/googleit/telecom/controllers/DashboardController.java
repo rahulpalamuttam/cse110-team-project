@@ -1,9 +1,11 @@
 package com.googleit.telecom.controllers;
 
 
+import com.googleit.telecom.dao.CustomerDAO;
 import com.googleit.telecom.dao.ServiceDAO;
 import com.googleit.telecom.dao.UserDAO;
 import com.googleit.telecom.models.items.Service;
+import com.googleit.telecom.models.users.Customer;
 import com.googleit.telecom.models.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,6 +26,8 @@ public class DashboardController {
     private UserDAO userDAO;
     @Autowired
     private ServiceDAO serviceDAO;
+    @Autowired
+    private CustomerDAO customerDAO;
 
 
     @RequestMapping(value={"/","","/home"}, method = RequestMethod.GET)
@@ -74,6 +78,15 @@ public class DashboardController {
 
     @RequestMapping("/customers")
     public String customer(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User dude = userDAO.getUser(email);
+        System.out.println(dude.getId());
+
+        List<Customer> customers = customerDAO.getCustomers(dude.getId());
+
+        System.out.println(customers.size());
+        model.addAttribute("customers", customers);
 
         return "dashboard/customers";
     }
