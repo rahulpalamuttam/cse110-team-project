@@ -24,11 +24,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <!-- TODO :: loop customer list -->
-                        <tr th:each="customer : ${customers}">
+                        <!-- TODO :: show customer list -->
+                        <tr th:each="customer : ${myCustomers}">
                             <td>
                                 <!-- TODO :: change value to customer_id -->
-                                <input th:type="hidden" th:name="param" th:value="${customer.getId()}"/>
+                                <input th:type="hidden" th:name="param" th:value="${customer.getId()}" />
                                 <!-- TODO :: change value to customer email address-->
                                 <input th:type="submit" class="linkButton" th:value="${customer.getEmail()}"/>
                             </td>

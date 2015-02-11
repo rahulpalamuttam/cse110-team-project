@@ -19,15 +19,15 @@ import java.util.Map;
 public class CustomerDAOImpl implements  CustomerDAO {
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private UserDAO userDAO;
+//    @Autowired
+//    private UserDAO userDAO;
 
     public CustomerDAOImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
-    public List<Customer> getCustomers(long customer_rep_id) {
+    public List<Customer> getCustomers(long customer_rep_id, UserDAO userDAO) {
         // TODO :: get customers under specific customer rep
 
         String sql = "select email FROM users WHERE id IN (SELECT customer_id FROM customer_relations WHERE customer_rep_id=?)";
@@ -39,7 +39,9 @@ public class CustomerDAOImpl implements  CustomerDAO {
             e.printStackTrace();
         }
 
+        System.out.println(customer_rep_id);
         for(String email : newQueried){
+            System.out.println("Some email " + email);
             customerList.add((Customer) userDAO.getUser(email));
         }
 

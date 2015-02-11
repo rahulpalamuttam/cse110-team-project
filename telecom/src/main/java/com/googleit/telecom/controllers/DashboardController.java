@@ -29,7 +29,6 @@ public class DashboardController {
     @Autowired
     private CustomerDAO customerDAO;
 
-
     @RequestMapping(value={"/","","/home"}, method = RequestMethod.GET)
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -43,8 +42,7 @@ public class DashboardController {
 
     @RequestMapping(value={"/services"}, method = RequestMethod.POST)
     public String updateSubscription(@RequestParam(value = "subscribe", required = false) String[] subscribe,
-                                     @RequestParam(value = "cancel",    required = false) String[] cancel,
-                                     @RequestParam(value = "param",     required = false) String id) {
+                        @RequestParam(value = "cancel",    required = false) String[] cancel) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
@@ -81,13 +79,10 @@ public class DashboardController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User dude = userDAO.getUser(email);
-        System.out.println(dude.getId());
+        long user_id = dude.getId();
 
-        List<Customer> customers = customerDAO.getCustomers(dude.getId());
-
-        System.out.println(customers.size());
-        model.addAttribute("customers", customers);
-
+        List<Customer> myCustomers = customerDAO.getCustomers(user_id, userDAO);
+        model.addAttribute("myCustomers", myCustomers);
         return "dashboard/customers";
     }
 }
