@@ -12,7 +12,6 @@ import static org.junit.Assert.fail;
 public class Register {
   private WebDriver driver;
   private String baseUrl;
-  private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
   @Before

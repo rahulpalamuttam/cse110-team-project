@@ -1,12 +1,10 @@
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import static junit.framework.Assert.assertEquals;
@@ -15,7 +13,6 @@ import static org.junit.Assert.fail;
 public class RegisterPasswordConfirm {
     private WebDriver driver;
     private String baseUrl;
-    private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
 
     @Before
