@@ -80,6 +80,28 @@
 * Open up the web browser and type 'localhost:8080/telecom/' on the URL
 *  To terminate tomcat server, press ctrl+c
 
+## Code Coverage ##
+### Using Eclipse ###
+* [Eclipse Code Coverage](http://www.eclemma.org/)
+* Follow the installation guide line. It's straight forward. 
+* Click package and run as code coverage.
+* For more info: [How to lunch](http://www.eclemma.org/userdoc/launching.html)
 
+### Using IntelliJ###
+* Code Coverage is already installed in intelliJ
+* Right click package and click run as code coverage.
+
+## Selenium Integration testing ##
+* [Download](http://www.seleniumhq.org/download/)
+* Firefox is essential for this framework.
+* Once you installed open up the selenium.
+* The picture below is some example how you do the test
+
+![Selenium.png](https://bitbucket.org/repo/9edK8p/images/13577703-Selenium.png)
+
+* Set up the base URL
+* Click the record button
+* Web Serf through the project then it will automatically generate the test.
+* To see the test, click the play button.
 
 ### *If any confusion or error please send an email or leave message on slack* ###
