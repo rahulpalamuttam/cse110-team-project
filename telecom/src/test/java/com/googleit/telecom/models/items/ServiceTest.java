@@ -1,12 +1,20 @@
 package com.googleit.telecom.models.items;
 
+import com.googleit.telecom.models.Bill;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class ServiceTest {
-    
+
+
 	Service testService;
+
+    @Before
+    public void Setup(){
+        testService = new Service();
+    }
     @Test
     public void testGetPrice() throws Exception {
        double testIDPrice = 1000;

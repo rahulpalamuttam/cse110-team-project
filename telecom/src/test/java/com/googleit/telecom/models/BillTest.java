@@ -19,16 +19,21 @@ public class BillTest {
 
     @Test
     public void testPay() throws Exception {
+        bill.setAmountLeft(10.00);
         bill.pay(10.00);
+        assertEquals(bill.getAmountLeft(), 0,0);
+        assertEquals(bill.getAmountPaid(), 10.00, 0);
     }
 
     @Test
     public void testAddItem() throws Exception {
         bill.addItem(service);
+        assertEquals(bill.getTotalAmount(),10,0);
     }
 
     @Test
     public void testDeleteItem() throws Exception {
         bill.deleteItem(service);
+        assertEquals(bill.getTotalAmount(),-10, 0);
     }
 }
