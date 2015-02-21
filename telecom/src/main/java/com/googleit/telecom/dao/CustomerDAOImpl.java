@@ -13,9 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Joon on 2/11/2015.
- */
 public class CustomerDAOImpl implements  CustomerDAO {
     private JdbcTemplate jdbcTemplate;
 

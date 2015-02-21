@@ -27,7 +27,7 @@ public class Bill {
         amountLeft -= payment;
         amountPaid += payment;
     }
-
+    
     /**
      *
      * @param service
