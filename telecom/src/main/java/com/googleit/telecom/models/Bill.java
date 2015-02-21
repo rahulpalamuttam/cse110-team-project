@@ -6,9 +6,9 @@ import com.googleit.telecom.models.items.Service;
  * Created by rahul on 2/1/15.
  */
 public class Bill {
-    private Double totalAmount;
-    private Double amountPaid;
-    private Double amountLeft;
+    private double totalAmount;
+    private double amountPaid;
+    private double amountLeft;
 
     /**
      * Customer call pay to pay the bill.
@@ -17,7 +17,7 @@ public class Bill {
      * the bill.
      * @param payment
      */
-    public void pay(Double payment){
+    public void pay(double payment){
         // There needs to be preliminary checks
         amountLeft -= payment;
         amountPaid += payment;
@@ -41,5 +41,29 @@ public class Bill {
         Double amount = service.getPrice();
         totalAmount -= amount;
         amountLeft -= amount;
+    }
+
+    public double getAmountLeft() {
+        return amountLeft;
+    }
+
+    public double getAmountPaid() {
+        return amountPaid;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setAmountLeft(double amountLeft) {
+        this.amountLeft = amountLeft;
+    }
+
+    public void setAmountPaid(double amountPaid) {
+        this.amountPaid = amountPaid;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 }
