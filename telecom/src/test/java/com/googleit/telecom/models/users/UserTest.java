@@ -52,5 +52,13 @@ public class UserTest {
         assertEquals(user.getReg_date(), testDate);
      }
 
-
+    @Test
+    public void testtoString() {
+        String testMail = "test123@ucsd.edu";
+        user.setEmail(testMail);
+        String testDate = "February 19th";
+        user.setReg_date(testDate);
+        String to = user.toString();
+        assertEquals(to, "test123@ucsd.edu February 19th");
+    }
 }

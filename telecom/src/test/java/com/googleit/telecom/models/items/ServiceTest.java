@@ -24,11 +24,10 @@ public class ServiceTest {
 
     @Test
     public void testEquals() throws Exception {
-       Service testerService = null;       
-       boolean ans = true;
-       boolean val;
-       
-       val = equals(testerService);
-       assertEquals(val, ans);
+       Service testerService = new Service();
+        Service compareService = new Service();
+        testerService.setServiceID((long) 1234);
+        compareService.setServiceID((long) 1234);
+       assertTrue(testerService.equals(compareService));
     }
 }

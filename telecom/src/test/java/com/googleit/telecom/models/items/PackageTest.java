@@ -1,33 +1,30 @@
 package com.googleit.telecom.models.items;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class PackageTest {
-	
-	Package onepackage;
+    Package pack;
+
+    @Before
+    public void setup(){
+        pack = new Package();
+    }
 
     @Test
     public void testGetPackageID() throws Exception {
-       String packageID = "ATT";
-       onepackage.setPackageID(packageID);
-       assertEquals(packageID, onepackage.getPackageID());
+        pack.setPackageID("BED123");
+        assertEquals("BED123", pack.getPackageID());
     }
 
-    /* redundant
-    @Test
-    public void testSetPackageID() throws Exception {
-
-    }*/
 
     @Test
     public void testEquals() throws Exception {
-    	Service testerPackage = null;       
-        boolean ans = true;
-        boolean val;
-        
-        val = equals(testerPackage);
-        assertEquals(val, ans);
+        Package packother = new Package();
+        packother.setPackageID("BED123");
+        pack.setPackageID("BED123");
+        assertTrue(pack.equals(packother));
     }
 }
