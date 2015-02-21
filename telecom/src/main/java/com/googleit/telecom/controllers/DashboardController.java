@@ -4,9 +4,11 @@ package com.googleit.telecom.controllers;
 import com.googleit.telecom.dao.CustomerDAO;
 import com.googleit.telecom.dao.ServiceDAO;
 import com.googleit.telecom.dao.UserDAO;
+import com.googleit.telecom.models.Bill;
 import com.googleit.telecom.models.items.Service;
 import com.googleit.telecom.models.users.Customer;
 import com.googleit.telecom.models.users.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -135,5 +137,24 @@ public class DashboardController {
         List<Customer> myCustomers = customerDAO.getCustomers(user_id, userDAO);
         model.addAttribute("myCustomers", myCustomers);
         return "dashboard/customers";
+    }
+    
+    @RequestMapping("/bill")
+    public String bill(Model model){
+       User dude = getAuthenticated();
+       long user_id = dude.getId();
+       
+       List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
+       Bill myBill =  new Bill();
+       
+       for(Service service : subscribedServices)
+       {
+    	   myBill.addItem(service);
+       }
+       
+       model.addAttribute("myServices",subscribedServices);
+       model.addAttribute("myBill",  myBill);
+       
+       return "dashboard/bill";
     }
 }

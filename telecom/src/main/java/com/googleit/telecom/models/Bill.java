@@ -22,6 +22,10 @@ public class Bill {
         amountLeft -= payment;
         amountPaid += payment;
     }
+    
+    public double getTotalAmount(){
+    	return this.totalAmount;
+    }
 
     /**
      *
