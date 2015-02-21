@@ -22,6 +22,7 @@ public class Customer extends User {
         customerBill = new Bill();
     }
 
+
     /**
      * Adds a new service to the list of services
      * that this customer is subscribed for
@@ -90,5 +91,13 @@ public class Customer extends User {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public ArrayList<Service> getSubscribedServices() {
+        return subscribedServices;
+    }
+
+    public ArrayList<Package> getSubscribedPackages() {
+        return subscribedPackages;
     }
 }
