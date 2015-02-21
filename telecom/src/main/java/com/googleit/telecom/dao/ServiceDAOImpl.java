@@ -1,10 +1,12 @@
 package com.googleit.telecom.dao;
 
 import com.googleit.telecom.models.items.Service;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+
 import java.util.*;
 
 public class ServiceDAOImpl implements ServiceDAO {
@@ -84,4 +86,27 @@ public class ServiceDAOImpl implements ServiceDAO {
         // If there's better solution use that statement
         return services;
     }
+
+	@Override
+	public List<Service> getAllService() {
+        String sql = "SELECT service_name, service_description, price FROM services";
+
+        List<Map<String,Object>> queried = new ArrayList<>();
+        try {
+            queried = this.jdbcTemplate.queryForList(sql);
+        } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
+        }
+
+        return MapServicesToList(queried);	
+	}
+
+	@Override
+	public void createServie(Service service) {
+		// TODO Auto-generated method stub
+        String sql2 = "INSERT INTO services (service_name, service_description, price)" + " VALUES (?,?,?)";
+        this.jdbcTemplate.update(sql2, service.getServiceName(), service.getServiceDescription(), service.getPrice());
+
+		
+	}
 }

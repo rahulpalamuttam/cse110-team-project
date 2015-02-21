@@ -9,4 +9,6 @@ public interface ServiceDAO {
     public List<Service> getSubscribedService(long user_id);
     public void addService(long service_id, long user_id);
     public void unsubscribeService(long service_id, long user_id);
+    public List<Service> getAllService();
+    public void createServie(Service service);
 }

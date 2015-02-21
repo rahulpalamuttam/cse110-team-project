@@ -7,6 +7,7 @@
         <li class="active"><a href="/dashboard/">Summary</a></li>
         <li sec:authorize="hasRole('ROLE_CUSTOMER_REP')"><a th:href="@{/dashboard/customers}">Customer</a></li>
         <li sec:authorize="hasAnyRole('ROLE_USER','ROLE_CUSTOMER')"><a th:href="@{/dashboard/services}">Service</a></li>
+        <li sec:authorize="hasAnyRole('ROLE_MARK_REP')"><a th:href="@{/dashboard/serviceslist}">Service</a></li>
         <li><a href="#">Packages</a></li>
     </ul>
     <ul class="nav nav-sidebar">
