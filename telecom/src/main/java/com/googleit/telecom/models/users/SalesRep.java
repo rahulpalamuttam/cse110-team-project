@@ -24,9 +24,8 @@ public class SalesRep extends User {
         // What do we do with the service once its created?
     }
 
-    public void CreatePackage(List<Service> services){
+    public void CreatePackage(List<Service> services) {
 
     }
-
 
 }

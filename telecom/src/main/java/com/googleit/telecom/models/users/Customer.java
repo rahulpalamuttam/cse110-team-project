@@ -14,11 +14,14 @@ public class Customer extends User {
     private ArrayList<Service> subscribedServices;
     private ArrayList<Package> subscribedPackages;
     private String address;
+    private double balance;
     private Bill customerBill;
     public Customer(){
         subscribedServices = new ArrayList<Service>();
         subscribedPackages = new ArrayList<Package>();
+        customerBill = new Bill();
     }
+
 
     /**
      * Adds a new service to the list of services
@@ -81,4 +84,20 @@ public class Customer extends User {
         this.customerBill = customerBill;
     }
     public boolean equals(Customer customer) {return this.getId() == customer.getId();}
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public ArrayList<Service> getSubscribedServices() {
+        return subscribedServices;
+    }
+
+    public ArrayList<Package> getSubscribedPackages() {
+        return subscribedPackages;
+    }
 }
