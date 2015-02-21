@@ -19,6 +19,11 @@ public class Bill {
      */
     public void pay(double payment){
         // There needs to be preliminary checks
+        if(amountLeft < payment){
+            // TODO :: make sure that amountLeft is not less than 0;
+            // TODO :: We need to make sure they dont overpay
+        }
+
         amountLeft -= payment;
         amountPaid += payment;
     }
