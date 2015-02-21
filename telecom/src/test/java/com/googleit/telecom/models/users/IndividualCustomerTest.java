@@ -21,6 +21,8 @@ public class IndividualCustomerTest {
 
     @Test
     public void testGetLastName() throws Exception {
-
+        String lastName = "Lawrence";
+        oneperson.setLastName("Lawrence");
+        assertEquals(lastName, oneperson.getLastName());
     }
 }
