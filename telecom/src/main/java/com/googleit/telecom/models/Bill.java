@@ -23,10 +23,6 @@ public class Bill {
         amountPaid += payment;
     }
     
-    public double getTotalAmount(){
-    	return this.totalAmount;
-    }
-
     /**
      *
      * @param service
