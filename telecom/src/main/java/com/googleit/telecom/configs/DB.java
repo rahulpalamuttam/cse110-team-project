@@ -83,6 +83,13 @@ public class DB {
                     + "VALUES ('customerRep@gmail.com', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', '2015-02-01', 1);");
             statement.executeUpdate("INSERT INTO user_roles(email, role) "
                     + "VALUES ('customerRep@gmail.com', 'ROLE_CUSTOMER_REP');");
+            
+            // Email : mrep@abc.com
+            // Password : h
+            statement.executeUpdate("INSERT INTO users(email, password, reg_date, enabled) "
+                    + "VALUES ('mrep@abc.com', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', '2015-01-01', 1);");
+            statement.executeUpdate("INSERT INTO user_roles(email, role) "
+                    + "VALUES ('mrep@abc.com', 'ROLE_MARK_REP');");
 
             // Create services table
             statement.executeUpdate("DROP TABLE IF EXISTS services;");
@@ -90,8 +97,8 @@ public class DB {
                     + "service_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
                     + "service_name VARCHAR(40) NOT NULL,"
                     + "price DOUBLE NOT NULL,"
-                    + "start_date DATE NOT NULL,"
-                    + "end_date DATE NOT NULL,"
+                    + "start_date DATE,"
+                    + "end_date DATE,"
                     + "service_description VARCHAR(200) NOT NULL,"
                     + "PRIMARY KEY (service_id)"
                     + ");");

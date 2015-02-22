@@ -4,6 +4,8 @@ import com.googleit.telecom.models.items.Service;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class CustomerTest {
@@ -23,12 +25,16 @@ public class CustomerTest {
 
     @Test
     public void testAddService() throws Exception {
-
+        customer.AddService(service);
+        ArrayList<Service> list = customer.getSubscribedServices();
+        assertTrue(list.contains(service));
     }
 
     @Test
     public void testDeleteService() throws Exception {
-
+            customer.DeleteService(service);
+            ArrayList<Service> list = customer.getSubscribedServices();
+            assertFalse(list.contains(service));
     }
 
     @Test
@@ -63,6 +69,6 @@ public class CustomerTest {
         bill = customer.getCustomerBill();
         bill.setAmountLeft(10.00);
         bill.pay(balance);
-        assertEquals(bill.getAmountLeft(), 0, 0);
+        assertEquals(bill.getAmountLeft(), -90, 0);
     }
 }

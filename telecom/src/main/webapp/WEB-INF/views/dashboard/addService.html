@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="inc/head :: head"></head>
+<body>
+	<header th:replace="inc/header :: header"></header>
+	<div class="container-fluid">
+		<div class="row">
+			<div th:replace="inc/sidebar"></div>
+			<div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h2 class="sub-header">Add a Service</h2>
+				<form method="post" class="addService" th:action="@{/dashboard/addService}" autocomplete="off" th:object="${service}">
+					
+					<label>Title</label>
+					<input type="text" class="form-control" name="title" th:field="*{serviceName}"/>
+					
+					<label>Description</label>
+					<textarea class="form-control" name="description" th:field="*{serviceDescription}"></textarea>
+					
+					<label>Price</label>
+					<input type="number" class="form-control" name="price" th:field="*{servicePrice}" />
+					
+					<input type="submit" class="btn btn-primary btn-block" value="Submit" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="inc/footer :: footer"></footer>
+</body>
+</html>
