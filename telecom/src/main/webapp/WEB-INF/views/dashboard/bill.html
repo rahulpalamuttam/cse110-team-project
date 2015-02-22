@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="inc/head :: head"></head>
+<body>
+<header th:replace="inc/header :: header"></header>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="inc/sidebar"></div>
+            <!-- Subscription List-->
+            <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h2 class="sub-header">Bill Summary</h2>
+                <div class="table">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Item Type</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="service : ${myServices}">
+                            <td th:text="${service.getServiceID()}"></td>
+                            <td>service</td>
+                            <td th:text="${service.getPrice()}"></td>
+                            <td> SAMPLE DATE</td>
+                        </tr>
+                        </tbody>
+                    
+                    	<tr>
+                    	    <td>Tax</td>
+                    	    <td></td>
+                    	    <td></td>
+                    	    <td></td>
+                    	</tr>
+                    	<tr>
+                    	    <td>Total</td>
+                    	    <td></td>
+                    	    <td th:text="${myBill.getTotalAmount()}"></td>
+                    	    <td></td>
+                    	</tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+                <input th:if="${user_id}" th:type="hidden" th:name="identification" th:value="${user_id}" />
+                <button class="btn btn-default" type="submit">Pay Now</button>
+            </div>
+
+
+    </div>
+</div>
+<footer th:replace="inc/footer :: footer"></footer>
+</body>
+</html>
