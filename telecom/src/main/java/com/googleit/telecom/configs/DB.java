@@ -85,7 +85,7 @@ public class DB {
                     + "VALUES ('customerRep@gmail.com', 'ROLE_CUSTOMER_REP');");
             
             // Email : mrep@abc.com
-            // Password : h
+            // Password : a
             statement.executeUpdate("INSERT INTO users(email, password, reg_date, enabled) "
                     + "VALUES ('mrep@abc.com', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', '2015-01-01', 1);");
             statement.executeUpdate("INSERT INTO user_roles(email, role) "
