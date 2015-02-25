@@ -46,13 +46,13 @@ public class DashboardMRepController {
 
 
 	@RequestMapping(value="/addPackage", method = RequestMethod.POST)
-	public String addPackage(@RequestParam(value = "add", required = false) String[] subscribe,
+	public String addPackage(@RequestParam(value = "add", required = false) Long[] subscribe,
                              Package pack) {
         System.out.println(pack.getDescription());
 		packageDAO.createPackage(pack);
-//        if(subscribe != null && subscribe.length >0)
-//            for(String service_id : subscribe)
-//                packageDAO.addService(Long.valueOf(pack.getPackageID()), Long.valueOf(service_id));
+        if(subscribe != null && subscribe.length >0)
+            for(Long service_id : subscribe)
+                packageDAO.addService(pack.getPackageID(), service_id);
 		return "redirect:/dashboard/packageslist";
 	}
 

@@ -100,9 +100,9 @@ public class packageDAOImpl implements packageDAO {
 
     @Override
     public void createPackage(Package pack) {
-        // TODO Auto-generated method stub
-        String sql2 = "INSERT INTO packages (package_name, package_description, price)" + " VALUES (?,?,?)";
-        this.jdbcTemplate.update(sql2, pack.getPackageName(), pack.getDescription(), pack.getPrice());
+        String sql = "INSERT INTO packages (package_name, package_description, price)" + " VALUES (?,?,?)";
+
+        this.jdbcTemplate.update(sql, pack.getPackageName(), pack.getDescription(), pack.getPrice());
     }
 
     @Override
