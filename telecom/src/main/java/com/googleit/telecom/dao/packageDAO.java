@@ -15,4 +15,9 @@ public interface packageDAO {
     public void unsubscribePackage(long service_id, long user_id);
     public List<Package> getAllPackage();
     public void createPackage(Package pack);
+    public List<Service> getSubscribedService(long packageID);
+    public List<Service> getUnsubscribedService(long packageID);
+    public void addService(long package_id, long service_id);
+    public void unsubscribeService(long package_id, long service_id);
+
 }
