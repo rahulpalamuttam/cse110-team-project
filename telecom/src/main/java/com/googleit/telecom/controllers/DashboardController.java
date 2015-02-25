@@ -145,6 +145,7 @@ public class DashboardController {
        long user_id = dude.getId();
        
        List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
+       List<Package> addedPackages = packageDAO.getPackages(Long.valueOf(user_id));
        System.out.println(subscribedServices);
        Bill myBill =  new Bill();
        
