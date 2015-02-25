@@ -75,6 +75,13 @@ footer > .container > p {
 .sidebar {
     display: none;
 }
+
+
+#package-toggle:hover {
+    color : #428BCA;
+}
+
+
 @media (min-width: 768px) {
     .sidebar {
         position: fixed;
