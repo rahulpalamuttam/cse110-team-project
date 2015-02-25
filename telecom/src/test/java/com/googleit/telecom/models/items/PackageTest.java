@@ -15,16 +15,16 @@ public class PackageTest {
 
     @Test
     public void testGetPackageID() throws Exception {
-        pack.setPackageID("BED123");
-        assertEquals("BED123", pack.getPackageID());
+        pack.setPackageID(123);
+        assertEquals(123, pack.getPackageID());
     }
 
 
     @Test
     public void testEquals() throws Exception {
         Package packother = new Package();
-        packother.setPackageID("BED123");
-        pack.setPackageID("BED123");
+        packother.setPackageID(123);
+        pack.setPackageID(123);
         assertTrue(pack.equals(packother));
     }
 }

@@ -1,6 +1,7 @@
 package com.googleit.telecom.models.items;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A package is a collection of services
@@ -8,7 +9,52 @@ import java.util.ArrayList;
  */
 public class Package {
     private ArrayList<Service> PackagedServices;
-    private String packageID;
+    private long packageID;
+    private String packageName;
+    private double price;
+    private Date startDate;
+    private Date endDate;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
     /**
      * Called when we want to package together a new service
@@ -21,11 +67,11 @@ public class Package {
         }
     }
 
-    public String getPackageID() {
+    public long getPackageID() {
         return packageID;
     }
 
-    public void setPackageID(String packageID) {
+    public void setPackageID(long packageID) {
         this.packageID = packageID;
     }
 
@@ -34,6 +80,6 @@ public class Package {
      * do comparisons of packages
      */
     public boolean equals(Package comparePackage){
-        return (this.packageID.equals(comparePackage.packageID));
+        return (this.packageID == (comparePackage.packageID));
     }
 }

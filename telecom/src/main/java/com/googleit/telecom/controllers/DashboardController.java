@@ -4,6 +4,7 @@ package com.googleit.telecom.controllers;
 import com.googleit.telecom.dao.CustomerDAO;
 import com.googleit.telecom.dao.ServiceDAO;
 import com.googleit.telecom.dao.UserDAO;
+import com.googleit.telecom.dao.packageDAO;
 import com.googleit.telecom.models.Bill;
 import com.googleit.telecom.models.items.Service;
 import com.googleit.telecom.models.users.Customer;
@@ -18,9 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
 @Controller
@@ -33,7 +31,8 @@ public class DashboardController {
     private ServiceDAO serviceDAO;
     @Autowired
     private CustomerDAO customerDAO;
-
+    @Autowired
+    private packageDAO packageDao;
     /**
      * Fetches the authenticated user
      */
@@ -163,7 +162,7 @@ public class DashboardController {
     public String packages(Model model){
        User dude = getAuthenticated();
        long user_id = dude.getId();
-       
+       model.addAttribute("unsubscribedPackages", packageDao.getPackages());
        //List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
        //Package myPackage =  new Package();
        
