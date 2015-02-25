@@ -46,11 +46,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="service : ${unsubscribedServices}">
-                            <td th:text="${service.getServiceName()}"></td>
-                            <td th:text="${service.getServiceDescription()}"></td>
-                            <td th:text="${service.getPrice()}"></td>
-                            <td><input type="checkbox" th:name="subscribe" th:value="${service.getServiceID()}" /></td>
+                        <tr th:each="package : ${unsubscribedPackages}">
+                            <td th:text="${package.getPackageName()}"></td>
+                            <td th:text="${package.getDescription()}"></td>
+                            <td th:text="${package.getPrice()}"></td>
+                            <td><input type="checkbox" th:name="subscribe" th:value="${package.getPackageID()}" /></td>
                         </tr>
                         </tbody>
                     </table>
