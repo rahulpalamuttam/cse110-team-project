@@ -72,7 +72,7 @@ public class UserDAOImpl implements UserDAO {
         }
 
         Customer cust = new Customer();
-        cust.setId((long)queried.get("id"));
+        cust.setId(Long.valueOf((Long) queried.get("id")));
         cust.setEmail((String) queried.get("email"));
         cust.setReg_date(queried.get("reg_date").toString());
 
@@ -90,6 +90,8 @@ public class UserDAOImpl implements UserDAO {
         }
 
         Customer cust = new Customer();
+        Long len = (Long)queried.get("id");
+        System.out.println(len);
         cust.setId((long)queried.get("id"));
         cust.setEmail((String) queried.get("email"));
         cust.setReg_date(queried.get("reg_date").toString());

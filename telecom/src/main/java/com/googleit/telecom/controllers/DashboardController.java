@@ -102,6 +102,23 @@ public class DashboardController {
         return "dashboard/services";
     }
 
+    @RequestMapping(value={"/customerPackages"}, method = RequestMethod.POST)
+    public String updateCustomerPackageSubscription(@RequestParam(value = "identification", required = false) String user_id, Model model) {
+//        System.out.println(email);
+//        User dude = userDAO.getUser(email);
+//        long user_id = dude.getId();
+        System.out.println("customer id : " + user_id );
+        List<Package> subscribedServices = packageDao.getSubscribedPackage(Long.valueOf(user_id));
+        List<Package> unsubscribedServices = packageDao.getUnsubscribedPackage(Long.valueOf(user_id));
+        model.addAttribute("subscribedPackages", subscribedServices);
+        model.addAttribute("unsubscribedPackages", unsubscribedServices);
+//        model.addAttribute("user", dude.getEmail());
+        String type = "customerPackagesUpdate";
+        model.addAttribute("type", type);
+        model.addAttribute("user_id", user_id);
+        return "dashboard/packages";
+    }
+
     @RequestMapping(value={"/customerServicesUpdate"}, method = RequestMethod.POST)
     public String customerUpdateSubscription(@RequestParam(value = "subscribe", required = false) String[] subscribe,
                                      @RequestParam(value = "cancel",    required = false) String[] cancel,
@@ -135,6 +152,7 @@ public class DashboardController {
         long user_id = dude.getId();
 
         List<Customer> myCustomers = customerDAO.getCustomers(user_id, userDAO);
+        System.out.println(myCustomers);
         model.addAttribute("myCustomers", myCustomers);
         return "dashboard/customers";
     }
