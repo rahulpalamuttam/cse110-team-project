@@ -23,7 +23,14 @@ public class DashboardMRepController {
 		model.addAttribute("allServices",allServices);
         return "dashboard/serviceList";
     }
-	
+
+	@RequestMapping(value="/packageslist", method = RequestMethod.GET)
+    public String packageList(Model model) {
+		List<Service> allPackage = serviceDAO.getAllPackage();
+		model.addAttribute("allPackage",allPackages);
+        return "dashboard/packageList";
+    }
+
 	@RequestMapping(value="/addService")
 	public String addServiceForm(Service service) {
 		return "dashboard/addService";
