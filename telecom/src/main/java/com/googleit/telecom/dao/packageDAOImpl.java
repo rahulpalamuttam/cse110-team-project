@@ -73,12 +73,13 @@ public class packageDAOImpl implements packageDAO {
     public List<Package> MapPackagesToList(List<Map<String,Object>> tuples){
         List<Package> services = new ArrayList<>();
         for(Map<String,Object> tuple : tuples){
-            Package service = new Package();
-            service.setPackageID((Long) tuple.get("id"));
-            service.setPackageName((String) tuple.get("package_name"));
-            service.setPrice((Double)tuple.get("price"));
-            service.setDescription((String) tuple.get("package_description"));
-            services.add(service);
+            Package pkg = new Package();
+            pkg.setPackageID((Long) tuple.get("id"));
+            pkg.setPackageName((String) tuple.get("package_name"));
+            pkg.setPrice((Double) tuple.get("price"));
+            pkg.setDescription((String) tuple.get("package_description"));
+            pkg.setPackagedServices(getSubscribedService(pkg.getPackageID()));
+            services.add(pkg);
         }
         // If there's better solution use that statement
         return services;

@@ -29,7 +29,7 @@
                             <td th:text="${package.getDescription()}"></td>
                             <td th:text="${package.getPrice()}"></td>
                             <td>
-                                <input th:type="submit" class="btn btn-primary" th:name="package_id" th:value="${package.getPackageID()}" />
+                                <button type="submit" class="btn btn-primary" th:name="package_id" th:value="${package.getPackageID()}">Modify</button>
                             </td>
                         </tr>
                         </tbody>
