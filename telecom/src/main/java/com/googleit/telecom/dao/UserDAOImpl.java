@@ -79,6 +79,24 @@ public class UserDAOImpl implements UserDAO {
         return cust;
     }
 
+    @Override
+    public User getUser(long id){
+        String sql = "SELECT id, email, reg_date FROM users WHERE id=?";
+        Map queried = new HashMap();
+        try {
+            queried = this.jdbcTemplate.queryForMap(sql, new Object[]{id});
+        } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
+        }
+
+        Customer cust = new Customer();
+        cust.setId((long)queried.get("id"));
+        cust.setEmail((String) queried.get("email"));
+        cust.setReg_date(queried.get("reg_date").toString());
+
+        return cust;
+    }
+
     /**
      * Currently this doesn't exactly check for duplicates.
      * All it does is check for

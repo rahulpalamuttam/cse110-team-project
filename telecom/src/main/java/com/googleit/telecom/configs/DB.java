@@ -1,5 +1,8 @@
 package com.googleit.telecom.configs;
 
+import com.googleit.telecom.dao.packageDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,6 +13,7 @@ import javax.sql.DataSource;
  * TODO :: We should drop all the tables first before creation.
  */
 public class DB {
+
     private DataSource dataSource;
 
     public DataSource getDataSource() {
@@ -28,6 +32,7 @@ public class DB {
             // subscriptions has a foreign key constraint so we need to drop it first
 
             statement.executeUpdate("DROP TABLE IF EXISTS subscriptions;");
+            statement.executeUpdate("DROP TABLE IF EXISTS package_subscriptions;");
             // Create user table
             statement.executeUpdate("SET foreign_key_checks = 0;");
             statement.executeUpdate("DROP TABLE IF EXISTS users");
@@ -103,6 +108,19 @@ public class DB {
                     + "PRIMARY KEY (service_id)"
                     + ");");
 
+            // Create packages table
+            // Create services table
+            statement.executeUpdate("DROP TABLE IF EXISTS packages;");
+            statement.executeUpdate("CREATE TABLE packages ("
+                    + "package_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
+                    + "package_name VARCHAR(40) NOT NULL,"
+                    + "price DOUBLE NOT NULL,"
+                    + "start_date DATE,"
+                    + "end_date DATE,"
+                    + "package_description VARCHAR(200) NOT NULL,"
+                    + "PRIMARY KEY (package_id)"
+                    + ");");
+
             // Create customer_rep relations table
             statement.executeUpdate("DROP TABLE IF EXISTS customer_relations;");
             statement.executeUpdate("CREATE TABLE customer_relations ("
@@ -125,6 +143,14 @@ public class DB {
                     + "VALUES ('Newbie', '0.01', '2015-01-01', '2015-02-02', 'This is a nono service! Take advantage.');");
             statement.executeUpdate("INSERT INTO services(service_name, price, start_date, end_date, service_description)"
                     + "VALUES ('Newnet', '35.01', '2015-01-01', '2015-02-02', 'This is some service! Take advantage.');");
+
+            // TEST service
+            statement.executeUpdate("INSERT INTO packages(package_name, price, start_date, end_date, package_description)"
+                    + "VALUES ('Expensive Package', '65.99', '2015-01-01', '2015-02-02', 'This is a freebie service! Take advantage.');");
+            statement.executeUpdate("INSERT INTO packages(package_name, price, start_date, end_date, package_description)"
+                    + "VALUES ('Freebie Package', '00.00', '2015-01-01', '2015-02-02', 'This is a newbie service! Take advantage.');");
+
+
             // Create a subscription table
             // TODO :: Currently only service_id is a foreign key constraint - we need customer to also be one
 
@@ -142,6 +168,16 @@ public class DB {
                     + "VALUES ('1', '1')");
             statement.executeUpdate("INSERT INTO subscriptions (service_id, customer_id)"
                     + "VALUES ('2', '1')");
+
+            statement.executeUpdate("CREATE TABLE package_subscriptions ("
+                    + "subscription_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
+                    + "package_id INT UNSIGNED NOT NULL,"
+                    + "customer_id INT UNSIGNED NOT NULL,"
+                    + "PRIMARY KEY (subscription_id),"
+                    + "KEY fk_package_subscriptions (package_id, customer_id),"
+                    + "CONSTRAINT fk_package_subscriptions FOREIGN KEY (package_id) REFERENCES packages(package_id)"
+                    + ");");
+
             statement.close();
             connection.close();
 
