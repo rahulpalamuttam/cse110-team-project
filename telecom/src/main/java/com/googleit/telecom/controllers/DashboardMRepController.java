@@ -36,14 +36,35 @@ public class DashboardMRepController {
         return "dashboard/packageList";
     }
 
+
+	@RequestMapping(value="/addPackage", method = RequestMethod.GET)
+	public String serviceChoices(Model model) {
+		List<Service> allServices = serviceDAO.getAllService();
+		model.addAttribute("allServices",allServices);
+		return "dashboard/addPackage";
+	}
+
+
+	@RequestMapping(value="/addPackage", method = RequestMethod.POST)
+	public String addPackage(@RequestParam(value = "add", required = false) String[] subscribe,
+                             Package pack) {
+        System.out.println(pack.getDescription());
+		packageDAO.createPackage(pack);
+//        if(subscribe != null && subscribe.length >0)
+//            for(String service_id : subscribe)
+//                packageDAO.addService(Long.valueOf(pack.getPackageID()), Long.valueOf(service_id));
+		return "redirect:/dashboard/packageslist";
+	}
+
+	
 	@RequestMapping(value="/addService")
 	public String addServiceForm() {
 		return "dashboard/addService";
 	}
-	
+    
 	@RequestMapping(value="/addService", method = RequestMethod.POST)
 	public String addService(Service service) {
-        serviceDAO.createServie(service);
+		serviceDAO.createServie(service);
 		return "redirect:/dashboard/serviceslist";
 	}
 

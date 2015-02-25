@@ -19,5 +19,5 @@ public interface packageDAO {
     public List<Service> getUnsubscribedService(long packageID);
     public void addService(long package_id, long service_id);
     public void unsubscribeService(long package_id, long service_id);
-
 }
+

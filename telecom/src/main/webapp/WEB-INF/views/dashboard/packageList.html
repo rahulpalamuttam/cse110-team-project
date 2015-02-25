@@ -6,37 +6,35 @@
 <div class="container-fluid">
     <div class="row">
         <div th:replace="inc/sidebar"></div>
-            <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-            	<h2 class="sub-header">Packages</h2>
-
-           		<!-- Service List -->
-                <form th:action="@{/dashboard/modifyPackage}" method="post">
-                    <div class="table">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>Modify</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="package : ${allPackages}">
-                                <td th:text="${package.getPackageName()}"> </td>
-                                <td th:text="${package.getDescription()}"></td>
-                                <td th:text="${package.getPrice()}"></td>
-                                <td>
-                                    <input th:type="submit" class="btn btn-primary" th:name="package_id" th:value="${package.getPackageID()}"></input>
-                                    <!--<input class="btn btn-primary" th:href="@{/dashboard/modifyPackage}" th:name="package_id" th:value="${package.getPackageID()}" role="button">Add Service</a>-->
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-           </div>
+        <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2 class="sub-header">Packages</h2>
+            <div class="pull-right">
+                <a class="btn btn-primary" th:href="@{/dashboard/addPackage}" role="button">Add Package</a>
+            </div>
+            <!-- Service List -->
+            <div class="table">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Modify</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="package : ${allPackages}">
+                        <td th:text="${package.getPackageName()}"> </td>
+                        <td th:text="${package.getDescription()}"></td>
+                        <td th:text="${package.getPrice()}"></td>
+                        <td>
+                            <input th:type="submit" class="btn btn-primary" th:name="package_id" th:value="${package.getPackageID()}" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 <footer th:replace="inc/footer :: footer"></footer>
