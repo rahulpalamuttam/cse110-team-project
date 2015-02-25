@@ -145,16 +145,21 @@ public class DashboardController {
        long user_id = dude.getId();
        
        List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
-       List<Package> addedPackages = packageDAO.getPackages(Long.valueOf(user_id));
+       List<Package> addedPackages = packageDao.getSubscribedPackage(Long.valueOf(user_id));
        System.out.println(subscribedServices);
        Bill myBill =  new Bill();
        
-       for(Service service : subscribedServices)
+       for(Buyable item: subscribedServices)
        {
-    	   myBill.addItem(service);
+    	   myBill.addItem(item);
        }
-       
+
+        for(Buyable item : addedPackages)
+        {
+            myBill.addItem(item);
+        }
        model.addAttribute("myServices", subscribedServices);
+       model.addAttribute("myPackages", addedPackages);
        model.addAttribute("myBill",  myBill);
        
        return "dashboard/bill";

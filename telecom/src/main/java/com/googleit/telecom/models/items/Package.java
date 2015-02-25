@@ -9,7 +9,7 @@ import java.util.List;
  * A package is a collection of services
  * Created by rahul on 2/1/15.
  */
-public class Package {
+public class Package implements Buyable{
     private ArrayList<Service> PackagedServices;
     private long packageID;
     private String packageName;

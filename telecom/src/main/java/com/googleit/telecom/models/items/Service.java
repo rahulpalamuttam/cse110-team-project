@@ -6,7 +6,7 @@ import java.util.UUID;
 /**
  * Created by rahul on 2/1/15.
  */
-public class Service {
+public class Service implements Buyable{
     private String serviceName;
     private String serviceDescription;
     private double servicePrice;
@@ -29,10 +29,10 @@ public class Service {
         serviceID = id;
 
     }
-    public void setPrice(Double price){
+    public void setPrice(double price){
         this.servicePrice = price;
     }
-    public Double getPrice() { return this.servicePrice;}
+    public double getPrice() { return this.servicePrice;}
 
     public void setDuration(Date start, Date end){
         this.serviceStartDate = start;

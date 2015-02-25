@@ -26,6 +26,12 @@
                             <td th:text="${service.getPrice()}"></td>
                             <td> SAMPLE DATE</td>
                         </tr>
+                        <tr th:each="package : ${myPackages}">
+                            <td th:text="${package.getPackageID()}"></td>
+                            <td>package</td>
+                            <td th:text="${package.getPrice()}"></td>
+                            <td> SAMPLE DATE</td>
+                        </tr>
                         </tbody>
                     
                     	<tr>
