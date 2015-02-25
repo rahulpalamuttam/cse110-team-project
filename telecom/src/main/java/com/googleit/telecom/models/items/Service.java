@@ -80,4 +80,11 @@ public class Service {
         return (newService.serviceID.equals(this.serviceID));
     }
 
+    public Date getServiceEndDate() {
+        return serviceEndDate;
+    }
+
+    public Date getServiceStartDate() {
+        return serviceStartDate;
+    }
 }

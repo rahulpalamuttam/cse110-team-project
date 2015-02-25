@@ -36,4 +36,19 @@ public class BillTest {
         bill.deleteItem(service);
         assertEquals(bill.getTotalAmount(),-10, 0);
     }
+    @Test
+    public void testAmountLeft() throws Exception{
+        bill.setAmountLeft(10.00);
+        assertEquals(10 , bill.getAmountLeft(),0);
+    }
+    @Test
+    public void testTotalAmount() throws Exception{
+        bill.setTotalAmount(10.00);
+        assertEquals(10, bill.getTotalAmount(),0);
+    }
+    @Test
+    public void testAmountPaid() throws Exception{
+        bill.setAmountPaid(10.00);
+        assertEquals(10,bill.getAmountPaid(),0 );
+    }
 }
