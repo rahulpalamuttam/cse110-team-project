@@ -8,16 +8,16 @@
 			<div th:replace="inc/sidebar"></div>
 			<div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h2 class="sub-header">Add a Service</h2>
-				<form method="post" class="addService" th:action="@{/dashboard/addService}" autocomplete="off" th:object="${service}">
+				<form method="post" class="addService" th:action="@{/dashboard/addService}" autocomplete="off" >
 					
 					<label>Title</label>
-					<input type="text" class="form-control" name="title" th:field="*{serviceName}"/>
+					<input type="text" class="form-control" name="serviceName" />
 					
 					<label>Description</label>
-					<textarea class="form-control" name="description" th:field="*{serviceDescription}"></textarea>
+					<textarea class="form-control" name="serviceDescription"></textarea>
 					
 					<label>Price</label>
-					<input type="number" class="form-control" name="price" th:field="*{servicePrice}" />
+					<input type="number" class="form-control" name="price" />
 					
 					<input type="submit" class="btn btn-primary btn-block" value="Submit" />
 				</form>

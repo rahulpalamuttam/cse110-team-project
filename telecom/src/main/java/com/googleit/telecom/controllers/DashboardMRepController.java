@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.googleit.telecom.models.items.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/dashboard")
@@ -25,13 +26,13 @@ public class DashboardMRepController {
     }
 	
 	@RequestMapping(value="/addService")
-	public String addServiceForm(Service service) {
+	public String addServiceForm() {
 		return "dashboard/addService";
 	}
 	
 	@RequestMapping(value="/addService", method = RequestMethod.POST)
 	public String addService(Service service) {
-		serviceDAO.createServie(service);
+        serviceDAO.createServie(service);
 		return "redirect:/dashboard/serviceslist";
 	}
 }
