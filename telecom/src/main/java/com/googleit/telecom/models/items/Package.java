@@ -1,7 +1,9 @@
 package com.googleit.telecom.models.items;
 
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * A package is a collection of services
@@ -18,6 +20,14 @@ public class Package {
 
     public String getDescription() {
         return description;
+    }
+
+    public void insert(Service service) {
+        PackagedServices.add(service);
+    }
+
+    public List<Service> getPackagedService(){
+        return PackagedServices;
     }
 
     public void setDescription(String description) {
