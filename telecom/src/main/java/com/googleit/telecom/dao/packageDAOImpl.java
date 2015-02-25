@@ -81,7 +81,6 @@ public class packageDAOImpl implements packageDAO {
             service.setPackageName((String) tuple.get("package_name"));
             service.setPrice((Double)tuple.get("price"));
             service.setDescription((String) tuple.get("service_description"));
-
             services.add(service);
         }
         // If there's better solution use that statement
