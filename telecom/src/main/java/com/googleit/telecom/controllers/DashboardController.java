@@ -158,4 +158,16 @@ public class DashboardController {
        
        return "dashboard/bill";
     }
+    
+    @RequestMapping("/packages")
+    public String packages(Model model){
+       User dude = getAuthenticated();
+       long user_id = dude.getId();
+       
+       //List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
+       //Package myPackage =  new Package();
+       
+       
+       return "dashboard/packages";
+    }
 }
