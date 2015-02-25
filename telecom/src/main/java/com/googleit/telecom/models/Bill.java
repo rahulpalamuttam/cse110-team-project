@@ -1,5 +1,6 @@
 package com.googleit.telecom.models;
 
+import com.googleit.telecom.models.items.Buyable;
 import com.googleit.telecom.models.items.Service;
 
 /**
@@ -32,13 +33,13 @@ public class Bill {
      *
      * @param service
      */
-    public void addItem(Service service){
+    public void addItem(Buyable service){
         Double amount = service.getPrice();
         totalAmount += amount;
         amountLeft += amount;
     }
 
-    public void deleteItem(Service service){
+    public void deleteItem(Buyable service){
         Double amount = service.getPrice();
         totalAmount -= amount;
         amountLeft -= amount;

@@ -7,9 +7,9 @@
     <div class="row">
         <div th:replace="inc/sidebar"></div>
         <form th:action="@{/dashboard/} + ${type}" method="post">
-            <!-- Subscription List-->
+            <!-- Subscription Services-->
             <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h2 class="sub-header">My Subscriptions</h2>
+                <h2 class="sub-header">Added Services</h2>
                 <div class="table">
                     <table class="table table-striped">
                         <thead>
@@ -32,9 +32,9 @@
                 </div>
             </div>
 
-            <!-- Service List -->
+            <!-- Package List -->
             <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h2 class="sub-header">Services</h2>
+                <h2 class="sub-header">Available Services</h2>
                 <div class="table">
                     <table class="table table-striped">
                         <thead>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
-                <input th:if="${user_id}" th:type="hidden" th:name="identification" th:value="${user_id}" />
+                <input th:type="hidden" th:name="package_id" th:value="${package_id}" />
                 <button class="btn btn-default" type="submit">Submit</button>
             </div>
         </form>

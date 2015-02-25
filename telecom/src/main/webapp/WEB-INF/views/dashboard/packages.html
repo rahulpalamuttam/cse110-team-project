@@ -9,32 +9,8 @@
         <form th:action="@{/dashboard/} + ${type} " method="post">
             <!-- Subscription List-->
             <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h2 class="sub-header">My Subscriptions</h2>
-                <div class="table">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Click to Cancel</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="service : ${subscribedServices}">
-                            <td th:text="${service.getServiceName()}"></td>
-                            <td th:text="${service.getServiceDescription()}"></td>
-                            <td th:text="${service.getPrice()}"></td>
-                            <td><input type="checkbox" th:name="cancel" th:value="${service.getServiceID()}" /></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Service List -->
-            <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h2 class="sub-header">Packages</h2>
+
                 <div class="table">
                     <table class="table table-striped">
                         <thead>
@@ -46,18 +22,88 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="package : ${unsubscribedPackages}">
-                            <td th:text="${package.getPackageName()}"></td>
-                            <td th:text="${package.getDescription()}"></td>
-                            <td th:text="${package.getPrice()}"></td>
-                            <td><input type="checkbox" th:name="subscribe" th:value="${package.getPackageID()}" /></td>
+
+                        <div class="accordion" id="msyaccordion">
+                            <div class="accordion-group">
+                                <tr th:each="package : ${subscribedPackages}">
+
+                                    <td th:text="${package.getPackageName()}" id="package-toggle"
+                                        class="accodion-toggle" data-toggle="collapse" data-parent="#myaccordion"
+                                        th:href="'#'+${package.getPackageID()}"></td>
+                                    <td th:text="${package.getDescription()}"></td>
+                                    <td th:text="${package.getPrice()}"></td>
+                                    <td><input type="checkbox" th:name="cancel"
+                                               th:value="${package.getPackageID()}"/></td>
+                                <tr>
+                                    <td colspan="4">
+                                        <div th:id="${package.getPackageID()}" class="accordion-body collapse">
+                                            <div class="accordion-inner">Hello WorldHello WorldHello
+                                                WorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHello
+                                                WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tr>
+
+                            </div>
+                        </div>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Service List -->
+            <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h2 class="sub-header">Packages</h2>
+
+                <div class="table">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Click to Add</th>
                         </tr>
+                        </thead>
+                        <tbody>
+
+                        <div class="accordion" id="msyaccordion">
+                            <div class="accordion-group">
+                                <tr th:each="package : ${unsubscribedPackages}">
+
+                                    <td th:text="${package.getPackageName()}" id="package-toggle"
+                                        class="accodion-toggle" data-toggle="collapse" data-parent="#myaccordion"
+                                        th:href="'#'+${package.getPackageID()}"></td>
+                                    <td th:text="${package.getDescription()}"></td>
+                                    <td th:text="${package.getPrice()}"></td>
+                                    <td><input type="checkbox" th:name="subscribe"
+                                               th:value="${package.getPackageID()}"/></td>
+                                <tr>
+                                    <td colspan="4">
+                                        <div th:id="${package.getPackageID()}" class="accordion-body collapse">
+                                            <div class="accordion-inner">Hello WorldHello WorldHello
+                                                WorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHello
+                                                WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tr>
+
+                            </div>
+                        </div>
+
+
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
-                <input th:if="${user_id}" th:type="hidden" th:name="identification" th:value="${user_id}" />
+                <input th:if="${user_id}" th:type="hidden" th:name="identification" th:value="${user_id}"/>
                 <button class="btn btn-default" type="submit">Submit</button>
             </div>
         </form>

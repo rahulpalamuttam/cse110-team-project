@@ -12,11 +12,12 @@
         <property name="username" value="git110" />
         <property name="password" value="" />
     </bean>
-    
+
+
     <bean id="db" class="com.googleit.telecom.configs.DB" init-method="init">
         <property name="dataSource" ref="dataSource" />
     </bean>
- 
+
     <bean id="userDAO" class="com.googleit.telecom.dao.UserDAOImpl">
         <constructor-arg ref="dataSource"/>
     </bean>
@@ -34,6 +35,8 @@
     </bean>
 
     <bean id="packageDAO" class="com.googleit.telecom.dao.packageDAOImpl">
+        <constructor-arg ref="dataSource"/>
     </bean>
+
 
 </beans>

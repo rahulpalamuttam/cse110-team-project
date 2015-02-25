@@ -100,4 +100,6 @@ public class Customer extends User {
     public ArrayList<Package> getSubscribedPackages() {
         return subscribedPackages;
     }
+
+    public void payBalance(double amount){}
 }

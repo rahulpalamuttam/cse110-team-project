@@ -58,7 +58,7 @@ public class UserDAOImpl implements UserDAO {
         user.setId(keyHolder.getKey().intValue());
 
         String sql2 = "INSERT INTO user_roles (email, role)" + " VALUES (?,?)";
-        this.jdbcTemplate.update(sql2, user.getEmail(), "ROLE_USER");
+        this.jdbcTemplate.update(sql2, user.getEmail(), "ROLE_CUSTOMER");
     }
 
     @Override
@@ -72,6 +72,26 @@ public class UserDAOImpl implements UserDAO {
         }
 
         Customer cust = new Customer();
+        cust.setId(Long.valueOf((Long) queried.get("id")));
+        cust.setEmail((String) queried.get("email"));
+        cust.setReg_date(queried.get("reg_date").toString());
+
+        return cust;
+    }
+
+    @Override
+    public User getUser(long id){
+        String sql = "SELECT id, email, reg_date FROM users WHERE id=?";
+        Map queried = new HashMap();
+        try {
+            queried = this.jdbcTemplate.queryForMap(sql, new Object[]{id});
+        } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
+        }
+
+        Customer cust = new Customer();
+        Long len = (Long)queried.get("id");
+        System.out.println(len);
         cust.setId((long)queried.get("id"));
         cust.setEmail((String) queried.get("email"));
         cust.setReg_date(queried.get("reg_date").toString());
