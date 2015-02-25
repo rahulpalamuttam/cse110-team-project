@@ -34,6 +34,7 @@ public class DB {
 
             statement.executeUpdate("DROP TABLE IF EXISTS subscriptions;");
             statement.executeUpdate("DROP TABLE IF EXISTS package_subscriptions;");
+
             // Create user table
             statement.executeUpdate("SET foreign_key_checks = 0;");
             statement.executeUpdate("DROP TABLE IF EXISTS users");
@@ -110,7 +111,6 @@ public class DB {
                     + ");");
 
             // Create packages table
-            // Create services table
             statement.executeUpdate("DROP TABLE IF EXISTS packages;");
             statement.executeUpdate("CREATE TABLE packages ("
                     + "package_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
@@ -154,7 +154,6 @@ public class DB {
 
             // Create a subscription table
             // TODO :: Currently only service_id is a foreign key constraint - we need customer to also be one
-
             statement.executeUpdate("CREATE TABLE subscriptions ("
                     + "subscription_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
                     + "service_id INT UNSIGNED NOT NULL,"
@@ -179,6 +178,14 @@ public class DB {
                     + "CONSTRAINT fk_package_subscriptions FOREIGN KEY (package_id) REFERENCES packages(package_id)"
                     + ");");
 
+
+            // Create a package and service relation.
+            statement.executeUpdate("CREATE TABLE customer_relations ("
+                    + "relation_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
+                    + "package_id INT UNSIGNED NOT NULL,"
+                    + "service_id INT UNSIGNED NOT NULL,"
+                    + "PRIMARY KEY (relation_id)"
+                    + ");");
             statement.close();
             connection.close();
 
