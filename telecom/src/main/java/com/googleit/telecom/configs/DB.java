@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 
 /**
  * TODO :: We should drop all the tables first before creation.
- * hello
+ * hello bonjour
  */
 public class DB {
 
