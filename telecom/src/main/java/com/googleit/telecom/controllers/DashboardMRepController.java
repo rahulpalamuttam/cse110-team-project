@@ -30,7 +30,7 @@ public class DashboardMRepController {
 
 	@RequestMapping(value="/packageslist", method = RequestMethod.GET)
     public String packageList(Model model) {
-		List<Package> allPackages = packageDAO.getPackages();
+		List<Package> allPackages = packageDAO.getAllPackage();
 		model.addAttribute("allPackages",allPackages);
         return "dashboard/packageList";
     }

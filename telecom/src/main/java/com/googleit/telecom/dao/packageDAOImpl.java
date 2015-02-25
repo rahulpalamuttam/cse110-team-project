@@ -97,7 +97,7 @@ public class packageDAOImpl implements packageDAO {
 
     @Override
     public List<Package> getAllPackage() {
-        String sql = "SELECT package_name, package_description, price FROM packages";
+        String sql = "SELECT packages.package_id AS id, package_name, package_description, price FROM packages";
 
         List<Map<String,Object>> queried = new ArrayList<>();
         try {
