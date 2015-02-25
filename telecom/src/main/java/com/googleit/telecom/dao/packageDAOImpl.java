@@ -1,10 +1,6 @@
 package com.googleit.telecom.dao;
 
 import com.googleit.telecom.models.items.Package;
-import com.googleit.telecom.models.items.Service;
-import com.googleit.telecom.models.users.Customer;
-import com.googleit.telecom.models.users.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 

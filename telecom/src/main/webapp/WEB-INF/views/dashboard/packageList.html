@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="inc/head :: head"></head>
+<body>
+<header th:replace="inc/header :: header"></header>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="inc/sidebar"></div>
+            <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            	<h2 class="sub-header">Packages</h2>
+
+           		<!-- Service List -->  
+                <div class="table">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Modify</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="package : ${allPackages}">
+                            <td th:text="${package.getPackageName()}"> </td>
+                            <td th:text="${package.getDescription()}"></td>
+                            <td th:text="${package.getPrice()}"></td>
+                            <td>
+                            	<a class="btn btn-primary" th:href="@{/dashboard/addServiceToPackage}" role="button">Add Service</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+              
+             
+           </div>
+    </div>
+</div>
+<footer th:replace="inc/footer :: footer"></footer>
+</body>
+</html>
