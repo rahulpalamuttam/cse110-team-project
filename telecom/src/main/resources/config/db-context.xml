@@ -33,4 +33,7 @@
         <constructor-arg ref="dataSource"/>
     </bean>
 
+    <bean id="packageDAO" class="com.googleit.telecom.dao.packageDAOImpl">
+    </bean>
+
 </beans>
