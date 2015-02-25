@@ -6,7 +6,8 @@ import com.googleit.telecom.dao.ServiceDAO;
 import com.googleit.telecom.dao.UserDAO;
 import com.googleit.telecom.dao.packageDAO;
 import com.googleit.telecom.models.Bill;
-import com.googleit.telecom.models.items.Service;
+import com.googleit.telecom.models.items.*;
+import com.googleit.telecom.models.items.Package;
 import com.googleit.telecom.models.users.Customer;
 import com.googleit.telecom.models.users.User;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -101,6 +103,23 @@ public class DashboardController {
         return "dashboard/services";
     }
 
+    @RequestMapping(value={"/customerPackages"}, method = RequestMethod.POST)
+    public String updateCustomerPackageSubscription(@RequestParam(value = "identification", required = false) String user_id, Model model) {
+//        System.out.println(email);
+//        User dude = userDAO.getUser(email);
+//        long user_id = dude.getId();
+        System.out.println("customer id : " + user_id );
+        List<Package> subscribedServices = packageDao.getSubscribedPackage(Long.valueOf(user_id));
+        List<Package> unsubscribedServices = packageDao.getUnsubscribedPackage(Long.valueOf(user_id));
+        model.addAttribute("subscribedPackages", subscribedServices);
+        model.addAttribute("unsubscribedPackages", unsubscribedServices);
+//        model.addAttribute("user", dude.getEmail());
+        String type = "customerPackagesUpdate";
+        model.addAttribute("type", type);
+        model.addAttribute("user_id", user_id);
+        return "dashboard/packages";
+    }
+
     @RequestMapping(value={"/customerServicesUpdate"}, method = RequestMethod.POST)
     public String customerUpdateSubscription(@RequestParam(value = "subscribe", required = false) String[] subscribe,
                                      @RequestParam(value = "cancel",    required = false) String[] cancel,
@@ -111,7 +130,7 @@ public class DashboardController {
         if(subscribe != null && subscribe.length >0)
             for(String service_id : subscribe)
                 serviceDAO.addService(Long.valueOf(service_id), Long.valueOf(user_id));
-
+        System.out.println(cancel);
         if(cancel != null && cancel.length>0)
             for(String service_id : cancel)
                 serviceDAO.unsubscribeService(Long.valueOf(service_id), Long.valueOf(user_id));
@@ -134,6 +153,7 @@ public class DashboardController {
         long user_id = dude.getId();
 
         List<Customer> myCustomers = customerDAO.getCustomers(user_id, userDAO);
+        System.out.println(myCustomers);
         model.addAttribute("myCustomers", myCustomers);
         return "dashboard/customers";
     }
@@ -144,15 +164,21 @@ public class DashboardController {
        long user_id = dude.getId();
        
        List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
+       List<Package> addedPackages = packageDao.getSubscribedPackage(Long.valueOf(user_id));
        System.out.println(subscribedServices);
        Bill myBill =  new Bill();
        
-       for(Service service : subscribedServices)
+       for(Buyable item: subscribedServices)
        {
-    	   myBill.addItem(service);
+    	   myBill.addItem(item);
        }
-       
+
+        for(Buyable item : addedPackages)
+        {
+            myBill.addItem(item);
+        }
        model.addAttribute("myServices", subscribedServices);
+       model.addAttribute("myPackages", addedPackages);
        model.addAttribute("myBill",  myBill);
        
        return "dashboard/bill";
@@ -160,13 +186,45 @@ public class DashboardController {
     
     @RequestMapping("/packages")
     public String packages(Model model){
-       User dude = getAuthenticated();
-       long user_id = dude.getId();
-       model.addAttribute("unsubscribedPackages", packageDao.getPackages());
-       //List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
-       //Package myPackage =  new Package();
-       
-       
+        User dude = getAuthenticated();
+        long user_id = dude.getId();
+        List<Package> subscribedPackages = packageDao.getSubscribedPackage(dude.getId());
+        List<Package> unsubscribedPackages = packageDao.getUnsubscribedPackage(dude.getId());
+
+        for(Package pkg : subscribedPackages)
+            System.out.println(pkg.getPackagedService());
+
+        model.addAttribute("subscribedPackages", subscribedPackages);
+        model.addAttribute("unsubscribedPackages", unsubscribedPackages);
+        model.addAttribute("user", dude.getEmail());
+        String type = "customerPackagesUpdate";
+        model.addAttribute("type", type);
+        model.addAttribute("user_id", user_id);
        return "dashboard/packages";
+    }
+
+    @RequestMapping(value={"/customerPackagesUpdate"}, method = RequestMethod.POST)
+    public String customerUpdatePackageSubscription(@RequestParam(value = "subscribe", required = false) String[] subscribe,
+                                             @RequestParam(value = "cancel",    required = false) String[] cancel,
+                                             @RequestParam(value = "identification", required = false) String user_id,
+                                             Model model) {
+        System.out.println("customer id : " + user_id );
+        if(subscribe != null && subscribe.length >0)
+            for(String package_id : subscribe)
+                packageDao.addPackage(Long.valueOf(package_id), Long.valueOf(user_id));
+
+        if(cancel != null && cancel.length>0)
+            for(String package_id : cancel)
+            packageDao.unsubscribePackage(Long.valueOf(package_id), Long.valueOf(user_id));
+
+        List<Package> subscribedPackages = packageDao.getSubscribedPackage(Long.valueOf(user_id));
+        List<Package> unsubscribedPackage = packageDao.getUnsubscribedPackage(Long.valueOf(user_id));
+        model.addAttribute("subscribedPackages", subscribedPackages);
+        model.addAttribute("unsubscribedPackages", unsubscribedPackage);
+//        model.addAttribute("user", dude.getEmail());
+        String type = "customerPackagesUpdate";
+        model.addAttribute("type", type);
+        model.addAttribute("user_id", user_id);
+        return "dashboard/packages";
     }
 }

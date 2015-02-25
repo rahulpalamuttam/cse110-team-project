@@ -7,13 +7,15 @@
     <div class="row">
         <div th:replace="inc/sidebar"></div>
 
-        
-            <!-- Subscription List-->
-            <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 class="page-header">Customers</h1>
-                <h2 class="sub-header">Customer List</h2>
-                <div class="table">
-                    <form action="/dashboard/customerServices" method="post">
+
+        <!-- Subscription List-->
+        <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Customers</h1>
+
+            <h2 class="sub-header">Customer List</h2>
+
+            <div class="table">
+                <form action="/dashboard/customerServices" method="post">
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -22,13 +24,36 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <!-- TODO :: show customer list -->
                         <tr th:each="customer : ${myCustomers}">
                             <td>
-                                <!-- TODO :: change value to customer_id -->
-                                <input th:type="hidden" th:name="identification" th:value="${customer.getId()}" />
-                                <!-- TODO :: change value to customer email address-->
-                                <input th:type="submit" class="linkButton" th:name="email" th:value="${customer.getEmail()}"/>
+                                <input th:type="hidden" th:name="identification" th:value="${customer.getId()}"/>
+                                <input th:type="submit" class="linkButton" th:name="email"
+                                       th:value="${customer.getEmail()}"/>
+                            </td>
+                            <td>2015-01-01</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+            <h2 class="sub-header">Customer Packages</h2>
+
+            <div class="table">
+                <form action="/dashboard/customerPackages" method="post">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Registration Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="customer : ${myCustomers}">
+                            <td>
+                                <input th:type="hidden" th:name="identification" th:value="${customer.getId()}"/>
+                                <input th:type="submit" class="linkButton" th:name="email"
+                                       th:value="${customer.getEmail()}"/>
                             </td>
                             <td>2015-01-01</td>
                         </tr>

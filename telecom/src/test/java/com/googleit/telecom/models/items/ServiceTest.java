@@ -3,6 +3,7 @@ package com.googleit.telecom.models.items;
 import com.googleit.telecom.models.Bill;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -38,4 +39,26 @@ public class ServiceTest {
         compareService.setServiceID((long) 1234);
        assertTrue(testerService.equals(compareService));
     }
+    @Test
+    public void testgetServiceDiscription() throws Exception{
+        testService.setServiceDescription("good product");
+        assertEquals("good product" , testService.getServiceDescription());
+    }
+
+    @Test
+    public void testGetServiceName() throws Exception{
+        testService.setServiceName("service");
+        assertEquals("service", testService.getServiceName());
+    }
+    
+    @Test
+    public void testDuration() throws Exception{
+        Date teststart = new Date("Mon May 04 09:51:52 CDT 2009");
+        Date testend = new Date("Mon May 05 09:51:52 CDT 2009");
+        testService.setDuration(teststart, testend);
+        assertEquals(testService.getServiceStartDate(), teststart);
+        assertEquals(testService.getServiceEndDate(), testend);
+    }
+
+
 }

@@ -1,6 +1,8 @@
 package com.googleit.telecom.models.items;
 
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,8 +11,8 @@ import java.util.List;
  * A package is a collection of services
  * Created by rahul on 2/1/15.
  */
-public class Package {
-    private ArrayList<Service> PackagedServices;
+public class Package implements Buyable{
+    private List<Service> PackagedServices;
     private long packageID;
     private String packageName;
     private double price;
@@ -18,6 +20,7 @@ public class Package {
     private Date endDate;
     private String description;
 
+    public Package(){}
     public String getDescription() {
         return description;
     }
@@ -25,7 +28,9 @@ public class Package {
     public void insert(Service service) {
         PackagedServices.add(service);
     }
-
+    public void setPackagedServices(List<Service> service) {
+        this.PackagedServices = service;
+    }
     public List<Service> getPackagedService(){
         return PackagedServices;
     }
@@ -46,7 +51,7 @@ public class Package {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

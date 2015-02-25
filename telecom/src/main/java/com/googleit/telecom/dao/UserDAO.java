@@ -6,4 +6,5 @@ public interface UserDAO {
     public void insert(User user);
     public boolean isDuplicate(String email);
     public User getUser(String email);
+    public User getUser(long id);
 }
