@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.googleit.telecom.models.items.Service;
 import com.googleit.telecom.models.items.Package;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/dashboard")
@@ -46,12 +47,44 @@ public class DashboardMRepController {
 		return "redirect:/dashboard/serviceslist";
 	}
 
-    @RequestMapping(value="/addServiceToPackage", method = RequestMethod.GET)
-    public String addServiceToPackage(Model model) {
-        List<Service> existingServices;
-        List<Service> allServices = serviceDAO.getAllService();
+    @RequestMapping(value="/modifyPackage", method = RequestMethod.POST)
+    public String modifyPackage(Model model, @RequestParam(value="package_id") long packageID) {
 
-        return "dashboard/addServiceToPackage";
+        List<Service> subscribedServices = packageDAO.getSubscribedService(packageID);
+        List<Service> unsubscribedServices = packageDAO.getUnsubscribedService(packageID);
+        model.addAttribute("subscribedServices", subscribedServices);
+        model.addAttribute("unsubscribedServices", unsubscribedServices);
+        model.addAttribute("type", "updatePackage");
+        model.addAttribute("package_id", packageID);
+        return "dashboard/modifyPackage";
     }
+
+    @RequestMapping(value="/updatePackage", method = RequestMethod.POST)
+    public String updatePackage(Model model,@RequestParam(value = "subscribe", required = false) Long[] subscribe,
+                                @RequestParam(value = "cancel",    required = false) Long[] cancel,
+                                @RequestParam(value = "package_id") long packageID) {
+
+        System.out.println("PackageID : " + packageID);
+        System.out.println("Subscribe : " + subscribe);
+        System.out.println("Cancel : " + cancel);
+
+        if(subscribe != null && subscribe.length >0)
+            for(long service_id : subscribe)
+                packageDAO.addService(packageID,service_id);
+
+        if(cancel != null && cancel.length>0)
+            for(long service_id : cancel)
+                packageDAO.unsubscribeService(packageID, service_id);
+
+        List<Service> subscribedServices = packageDAO.getSubscribedService(packageID);
+        List<Service> unsubscribedServices = packageDAO.getUnsubscribedService(packageID);
+        model.addAttribute("subscribedServices", subscribedServices);
+        model.addAttribute("unsubscribedServices", unsubscribedServices);
+        model.addAttribute("type", "updatePackage");
+        model.addAttribute("package_id", packageID);
+
+        return "dashboard/modifyPackage";
+    }
+
 
 }
