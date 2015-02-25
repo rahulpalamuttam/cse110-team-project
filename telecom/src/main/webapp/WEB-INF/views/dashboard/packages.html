@@ -46,12 +46,29 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="package : ${unsubscribedPackages}">
-                            <td th:text="${package.getPackageName()}"></td>
-                            <td th:text="${package.getDescription()}"></td>
-                            <td th:text="${package.getPrice()}"></td>
-                            <td><input type="checkbox" th:name="subscribe" th:value="${package.getPackageID()}" /></td>
-                        </tr>
+                       
+                        <div class ="accordion" id="myaccordion">
+                            <div class = "accordion-group">
+                                <tr th:each="package : ${unsubscribedPackages}">
+                            
+                                    <td th:text="${package.getPackageName()}" id="package-toggle" class ="accodion-toggle" data-toggle ="collapse" data-parent="#myaccordion" th:href="'#'+${package.getPackageID()}"></td>
+                                    <td th:text="${package.getDescription()}"></td>
+                                    <td th:text="${package.getPrice()}"></td>
+                                    <td><input type="checkbox" th:name="subscribe" th:value="${package.getPackageID()}" /></td>
+                                    <tr>
+                                        <td colspan="4" >
+                                            <div th:id="${package.getPackageID()}"  class="accordion-body collapse" >
+                                                <div class="accordion-inner" >Hello WorldHello WorldHello WorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tr>
+
+                            </div>
+                        </div>
+
+
                         </tbody>
                     </table>
                 </div>
