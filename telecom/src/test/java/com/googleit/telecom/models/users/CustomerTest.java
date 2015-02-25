@@ -4,6 +4,8 @@ import com.googleit.telecom.models.items.Service;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.Deprecated;
+import java.lang.Exception;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -63,12 +65,30 @@ public class CustomerTest {
     }
 
     @Test
+    public void testgetBalance() throws Exception{
+
+    }
+
+    @Test
+    public void testgetSubscribedServices() throws Exception{
+
+    }
+
+    @Test
+    public void testgetSubscribedPackages() throws Exception{
+
+    }
+
+
+    @Test
     public void testPayBalance() throws Exception{
         double balance;
         balance = customer.getBalance();
         bill = customer.getCustomerBill();
         bill.setAmountLeft(10.00);
-        bill.pay(balance);
-        assertEquals(bill.getAmountLeft(), -90, 0);
+        customer.payBalance(balance);
+        assertEquals(bill.getAmountLeft(), 0, 0);
     }
+
+
 }
