@@ -8,7 +8,9 @@
         <div th:replace="inc/sidebar"></div>
             <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             	<h2 class="sub-header">Packages</h2>
-
+				<div class="pull-right">
+            		<a class="btn btn-primary" th:href="@{/dashboard/addPackage}" role="button">Add Package</a>
+            	</div>
            		<!-- Service List -->  
                 <div class="table">
                     <table class="table table-striped">

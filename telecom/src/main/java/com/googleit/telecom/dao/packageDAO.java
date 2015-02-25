@@ -11,4 +11,5 @@ import java.util.List;
 public interface packageDAO {
     public List<Package> getPackages();
     public void insert(Package pack);
+	public void createPackage(Package pack);
 }

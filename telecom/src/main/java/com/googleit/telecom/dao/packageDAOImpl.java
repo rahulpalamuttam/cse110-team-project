@@ -42,5 +42,11 @@ public class packageDAOImpl implements packageDAO {
     public List<Package> getPackages(){
         return packageList;
     }
+
+	@Override
+	public void createPackage(Package pack) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
