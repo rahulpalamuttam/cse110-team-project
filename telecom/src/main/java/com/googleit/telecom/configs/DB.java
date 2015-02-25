@@ -160,7 +160,7 @@ public class DB {
 
             // TEST service
             statement.executeUpdate("INSERT INTO services(service_name, price, start_date, end_date, service_description)"
-                    + "VALUES ('Freenet', '00.00', '2015-01-01', '2015-02-02', 'This is a freebie service! Take advantage.')"
+                    + "VALUES ('Freenet', '00.00', '2015-01-01', '2015-02-02', 'This is a freebie service! Take advantage.'),"
                     + "('Freebie', '65.01', '2015-01-01', '2015-02-02', 'This is a newbie service! Take advantage.'),"
                     + "('Newbie',  '0.01',  '2015-01-01', '2015-02-02', 'This is a nono service! Take advantage.'),"
                     + "('Newnet',  '35.01', '2015-01-01', '2015-02-02', 'This is some service! Take advantage.');");

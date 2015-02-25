@@ -26,7 +26,7 @@
                             <td th:text="${package.getDescription()}"></td>
                             <td th:text="${package.getPrice()}"></td>
                             <td>
-                            	<a class="btn btn-primary" th:href="@{/dashboard/addServiceToPackage}" role="button">Add Service</a>
+                            	<a class="btn btn-primary" th:href="@{/dashboard/addServiceToPackage}" th:value="${package.getPackageID()}" role="button">Add Service</a>
                             </td>
                         </tr>
                         </tbody>

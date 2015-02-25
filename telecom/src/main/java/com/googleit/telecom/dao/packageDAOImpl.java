@@ -76,7 +76,7 @@ public class packageDAOImpl implements packageDAO {
             service.setPackageID((Long) tuple.get("id"));
             service.setPackageName((String) tuple.get("package_name"));
             service.setPrice((Double)tuple.get("price"));
-            service.setDescription((String) tuple.get("service_description"));
+            service.setDescription((String) tuple.get("package_description"));
             services.add(service);
         }
         // If there's better solution use that statement
@@ -93,7 +93,7 @@ public class packageDAOImpl implements packageDAO {
 
     @Override
     public List<Package> getAllPackage() {
-        String sql = "SELECT package_name, package_description, price FROM packages";
+        String sql = "SELECT packages.package_id AS id, package_name, package_description, price FROM packages";
 
         List<Map<String,Object>> queried = new ArrayList<>();
         try {
