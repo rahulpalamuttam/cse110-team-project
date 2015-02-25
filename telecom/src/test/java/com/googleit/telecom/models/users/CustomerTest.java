@@ -87,7 +87,7 @@ public class CustomerTest {
         bill = customer.getCustomerBill();
         bill.setAmountLeft(10.00);
         customer.payBalance(balance);
-        assertEquals(bill.getAmountLeft(), 10, 0);
+        assertEquals(bill.getAmountLeft(), 0, 0);
     }
 
 
