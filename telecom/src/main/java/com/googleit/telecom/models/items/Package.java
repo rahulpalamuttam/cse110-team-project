@@ -1,6 +1,8 @@
 package com.googleit.telecom.models.items;
 
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +20,7 @@ public class Package implements Buyable{
     private Date endDate;
     private String description;
 
+    public Package(){}
     public String getDescription() {
         return description;
     }

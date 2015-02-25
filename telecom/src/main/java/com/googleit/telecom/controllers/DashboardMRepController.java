@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.googleit.telecom.models.items.Service;
 import com.googleit.telecom.models.items.Package;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/dashboard")
@@ -57,12 +58,17 @@ public class DashboardMRepController {
 		model.addAttribute("allServices",allServices);
 		return "dashboard/addPackage";
 	}
-	
+
 
 	@RequestMapping(value="/addPackage", method = RequestMethod.POST)
-	public String addPackage(Package pack) {
+	public String addPackage(@RequestParam(value = "add", required = false) String[] subscribe,
+                             Package pack) {
+        System.out.println(pack.getDescription());
 		packageDAO.createPackage(pack);
-		return "redirect:/dashboard/packagelist";
+//        if(subscribe != null && subscribe.length >0)
+//            for(String service_id : subscribe)
+//                packageDAO.addService(Long.valueOf(pack.getPackageID()), Long.valueOf(service_id));
+		return "redirect:/dashboard/packageslist";
 	}
 
 	
