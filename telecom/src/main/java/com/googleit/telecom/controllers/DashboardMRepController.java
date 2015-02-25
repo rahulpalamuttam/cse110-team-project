@@ -35,4 +35,6 @@ public class DashboardMRepController {
         serviceDAO.createServie(service);
 		return "redirect:/dashboard/serviceslist";
 	}
+
+//    @RequestMapping(value="packagelist")
 }

@@ -22,7 +22,7 @@ public class ServiceDAOImpl implements ServiceDAO {
 
         String sql = "SELECT services.service_id AS id, service_name, price, start_date, end_date, service_description FROM services "  +
                 "WHERE NOT EXISTS (" +
-                "SELECT * FROM subscriptions WHERE subscriptions.service_id=services.service_id AND subscriptions.customer_id=?" +
+                "SELECT * FROM service_subscriptions WHERE service_subscriptions.service_id=services.service_id AND service_subscriptions.customer_id=?" +
                 " )";
 
         List<Map<String,Object>> queried = new ArrayList<>();
@@ -39,7 +39,7 @@ public class ServiceDAOImpl implements ServiceDAO {
     public List<Service> getSubscribedService(long user_id) {
         String sql = "SELECT services.service_id AS id, service_name, price, start_date, end_date, service_description FROM services "  +
                 "WHERE EXISTS(" +
-                "SELECT * FROM subscriptions WHERE subscriptions.service_id=services.service_id AND subscriptions.customer_id=?" +
+                "SELECT * FROM service_subscriptions WHERE service_subscriptions.service_id=services.service_id AND service_subscriptions.customer_id=?" +
                 " )";
 
         List<Map<String,Object>> queried = new ArrayList<>();
@@ -54,14 +54,14 @@ public class ServiceDAOImpl implements ServiceDAO {
 
     @Override
     public void addService(long service_id, long user_id) {
-        String sql = "INSERT INTO subscriptions (service_id, customer_id) VALUES (?,?)";
+        String sql = "INSERT INTO service_subscriptions (service_id, customer_id) VALUES (?,?)";
 
         this.jdbcTemplate.update(sql, service_id, user_id);
     }
 
     @Override
     public void unsubscribeService(long service_id, long user_id) {
-        String sql = "DELETE FROM subscriptions WHERE service_id=? AND customer_id=?";
+        String sql = "DELETE FROM service_subscriptions WHERE service_id=? AND customer_id=?";
         this.jdbcTemplate.update(sql, service_id, user_id);
     }
 

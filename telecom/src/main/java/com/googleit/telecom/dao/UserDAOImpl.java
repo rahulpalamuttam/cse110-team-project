@@ -58,7 +58,7 @@ public class UserDAOImpl implements UserDAO {
         user.setId(keyHolder.getKey().intValue());
 
         String sql2 = "INSERT INTO user_roles (email, role)" + " VALUES (?,?)";
-        this.jdbcTemplate.update(sql2, user.getEmail(), "ROLE_USER");
+        this.jdbcTemplate.update(sql2, user.getEmail(), "ROLE_CUSTOMER");
     }
 
     @Override
