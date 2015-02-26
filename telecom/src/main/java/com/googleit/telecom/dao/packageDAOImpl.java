@@ -4,8 +4,14 @@ import com.googleit.telecom.models.items.Package;
 import com.googleit.telecom.models.items.Service;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
 
 /**
@@ -100,10 +106,26 @@ public class packageDAOImpl implements packageDAO {
     }
 
     @Override
-    public void createPackage(Package pack) {
-        String sql = "INSERT INTO packages (package_name, package_description, price)" + " VALUES (?,?,?)";
+    public void createPackage(final Package pack) {
+        //String sql = "INSERT INTO packages (package_name, package_description, price)" + " VALUES (?,?,?)";
+        //this.jdbcTemplate.update(sql, pack.getPackageName(), pack.getDescription(), pack.getPrice());
 
-        this.jdbcTemplate.update(sql, pack.getPackageName(), pack.getDescription(), pack.getPrice());
+        final String sql1 = "INSERT INTO packages (package_name, package_description, price) VALUES (?,?,?)";
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        this.jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement ps = connection.prepareStatement(sql1, new String[] { "package_id" });
+                ps.setString(1, pack.getPackageName());
+                ps.setString(2, pack.getDescription());
+                ps.setString(3, String.valueOf(pack.getPrice()));
+                return ps;
+            }
+        }, keyHolder);
+
+        // Set primary key id to user
+        pack.setPackageID(keyHolder.getKey().intValue());
     }
 
     @Override
