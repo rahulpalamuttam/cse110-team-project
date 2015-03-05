@@ -1,3 +1,9 @@
+# **Bug Fix for Database Schema** #
+
+* Run mysql in terminal
+* DROP DATABASE telecom;
+* CREATE DATABASE telecom;
+
 # **Setting Up for the Project** #
 ## 1. Java/JDK ##
 
