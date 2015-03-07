@@ -7,11 +7,12 @@ import java.lang.Exception;
 import static org.junit.Assert.*;
 
 public class CustomerRepresentativeTest {
-	Customer cus= new Customer();
+	Customer cus;
 	CustomerRepresentative crep;
 	@Before
     public void setup(){
       crep = new CustomerRepresentative();
+        cus = new Customer();
     }
 
 	@Test

@@ -5,13 +5,16 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
+import java.util.List;
 public class CommercialCustomerTest {
 
-    CommercialCustomer company;
+   CommercialCustomer company;
+    Customer cust;
+    List<Customer> clist;
     @Before
-    public void CommercialCustomerTestSetup(){
-        company = new CommercialCustomer();
+    public void setup(){
+        cust = new Customer();
+        company = new CommercialCustomer(cust);
     }
 
     @Test
@@ -23,14 +26,13 @@ public class CommercialCustomerTest {
 
     @Test
     public void testAddCustomer() throws Exception {
-        Customer cust = new Customer();
         company.addCustomer(cust);
-        assertTrue(company.isPartofCompany(cust));
+        clist = company.getcustomers();
+        assertTrue(clist.contains(cust));
     }
 
     @Test
     public void testRemoveCustomer() throws Exception {
-        Customer cust = new Customer();
         company.addCustomer(cust);
         company.removeCustomer(cust);
         assertTrue(company.isPartofCompany(cust));
@@ -38,7 +40,6 @@ public class CommercialCustomerTest {
 
     @Test
     public void testIsPartofCompany() throws Exception {
-        Customer cust = new Customer();
         assertTrue(company.isPartofCompany(cust));
     }
 }

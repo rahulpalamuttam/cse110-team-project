@@ -12,9 +12,12 @@ import static org.junit.Assert.*;
 
 public class PackageTest {
     Package pack;
+    Service serv;
     @Before
     public void setup(){
-        pack = new Package();
+        serv = new Service();
+        pack = new Package(serv);
+
     }
 
     @Test
