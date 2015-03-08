@@ -87,4 +87,9 @@ public class Service implements Buyable{
     public Date getServiceStartDate() {
         return serviceStartDate;
     }
+
+    @Override
+    public String toString() {
+        return getServiceName();
+    }
 }

@@ -7,11 +7,12 @@ import java.lang.Exception;
 import static org.junit.Assert.*;
 
 public class CustomerRepresentativeTest {
-	Customer cus= new Customer();
+	Customer cus;
 	CustomerRepresentative crep;
 	@Before
     public void setup(){
       crep = new CustomerRepresentative();
+        cus = new Customer();
     }
 
 	@Test
@@ -32,10 +33,10 @@ public class CustomerRepresentativeTest {
 	public void testgetCustomer()
 	{
 		Customer testcus = new Customer();
-		cus.setID((long) 123);
-		crep.adCustomer(cus);
+		cus.setId((long) 123);
+		crep.addCustomer(cus);
 		testcus = crep.getCustomer((long)123);
-		assertTrue((long)123, testcus.getID());
+		assertEquals((long)123, testcus.getId());
 	}
 
 }
