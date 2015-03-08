@@ -37,10 +37,7 @@
                                 <tr>
                                     <td colspan="4">
                                         <div th:id="${package.getPackageID()}" class="accordion-body collapse">
-                                            <div class="accordion-inner">Hello WorldHello WorldHello
-                                                WorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHello
-                                                WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
-                                            </div>
+                                            <div class="accordion-inner" th:if="${!package.getPackagedService().isEmpty()}" th:text="${package.getPackagedService()}"></div>
                                         </div>
                                     </td>
                                 </tr>
@@ -85,10 +82,7 @@
                                 <tr>
                                     <td colspan="4">
                                         <div th:id="${package.getPackageID()}" class="accordion-body collapse">
-                                            <div class="accordion-inner">Hello WorldHello WorldHello
-                                                WorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHelloWorldHello
-                                                WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
-                                            </div>
+                                            <div class="accordion-inner" th:if="${!package.getPackagedService().isEmpty()}" th:text="${package.getPackagedService()}"></div>
                                         </div>
                                     </td>
                                 </tr>

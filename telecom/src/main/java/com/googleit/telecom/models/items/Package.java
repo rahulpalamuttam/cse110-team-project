@@ -12,7 +12,7 @@ import java.util.List;
  * Created by rahul on 2/1/15.
  */
 public class Package implements Buyable{
-    private ArrayList<Service> PackagedServices;
+    private List<Service> PackagedServices;
     private long packageID;
     private String packageName;
     private double price;
@@ -28,7 +28,9 @@ public class Package implements Buyable{
     public void insert(Service service) {
         PackagedServices.add(service);
     }
-
+    public void setPackagedServices(List<Service> service) {
+        this.PackagedServices = service;
+    }
     public List<Service> getPackagedService(){
         return PackagedServices;
     }

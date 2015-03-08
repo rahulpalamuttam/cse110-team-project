@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -187,10 +188,14 @@ public class DashboardController {
     public String packages(Model model){
         User dude = getAuthenticated();
         long user_id = dude.getId();
-        List<Package> subscribedServices = packageDao.getSubscribedPackage(dude.getId());
-        List<Package> unsubscribedServices = packageDao.getUnsubscribedPackage(dude.getId());
-        model.addAttribute("subscribedPackages", subscribedServices);
-        model.addAttribute("unsubscribedPackages", unsubscribedServices);
+        List<Package> subscribedPackages = packageDao.getSubscribedPackage(dude.getId());
+        List<Package> unsubscribedPackages = packageDao.getUnsubscribedPackage(dude.getId());
+
+        for(Package pkg : subscribedPackages)
+            System.out.println(pkg.getPackagedService());
+
+        model.addAttribute("subscribedPackages", subscribedPackages);
+        model.addAttribute("unsubscribedPackages", unsubscribedPackages);
         model.addAttribute("user", dude.getEmail());
         String type = "customerPackagesUpdate";
         model.addAttribute("type", type);

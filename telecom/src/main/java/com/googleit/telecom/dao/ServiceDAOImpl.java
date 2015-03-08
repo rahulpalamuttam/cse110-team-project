@@ -75,7 +75,7 @@ public class ServiceDAOImpl implements ServiceDAO {
         List<Service> services = new ArrayList<>();
         for(Map<String,Object> tuple : tuples){
             Service service = new Service();
-            service.setServiceID((Long)tuple.get("id"));
+            service.setServiceID((Long)tuple.get("service_id"));
             service.setServiceName((String) tuple.get("service_name"));
             service.setDuration((Date)tuple.get("start_date"), (Date)tuple.get("end_date"));
             service.setPrice((Double)tuple.get("price"));
@@ -89,7 +89,7 @@ public class ServiceDAOImpl implements ServiceDAO {
 
 	@Override
 	public List<Service> getAllService() {
-        String sql = "SELECT service_name, service_description, price FROM services";
+        String sql = "SELECT service_id, service_name, service_description, price FROM services";
 
         List<Map<String,Object>> queried = new ArrayList<>();
         try {
