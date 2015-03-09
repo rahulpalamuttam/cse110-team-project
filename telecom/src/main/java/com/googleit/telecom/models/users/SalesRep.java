@@ -2,30 +2,20 @@ package com.googleit.telecom.models.users;
 
 import com.googleit.telecom.models.items.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-/**
- * TODO: both a service and a package share very similar attributes.
- * Their only difference is that one is a collection of the other.
- * Their primary similarity is their buyability attributed
- * We need to implement a buyable interface!
- * Created by rahul on 2/1/15.
- */
 public class SalesRep extends User {
-    /**
-     * TODO: needs to extend user
-     */
+
+    public SalesRep(String email, String password, String role) {
+        super(email, password, role);
+    }
+
     public void CreateService(String serviceName,
                               String serviceDescription, Date start,
-                              Date end, Double price, Long id){
-        // the sales representative needs to create a service
-        Service newOne = new Service(serviceName, serviceDescription, start, end, price, id);
-        // What do we do with the service once its created?
-    }
+                              Date end, Double price, Long id) {}
 
-    public void CreatePackage(List<Service> services) {
-
-    }
+    public void CreatePackage(List<Service> services) {}
 
 }

@@ -1,20 +1,26 @@
 package com.googleit.telecom.models.users;
 
 
-import javax.validation.constraints.Pattern;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
+import java.time.LocalDate;
+import java.util.Collection;
 
-public class User {
-    
+public abstract class User implements UserDetails {
+    public static final String CUSTOMER = "Customer";
+    public static final String CUSTOMER_REP = "Customer Rep";
+    public static final String MARKETING_REP = "Marketing Rep";
+
+    public static long total_user=0;
+
     private long id;
 
-//    @NotBlank(message = "*Please enter e-mail address")
+    //    @NotBlank(message = "*Please enter e-mail address")
 //    @Email(message = "*Invalid e-mail form")
     private String email;
 
-//    @Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).{5,13})",
+    //    @Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).{5,13})",
 //            message = "*Password must contain "
 //                    + "digit, "
 //                    + "lowercase letter, "
@@ -23,7 +29,19 @@ public class User {
 //                    + "and legnth between 5-13")
     private String password;
 
-    private String reg_date;
+    private String role;
+
+    public User(Long id, String email, String role) {
+        this.id = id;
+        this.email = email;
+        this.role = role;
+    }
+
+    public User(String email, String password, String role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public long getId() {
         return id;
@@ -49,15 +67,58 @@ public class User {
         this.password = password;
     }
 
-    public String getReg_date() {
-        return reg_date;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public void setReg_date(String reg_date) {
-        this.reg_date = reg_date;
+    public String getRole() {
+        return this.role;
     }
 
-    public String toString(){
-        return email + " " + reg_date;
+    @Override
+    public boolean equals(Object obj) {
+        return ((User)obj).getEmail().equals(this.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return getEmail().hashCode();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return getEmail();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + this.id +
+                ", Email : " + this.email +
+                ", Role : " + this.role;
     }
 }

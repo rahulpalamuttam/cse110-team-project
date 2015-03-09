@@ -1,9 +1,10 @@
 package com.googleit.telecom.models.users;
 
-import com.googleit.telecom.models.*;
+import com.googleit.telecom.models.Bill;
 import com.googleit.telecom.models.items.Package;
 import com.googleit.telecom.models.items.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -13,93 +14,56 @@ import java.util.ArrayList;
 public class Customer extends User {
     private ArrayList<Service> subscribedServices;
     private ArrayList<Package> subscribedPackages;
-    private String address;
-    private double balance;
     private Bill customerBill;
-    public Customer(){
-        subscribedServices = new ArrayList<Service>();
-        subscribedPackages = new ArrayList<Package>();
-        customerBill = new Bill();
+    private double balance;
+
+    public Customer(String email, String password, String role) {
+        super(email, password, role);
+
+        this.subscribedServices = new ArrayList<>();
+        this.subscribedPackages = new ArrayList<>();
+        this.customerBill = new Bill();
+        this.balance = 0;
     }
 
-
-    /**
-     * Adds a new service to the list of services
-     * that this customer is subscribed for
-     * @param newService
-     */
-    public void AddService(Service newService){
-        subscribedServices.add(newService);
-        customerBill.addItem(newService);
+    public void subscribeService(Service newService){
+        this.subscribedServices.add(newService);
     }
 
-    /**
-     * Deletes a specific service from the list
-     * of services that this customer is subscribed for.
-     * @param noService
-     */
-    public void DeleteService(Service noService){
-        subscribedServices.remove(noService);
-        customerBill.deleteItem(noService);
-
+    public void unsubscribeService(Service noService){
+        this.subscribedServices.remove(noService);
     }
 
-    /**
-     * Adds a new package to the list of packages
-     * that this customer is subscribed for.
-     * @param newPackage
-     */
-    public void AddPackage(Package newPackage){
-        subscribedPackages.add(newPackage);
+    public void subscribePackage(Package newPackage){
+        this.subscribedPackages.add(newPackage);
     }
 
-    /**
-     * Deletes a specific package from the list
-     * of packages that this customer is subscribed for.
-     */
-
-    public void DeletePackage(Package newPackage){
-        subscribedPackages.remove(newPackage);
+    public void unsubscribePackage(Package newPackage){
+        this.subscribedPackages.remove(newPackage);
     }
 
-
-    public void changeAddress(String newAddress){
-        this.address = newAddress;
+    public ArrayList<Service> getSubscribedServices() {
+        return this.subscribedServices;
     }
 
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public ArrayList<Package> getSubscribedPackages() {
+        return this.subscribedPackages;
     }
 
     public Bill getCustomerBill() {
-        return customerBill;
+        return this.customerBill;
     }
 
     public void setCustomerBill(Bill customerBill) {
         this.customerBill = customerBill;
     }
-    public boolean equals(Customer customer) {return this.getId() == customer.getId();}
 
     public double getBalance() {
-        return balance;
+        return this.balance;
     }
 
     public void setBalance(double balance) {
         this.balance = balance;
     }
 
-    public ArrayList<Service> getSubscribedServices() {
-        return subscribedServices;
-    }
-
-    public ArrayList<Package> getSubscribedPackages() {
-        return subscribedPackages;
-    }
-
-    public void payBalance(double amount){}
 }

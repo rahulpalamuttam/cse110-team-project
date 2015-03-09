@@ -2,6 +2,8 @@ package com.googleit.telecom.controllers;
 
 import com.googleit.telecom.dao.UserDAO;
 import com.googleit.telecom.models.users.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,62 +32,31 @@ import javax.validation.Valid;
 
 @Controller
 public class RegisterController {
+    private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
 
     @Autowired
     private UserDAO userDAO;
 
-    @Autowired
-    AuthenticationManager authenticationManager;
-
-    /**
-     * Shows the registeration form
-     *
-     * @param User
-     * @return string of regiter.html path
-     */
     @RequestMapping("/register")
     public String registerForm(User user) {
+        logger.info("registerForm method");
         return "register/register";
     }
 
-    /**
-     * Upon POST request register user
-     * when form validation pass.
-     *
-     * @param User
-     * @param BindingResult
-     * @return redirect to dashboard;
-     */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@Valid User user, BindingResult bindingResult, HttpServletRequest request, Model model) {
-        boolean duplicate = false;
-        String email = user.getEmail();
-        String password = user.getPassword();
+        boolean duplicate = userDAO.isDuplicate(user);
 
-        if ( duplicate = userDAO.isDuplicate(user.getEmail()) ) {
+        if (duplicate)
             model.addAttribute("duplicate", "Email already exists.");
-        }
 
         // Invalid form -> show register form page
-        if (bindingResult.hasErrors() || duplicate) return "register/register";
+        if (bindingResult.hasErrors() || duplicate)
+            return "register/register";
 
-        /* TODO :: Check for SQL error exception */
-        userDAO.insert(user);
+        userDAO.register(user);
 
-        autoLogin(email, password, request);
 
         return "register/register_success";
-    }
-
-    public void autoLogin(String email, String password, HttpServletRequest request) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
-
-        // generate session if one doesn't exist
-        request.getSession();
-
-        token.setDetails(new WebAuthenticationDetails(request));
-        Authentication authenticatedUser = authenticationManager.authenticate(token);
-
-        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
     }
 }
