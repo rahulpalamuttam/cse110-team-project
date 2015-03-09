@@ -1,7 +1,8 @@
 package com.googleit.telecom.dao;
 
+import com.googleit.telecom.models.items.BuyableType;
 import com.googleit.telecom.models.items.Service;
-
+import com.googleit.telecom.Factories.BuyableFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -11,9 +12,10 @@ import java.util.*;
 
 public class ServiceDAOImpl implements ServiceDAO {
     private JdbcTemplate jdbcTemplate;
-
+    private BuyableFactory buyableFactory;
     public ServiceDAOImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.buyableFactory = new BuyableFactory();
     }
 
     @Override
@@ -31,8 +33,7 @@ public class ServiceDAOImpl implements ServiceDAO {
         } catch (EmptyResultDataAccessException e) {
             e.printStackTrace();
         }
-
-        return MapServicesToList(queried);
+        return (List<Service>)(List<?>)buyableFactory.getBuyableList(queried, BuyableType.SERVICE_TYPE);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class ServiceDAOImpl implements ServiceDAO {
             e.printStackTrace();
         }
 
-        return MapServicesToList(queried);
+        return (List<Service>)(List<?>)buyableFactory.getBuyableList(queried, BuyableType.SERVICE_TYPE);
     }
 
     @Override
@@ -65,28 +66,6 @@ public class ServiceDAOImpl implements ServiceDAO {
         this.jdbcTemplate.update(sql, service_id, user_id);
     }
 
-    /**
-     * Extracts the data from a SQL query and encapsulates it within
-     * a List of Service Objects.
-     * @param tuples
-     * @return
-     */
-    public List<Service> MapServicesToList(List<Map<String,Object>> tuples){
-        List<Service> services = new ArrayList<>();
-        for(Map<String,Object> tuple : tuples){
-            Service service = new Service();
-            service.setServiceID((Long)tuple.get("service_id"));
-            service.setServiceName((String) tuple.get("service_name"));
-            service.setDuration((Date)tuple.get("start_date"), (Date)tuple.get("end_date"));
-            service.setPrice((Double)tuple.get("price"));
-            service.setServiceDescription((String)tuple.get("service_description"));
-
-            services.add(service);
-        }
-        // If there's better solution use that statement
-        return services;
-    }
-
 	@Override
 	public List<Service> getAllService() {
         String sql = "SELECT service_id, service_name, service_description, price FROM services";
@@ -98,7 +77,7 @@ public class ServiceDAOImpl implements ServiceDAO {
             e.printStackTrace();
         }
 
-        return MapServicesToList(queried);	
+        return (List<Service>)(List<?>)buyableFactory.getBuyableList(queried, BuyableType.SERVICE_TYPE);
 	}
 
 	@Override
