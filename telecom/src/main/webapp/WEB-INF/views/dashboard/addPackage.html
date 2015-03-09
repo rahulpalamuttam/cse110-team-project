@@ -6,47 +6,43 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div th:replace="inc/sidebar"></div>
-			<div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h2 class="sub-header">Add a Package</h2>
-				<form method="post" class="addPackage" th:action="@{/dashboard/addPackage}" autocomplete="off">
-					
+            <form method="post" class="addPackage" th:action="@{/dashboard/addPackage}" autocomplete="off">
+			    <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				    <h2 class="sub-header">Add a Package</h2>
 					<label>Title</label>
 					<input type="text" class="form-control" name="packageName" />
-					
+
 					<label>Description</label>
 					<textarea class="form-control" name="description"></textarea>
-					
+
 					<label>Price</label>
 					<input type="number" class="form-control" name="price"/>
-					
+
 					<input type="submit" class="btn btn-primary btn-block" value="Submit" />
-				</form>
-			</div>
-			
-			
-			   <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <div class="table">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Click to Add</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="service : ${allServices}">
-                            <td th:text="${service.getServiceName()}"></td>
-                            <td th:text="${service.getServiceDescription()}"></td>
-                            <td th:text="${service.getPrice()}"></td>
-                            <td><input type="checkbox" th:name="add" th:value="${service.getServiceID()}" /></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-			
+			    </div>
+               <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <div class="table">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Click to Add</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="service : ${allServices}">
+                                <td th:text="${service.getServiceName()}"></td>
+                                <td th:text="${service.getServiceDescription()}"></td>
+                                <td th:text="${service.getPrice()}"></td>
+                                <td><input type="checkbox" th:name="add" th:value="${service.getServiceID()}" /></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+               </div>
+            </form>
 		</div>
 	</div>
 	<footer th:replace="inc/footer :: footer"></footer>

@@ -1,12 +1,13 @@
 package com.googleit.telecom.models.users;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by rahul on 2/10/15.
  */
 public class CustomerRepresentative extends User {
-    private List<Customer> customerList;
+    private List<Customer> customerList = new ArrayList<Customer>();
     private String address;
 
     public List<Customer> getCustomerList() {
@@ -32,6 +33,7 @@ public class CustomerRepresentative extends User {
         }
         return null;
     }
+
 
     public void addCustomer(Customer customer){
         customerList.add(customer);

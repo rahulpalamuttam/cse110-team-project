@@ -1,3 +1,5 @@
+package TurnIn2;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.fail;
 
-public class Services {
+public class LoginSuccess {
   private WebDriver driver;
   private String baseUrl;
   private StringBuffer verificationErrors = new StringBuffer();
@@ -22,7 +24,7 @@ public class Services {
   }
 
   @Test
-  public void testServices() throws Exception {
+  public void testLoginSuccess() throws Exception {
     driver.get(baseUrl + "/auth/login");
     driver.findElement(By.name("email")).clear();
     driver.findElement(By.name("email")).sendKeys("git110@ucsd.edu");
@@ -34,20 +36,6 @@ public class Services {
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }
-    driver.get(baseUrl + "/dashboard/services");
-    driver.findElement(By.name("cancel")).click();
-    driver.findElement(By.xpath("(//input[@name='cancel'])[2]")).click();
-    driver.findElement(By.cssSelector("button.btn.btn-default")).click();
-    // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.1.0 | ]]
-    // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.2.0 | ]]
-    // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.3.0 | ]]
-    // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.4.0 | ]]
-    driver.findElement(By.xpath("(//input[@name='subscribePackage'])[3]")).click();
-    driver.findElement(By.cssSelector("button.btn.btn-default")).click();
-    // ERROR: Caught exception [ERROR: Unsupported command [getTable | css=table.table.table-striped.1.0 | ]]
-    // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.1.0 | ]]
-    // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.2.0 | ]]
-    // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.3.0 | ]]
   }
 
   @After
