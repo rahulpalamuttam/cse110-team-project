@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.sql.DataSource;
 
@@ -27,6 +30,9 @@ public class DB {
 
     public void init() {
         DataSource dataSource = getDataSource();
+        Date curr = new Date();
+        DateFormat sqlFormat = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(sqlFormat.format(curr));
         try {
             Connection connection = dataSource.getConnection();
             Statement statement = connection.createStatement();
@@ -38,7 +44,7 @@ public class DB {
                     + "id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
                     + "email VARCHAR(40) NOT NULL,"
                     + "password VARCHAR(60) NOT NULL,"
-                    + "reg_date DATE NOT NULL,"
+                    + "reg_date DATE DEFAULT '" + sqlFormat.format(curr) + "',"
                     + "enabled BOOLEAN NOT NULL,"
                     + "threshold DOUBLE unsigned DEFAULT 0,"
                     + "PRIMARY KEY(`id`),"
@@ -71,32 +77,32 @@ public class DB {
             // Email : git110@ucsd.edu
             // Password : hello
             // Role : Customer
-            statement.executeUpdate("INSERT INTO users(email, password, reg_date, enabled) "
-                    + "VALUES ('git110@ucsd.edu', '$2a$10$.aA.L.gBMay4llqXPBbHEue4YIc6Sc80H3NJ0iVBQh0ZKTlRAKM86', '2015-01-01', 1);");
+            statement.executeUpdate("INSERT INTO users(email, password, enabled) "
+                    + "VALUES ('git110@ucsd.edu', '$2a$10$.aA.L.gBMay4llqXPBbHEue4YIc6Sc80H3NJ0iVBQh0ZKTlRAKM86', 1);");
             statement.executeUpdate("INSERT INTO user_roles(email, role) "
                     + "VALUES ('git110@ucsd.edu', 'ROLE_CUSTOMER');");
 
             // Email : a
             // Password : a
             // Role : Customer
-            statement.executeUpdate("INSERT INTO users(email, password, reg_date, enabled) "
-                    + "VALUES ('a', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', '2015-02-01', 1);");
+            statement.executeUpdate("INSERT INTO users(email, password, enabled) "
+                    + "VALUES ('a', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', 1);");
             statement.executeUpdate("INSERT INTO user_roles(email, role) "
                     + "VALUES ('a', 'ROLE_CUSTOMER');");
 
             // Email : customerRep@gmail.com
             // Password : a
             // Role : Customer Rep
-            statement.executeUpdate("INSERT INTO users(email, password, reg_date, enabled) "
-                    + "VALUES ('crep', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', '2015-02-01', 1);");
+            statement.executeUpdate("INSERT INTO users(email, password, enabled) "
+                    + "VALUES ('crep', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', 1);");
             statement.executeUpdate("INSERT INTO user_roles(email, role) "
                     + "VALUES ('crep', 'ROLE_CUSTOMER_REP');");
             
             // Email : mrep@abc.com
             // Password : a
             // Role : Marketing Rep
-            statement.executeUpdate("INSERT INTO users(email, password, reg_date, enabled) "
-                    + "VALUES ('mrep', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', '2015-01-01', 1);");
+            statement.executeUpdate("INSERT INTO users(email, password, enabled) "
+                    + "VALUES ('mrep', '$2a$10$c/93hxLyT5vZHMUa/zoCaeJsM7VEbPw/17vXbPzzvCptpVfdy/W0a', 1);");
             statement.executeUpdate("INSERT INTO user_roles(email, role) "
                     + "VALUES ('mrep', 'ROLE_MARK_REP');");
 
