@@ -8,6 +8,7 @@ import java.util.*;
 
 import javax.sql.DataSource;
 
+import com.googleit.telecom.models.Bill;
 import com.googleit.telecom.models.users.Customer;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -78,8 +79,17 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public void setThreshold(long id, Double threshold){
+        String sql = "UPDATE users SET threshold=" + threshold +" WHERE id=" + id;
+        try {
+            this.jdbcTemplate.execute(sql);
+        } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
     public User getUser(long id){
-        String sql = "SELECT id, email, reg_date FROM users WHERE id=?";
+        String sql = "SELECT id, email, reg_date, threshold FROM users WHERE id=?";
         Map queried = new HashMap();
         try {
             queried = this.jdbcTemplate.queryForMap(sql, new Object[]{id});
@@ -93,7 +103,10 @@ public class UserDAOImpl implements UserDAO {
         cust.setId((long)queried.get("id"));
         cust.setEmail((String) queried.get("email"));
         cust.setReg_date(queried.get("reg_date").toString());
-
+        double threshold = (double) queried.get("threshold");
+        Bill bill = new Bill();
+        bill.setThreshold(threshold);
+        cust.setCustomerBill(bill);
         return cust;
     }
 

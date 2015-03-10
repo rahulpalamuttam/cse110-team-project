@@ -46,6 +46,12 @@
                     	    <td th:text="${myBill.getTotalAmount()}"></td>
                     	    <td></td>
                     	</tr>
+                        <tr>
+                            <td>Threshold</td>
+                            <td></td>
+                            <td th:text="${myBill.getThreshold()}"></td>
+                            <td></td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -55,6 +61,13 @@
                 <button class="btn btn-default" type="submit">Pay Now</button>
             </div>
 
+        <form method="post" class="addPackage" th:action="@{/dashboard/setThreshold}" autocomplete="off">
+            <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <label>Set Threshold</label>
+                <input type="text" class="form-control" th:name="threshold" />
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" value="Submit" />
+        </form>
 
     </div>
 </div>

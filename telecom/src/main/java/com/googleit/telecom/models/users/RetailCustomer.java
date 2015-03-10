@@ -5,7 +5,7 @@ import com.googleit.telecom.models.users.Customer;
 /**
  * Created by rahul on 2/1/15.
  */
-public class IndividualCustomer extends Customer {
+public class RetailCustomer extends Customer {
     private String firstName;
     private String lastName;
 

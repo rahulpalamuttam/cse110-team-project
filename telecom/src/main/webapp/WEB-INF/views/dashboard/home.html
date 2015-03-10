@@ -9,7 +9,21 @@
 
             <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 class="page-header">My Account</h1>
-                <h2 class="sub-header" th:text="'Welcome ' +${user} + ' ! '">Customer List</h2>
+                <h2 class="sub-header" th:text="'Welcome ' +${user.getEmail()} + ' ! '">Customer List</h2>
+                <h2 class="sub-header"> Profile </h2>
+                <li sec:authorize="hasRole('ROLE_CUSTOMER')">
+                    You are a retail customer
+
+                </li>
+
+                <!--CUSTOMER_REP-->
+                <li sec:authorize="hasRole('ROLE_CUSTOMER_REP')">You are a customer representative</li>
+
+                <!--MARK_REP-->
+                <li sec:authorize="hasRole('ROLE_MARK_REP')">You are a marketing represnetative</li>
+
+                <p th:text="'Registration Date ' + ${user.getReg_date()}"></p>
+
             </div>
 
     </div>

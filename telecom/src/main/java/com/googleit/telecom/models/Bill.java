@@ -10,7 +10,7 @@ public class Bill {
     private double totalAmount;
     private double amountPaid;
     private double amountLeft;
-
+    private double threshold;
     /**
      * Customer call pay to pay the bill.
      * There needs to be checks to ensure
@@ -68,4 +68,6 @@ public class Bill {
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
+    public void setThreshold(double threshold) { this.threshold = threshold;}
+    public double getThreshold() { return threshold;}
 }

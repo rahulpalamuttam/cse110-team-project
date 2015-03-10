@@ -4,12 +4,12 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-public class IndividualCustomerTest {
+public class RetailCustomerTest {
 
-    IndividualCustomer oneperson;
+    RetailCustomer oneperson;
     @Before
     public void IndividualCustomerTestSetup() throws Exception {
-        oneperson = new IndividualCustomer();
+        oneperson = new RetailCustomer();
     }
     @Test
     public void testGetFirstName() throws Exception {

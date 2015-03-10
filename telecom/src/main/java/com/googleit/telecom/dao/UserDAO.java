@@ -7,4 +7,5 @@ public interface UserDAO {
     public boolean isDuplicate(String email);
     public User getUser(String email);
     public User getUser(long id);
+    public void setThreshold(long id, Double threshold);
 }

@@ -1,8 +1,8 @@
 package com.googleit.telecom.Factories;
 
-import com.googleit.telecom.models.items.Buyable;
-import com.googleit.telecom.models.items.BuyableType;
-import com.googleit.telecom.models.items.Service;
+import com.googleit.telecom.models.items.*;
+import com.googleit.telecom.models.items.Package;
+import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,11 +28,23 @@ public class BuyableFactory {
         return service;
     }
 
+    public Buyable getPackage(Map<String, Object> tuple){
+        Package pkg = new Package();
+        pkg.setPackageID((Long) tuple.get("package_id"));
+        pkg.setPackageName((String) tuple.get("package_name"));
+        pkg.setPrice((Double) tuple.get("price"));
+        pkg.setDescription((String) tuple.get("package_description"));
+        return pkg;
+    }
+
     public Buyable getBuyable(Map<String, Object> tuple, BuyableType type){
         Buyable buyable = null;
         switch(type){
             case SERVICE_TYPE:
                 buyable = getService(tuple);
+                break;
+            case PACKAGE_TYPE:
+                buyable = getPackage(tuple);
                 break;
         }
 
@@ -56,11 +68,24 @@ public class BuyableFactory {
         return services;
     }
 
+    public List<Buyable> getPackageList(List<Map<String, Object>> tuples){
+        List<Buyable> packages = new ArrayList<>();
+        for(Map<String,Object> tuple : tuples){
+            Package returned = (Package) this.getBuyable(tuple, BuyableType.PACKAGE_TYPE);
+            packages.add(returned);
+        }
+
+        return packages;
+    }
+
     public List<Buyable> getBuyableList(List<Map<String, Object>> tuples, BuyableType type){
         List<Buyable> buyableList = null;
         switch(type){
             case SERVICE_TYPE:
                 buyableList = getServiceList(tuples);
+                break;
+            case PACKAGE_TYPE:
+                buyableList = getPackageList(tuples);
                 break;
         }
 

@@ -22,7 +22,7 @@ public class ServiceDAOImpl implements ServiceDAO {
     public List<Service> getUnsubscribedService(long user_id) {
         // No join necessary here
 
-        String sql = "SELECT services.service_id AS id, service_name, price, start_date, end_date, service_description FROM services "  +
+        String sql = "SELECT service_id, service_name, price, start_date, end_date, service_description FROM services "  +
                 "WHERE NOT EXISTS (" +
                 "SELECT * FROM service_subscriptions WHERE service_subscriptions.service_id=services.service_id AND service_subscriptions.customer_id=?" +
                 " )";
@@ -38,7 +38,7 @@ public class ServiceDAOImpl implements ServiceDAO {
 
     @Override
     public List<Service> getSubscribedService(long user_id) {
-        String sql = "SELECT services.service_id AS id, service_name, price, start_date, end_date, service_description FROM services "  +
+        String sql = "SELECT service_id, service_name, price, start_date, end_date, service_description FROM services "  +
                 "WHERE EXISTS(" +
                 "SELECT * FROM service_subscriptions WHERE service_subscriptions.service_id=services.service_id AND service_subscriptions.customer_id=?" +
                 " )";

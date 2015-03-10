@@ -48,7 +48,7 @@ public class DashboardController {
     @RequestMapping(value={"/","","/home"}, method = RequestMethod.GET)
     public String home(Model model) {
         User currentAuthenticated = getAuthenticated();
-        model.addAttribute("user", currentAuthenticated.getEmail());
+        model.addAttribute("user", currentAuthenticated);
         return "dashboard/home";
     }
 
@@ -64,10 +64,12 @@ public class DashboardController {
             for(String service_id : subscribe)
                 serviceDAO.addService(Long.valueOf(service_id), user_id);
 
-        if(cancel != null && cancel.length>0)
-            for(String service_id : cancel)
+        if(cancel != null && cancel.length>0) {
+            for (String service_id : cancel) {
+                System.out.println(service_id);
                 serviceDAO.unsubscribeService(Long.valueOf(service_id), user_id);
-
+            }
+        }
         return "redirect:/dashboard/services";
     }
 
@@ -162,11 +164,11 @@ public class DashboardController {
     public String bill(Model model){
        User dude = getAuthenticated();
        long user_id = dude.getId();
-       
+       Customer cust = (Customer) userDAO.getUser(user_id);
        List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
        List<Package> addedPackages = packageDao.getSubscribedPackage(Long.valueOf(user_id));
        System.out.println(subscribedServices);
-       Bill myBill =  new Bill();
+       Bill myBill =  cust.getCustomerBill();
        
        for(Buyable item: subscribedServices)
        {
@@ -177,10 +179,10 @@ public class DashboardController {
         {
             myBill.addItem(item);
         }
-       model.addAttribute("myServices", subscribedServices);
+        model.addAttribute("myServices", subscribedServices);
        model.addAttribute("myPackages", addedPackages);
        model.addAttribute("myBill",  myBill);
-       
+
        return "dashboard/bill";
     }
     
@@ -226,5 +228,16 @@ public class DashboardController {
         model.addAttribute("type", type);
         model.addAttribute("user_id", user_id);
         return "dashboard/packages";
+    }
+    @RequestMapping(value={"/setThreshold"}, method = RequestMethod.POST)
+    public String setThreshold(@RequestParam(value = "threshold", required = false) String threshold, Model model){
+        User dude = getAuthenticated();
+        long user_id = dude.getId();
+
+        if(threshold != null){
+            userDAO.setThreshold(user_id, Double.parseDouble(threshold));
+        }
+
+        return "redirect:/dashboard/bill";
     }
 }

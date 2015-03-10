@@ -40,6 +40,7 @@ public class DB {
                     + "password VARCHAR(60) NOT NULL,"
                     + "reg_date DATE NOT NULL,"
                     + "enabled BOOLEAN NOT NULL,"
+                    + "threshold DOUBLE unsigned DEFAULT 0,"
                     + "PRIMARY KEY(`id`),"
                     + "UNIQUE KEY `email` (`email`) "
                     + ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
@@ -61,6 +62,7 @@ public class DB {
                     + "relation_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
                     + "customer_id INT UNSIGNED NOT NULL,"
                     + "customer_rep_id INT UNSIGNED NOT NULL,"
+                    + "threshold DOUBLE UNSIGNED DEFAULT 0,"
                     + "PRIMARY KEY (relation_id)"
                     + ");");
 
