@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class LoginRetailCustomerTest {
+public class OnlineBill {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -23,23 +23,16 @@ public class LoginRetailCustomerTest {
   }
 
   @Test
-  public void testLogInRetailCustomer() throws Exception {
+  public void testOnlineBill() throws Exception {
     driver.get(baseUrl + "/");
     driver.findElement(By.linkText("Sign in")).click();
     driver.findElement(By.name("email")).clear();
     driver.findElement(By.name("email")).sendKeys("git110@ucsd.edu");
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys("hello");
-    driver.findElement(By.name("email")).clear();
-    driver.findElement(By.name("email")).sendKeys("a@a.com");
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys("a");
     driver.findElement(By.xpath("//input[@value='Log in']")).click();
-    try {
-      assertEquals("Welcome a@a.com !", driver.findElement(By.cssSelector("h2.sub-header")).getText());
-    } catch (Error e) {
-      verificationErrors.append(e.toString());
-    }
+    driver.findElement(By.linkText("Bill")).click();
+    // ERROR: Caught exception [ERROR: Unsupported command [getTable | css=table.table.table-striped.6.2 | ]]
     driver.findElement(By.linkText("Sign out")).click();
   }
 
