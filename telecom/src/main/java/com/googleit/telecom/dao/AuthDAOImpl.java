@@ -1,10 +1,9 @@
 package com.googleit.telecom.dao;
 
-import java.util.List;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-
-import org.springframework.jdbc.core.JdbcTemplate;
+import java.util.List;
 
 public class AuthDAOImpl implements AuthDAO {
     private JdbcTemplate jdbcTemplate;

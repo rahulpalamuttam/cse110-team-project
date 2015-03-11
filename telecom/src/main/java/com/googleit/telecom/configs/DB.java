@@ -1,16 +1,12 @@
 package com.googleit.telecom.configs;
 
-import com.googleit.telecom.dao.packageDAO;
-import org.springframework.beans.factory.annotation.Autowired;
-
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.sql.DataSource;
 
 /**
  * TODO :: We should drop all the tables first before creation.
@@ -46,7 +42,7 @@ public class DB {
                     + "password VARCHAR(60) NOT NULL,"
                     + "reg_date DATE DEFAULT '" + sqlFormat.format(curr) + "',"
                     + "enabled BOOLEAN NOT NULL,"
-                    + "threshold DOUBLE unsigned DEFAULT 0,"
+                    + "threshold DOUBLE unsigned DEFAULT 1000000,"
                     + "PRIMARY KEY(`id`),"
                     + "UNIQUE KEY `email` (`email`) "
                     + ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");

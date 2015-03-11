@@ -25,7 +25,7 @@
 
                         <div class="accordion" id="msyaccordion">
                             <div class="accordion-group">
-                                <tr th:each="package : ${subscribedPackages}">
+                                <tr th:each="package : ${CUSTOMER.getSubscribedPackages()}">
 
                                     <td th:text="${package.getPackageName()}" id="package-toggle"
                                         class="accodion-toggle" data-toggle="collapse" data-parent="#myaccordion"
@@ -70,7 +70,7 @@
 
                         <div class="accordion" id="msyaccordion">
                             <div class="accordion-group">
-                                <tr th:each="package : ${unsubscribedPackages}">
+                                <tr th:each="package : ${CUSTOMER.getUnsubscribedPackages()}">
 
                                     <td th:text="${package.getPackageName()}" id="package-toggle"
                                         class="accodion-toggle" data-toggle="collapse" data-parent="#myaccordion"
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
-                <input th:if="${user_id}" th:type="hidden" th:name="identification" th:value="${user_id}"/>
+                <input th:if="${CUSTOMER.getId()}" th:type="hidden" th:name="identification" th:value="${CUSTOMER.getId()}"/>
                 <button class="btn btn-default" type="submit">Submit</button>
             </div>
         </form>

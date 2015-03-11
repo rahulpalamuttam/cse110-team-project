@@ -1,14 +1,11 @@
 package com.googleit.telecom.models.users;
 
 import com.googleit.telecom.models.items.Service;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
-
-import static org.junit.Assert.*;
 
 public class SalesRepTest {
 

@@ -2,13 +2,13 @@ package com.googleit.telecom.models.items;
 
 import org.junit.Before;
 import org.junit.Test;
-import java.util.Date;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import java.lang.Exception;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PackageTest {
     Package pack;

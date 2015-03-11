@@ -1,11 +1,11 @@
 package com.googleit.telecom.models.users;
+
 import com.googleit.telecom.Notifier.Bill;
-import com.googleit.telecom.models.items.Service;
 import com.googleit.telecom.models.items.Package;
+import com.googleit.telecom.models.items.Service;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.Exception;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;

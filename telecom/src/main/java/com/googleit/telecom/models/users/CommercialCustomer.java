@@ -1,7 +1,7 @@
 package com.googleit.telecom.models.users;
-import com.googleit.telecom.models.*;
-import java.util.List;
+
 import java.util.ArrayList;
+import java.util.List;
 /**
  * Created by rahul on 2/1/15.
  */

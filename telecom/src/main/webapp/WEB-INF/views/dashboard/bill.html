@@ -20,13 +20,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="service : ${myServices}">
+                        <tr th:each="service : ${CUSTOMER.getSubscribedServices()}">
                             <td th:text="${service.getServiceID()}"></td>
                             <td>service</td>
                             <td th:text="${service.getPrice()}"></td>
                             <td> SAMPLE DATE</td>
                         </tr>
-                        <tr th:each="package : ${myPackages}">
+                        <tr th:each="package : ${CUSTOMER.getSubscribedPackages()}">
                             <td th:text="${package.getPackageID()}"></td>
                             <td>package</td>
                             <td th:text="${package.getPrice()}"></td>
@@ -43,25 +43,25 @@
                     	<tr>
                     	    <td>Total</td>
                     	    <td></td>
-                    	    <td th:text="${myBill.getTotalAmount()}"></td>
+                    	    <td th:text="${CUSTOMER.getCustomerBill().getTotalAmount()}"></td>
                     	    <td></td>
                     	</tr>
                         <tr>
                             <td>Amount Paid</td>
                             <td></td>
-                            <td th:text="${myBill.getAmountPaid()}"></td>
+                            <td th:text="${CUSTOMER.getCustomerBill().getAmountPaid()}"></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>Balance</td>
                             <td></td>
-                            <td th:text="${myBill.getAmountLeft()}"></td>
+                            <td th:text="${CUSTOMER.getCustomerBill().getAmountLeft()}"></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>Threshold</td>
                             <td></td>
-                            <td th:text="${myBill.getThreshold()}"></td>
+                            <td th:text="${CUSTOMER.getCustomerBill().getThreshold()}"></td>
                             <td></td>
                         </tr>
                     </table>
@@ -69,10 +69,10 @@
             </div>
 
             <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
-                <input th:if="${user_id}" th:type="hidden" th:name="identification" th:value="${user_id}" />
+                <input th:if="${CUSTOMER.getId()}" th:type="hidden" th:name="identification" th:value="${CUSTOMER.getId()}" />
                 <button class="btn btn-default" type="submit">Pay Now</button>
             </div>
-        <p th:text="${Customer.getthresholdMessage()}"></p>
+        <p th:text="${CUSTOMER.getthresholdMessage()}"></p>
         <form method="post" class="addPackage" th:action="@{/dashboard/setThreshold}" autocomplete="off">
             <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <label>Set Threshold</label>

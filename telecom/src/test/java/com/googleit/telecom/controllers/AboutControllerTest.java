@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import java.util.Collection;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class AboutControllerTest {
 

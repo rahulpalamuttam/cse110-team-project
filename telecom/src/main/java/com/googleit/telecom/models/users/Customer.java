@@ -1,11 +1,12 @@
 package com.googleit.telecom.models.users;
 
-import com.googleit.telecom.Notifier.AbstractObserver;
 import com.googleit.telecom.Notifier.Bill;
+import com.googleit.telecom.Notifier.ObserverPattern.AbstractObserver;
 import com.googleit.telecom.models.items.Package;
 import com.googleit.telecom.models.items.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -14,24 +15,48 @@ import java.util.ArrayList;
 public class Customer extends User implements AbstractObserver {
     private ArrayList<Service> subscribedServices;
     private ArrayList<Package> subscribedPackages;
+    private List<Service> unsubscribedServices;
+    private List<Package> unsubscribedPackages;
     private String address;
     private double balance;
     private Bill customerBill;
     private String thresholdMessage = "";
-    public Customer(){
+
+
+    public Customer() {
         subscribedServices = new ArrayList<Service>();
         subscribedPackages = new ArrayList<Package>();
-        customerBill = new Bill();
-        customerBill.addObserver(this);
+        customerBill = new Bill(this, UserType.CUSTOMER);
     }
 
+    public Customer(Bill bill){
+        subscribedPackages = new ArrayList<>();
+        subscribedServices = new ArrayList<>();
+        customerBill = bill;
+    }
+    public List<Package> getUnsubscribedPackages() {
+        return unsubscribedPackages;
+    }
+
+    public void setUnsubscribedPackages(List<Package> unsubscribedPackages) {
+        this.unsubscribedPackages = unsubscribedPackages;
+    }
+
+    public List<Service> getUnsubscribedServices() {
+        return unsubscribedServices;
+    }
+
+    public void setUnsubscribedServices(List<Service> unsubscribedServices) {
+        this.unsubscribedServices = unsubscribedServices;
+    }
 
     /**
      * Adds a new service to the list of services
      * that this customer is subscribed for
+     *
      * @param newService
      */
-    public void AddService(Service newService){
+    public void AddService(Service newService) {
         subscribedServices.add(newService);
         customerBill.addItem(newService);
     }
@@ -39,9 +64,10 @@ public class Customer extends User implements AbstractObserver {
     /**
      * Deletes a specific service from the list
      * of services that this customer is subscribed for.
+     *
      * @param noService
      */
-    public void DeleteService(Service noService){
+    public void DeleteService(Service noService) {
         subscribedServices.remove(noService);
         customerBill.deleteItem(noService);
 
@@ -50,9 +76,10 @@ public class Customer extends User implements AbstractObserver {
     /**
      * Adds a new package to the list of packages
      * that this customer is subscribed for.
+     *
      * @param newPackage
      */
-    public void AddPackage(Package newPackage){
+    public void AddPackage(Package newPackage) {
         subscribedPackages.add(newPackage);
         customerBill.addItem(newPackage);
     }
@@ -62,12 +89,12 @@ public class Customer extends User implements AbstractObserver {
      * of packages that this customer is subscribed for.
      */
 
-    public void DeletePackage(Package newPackage){
+    public void DeletePackage(Package newPackage) {
         subscribedPackages.remove(newPackage);
     }
 
 
-    public void changeAddress(String newAddress){
+    public void changeAddress(String newAddress) {
         this.address = newAddress;
     }
 
@@ -87,7 +114,10 @@ public class Customer extends User implements AbstractObserver {
     public void setCustomerBill(Bill customerBill) {
         this.customerBill = customerBill;
     }
-    public boolean equals(Customer customer) {return this.getId() == customer.getId();}
+
+    public boolean equals(Customer customer) {
+        return this.getId() == customer.getId();
+    }
 
     public double getBalance() {
         return balance;
@@ -105,14 +135,15 @@ public class Customer extends User implements AbstractObserver {
         return subscribedPackages;
     }
 
-    public void payBalance(double amount){}
+    public void payBalance(double amount) {
+    }
 
     @Override
     public void update(String thresholdmessage) {
         this.thresholdMessage = thresholdmessage;
     }
 
-    public String getthresholdMessage(){
+    public String getthresholdMessage() {
         return this.thresholdMessage;
     }
 }

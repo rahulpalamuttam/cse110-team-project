@@ -1,6 +1,4 @@
-package com.googleit.telecom.Notifier;
-
-import java.util.Observer;
+package com.googleit.telecom.Notifier.ObserverPattern;
 
 /**
  * Created by rahul on 3/10/15.
@@ -8,6 +6,6 @@ import java.util.Observer;
 public interface AbstractSubject {
     public void addObserver(AbstractObserver observer);
     public void deleteObserver(AbstractObserver observer);
-    public void notifyObserver();
+    public void notifyObserver(String message);
 }
 

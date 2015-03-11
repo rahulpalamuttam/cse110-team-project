@@ -1,8 +1,6 @@
 package com.googleit.telecom.models.items;
 
 import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 /**
  * Created by rahul on 2/1/15.
  */

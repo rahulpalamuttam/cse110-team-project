@@ -1,10 +1,12 @@
 package com.googleit.telecom.models.users;
 
 import org.junit.Before;
-import java.util.List;
 import org.junit.Test;
-import java.lang.Exception;
-import static org.junit.Assert.*;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CustomerRepresentativeTest {
 	Customer cus;

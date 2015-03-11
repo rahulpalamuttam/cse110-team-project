@@ -5,12 +5,8 @@ import com.googleit.telecom.dao.CustomerDAO;
 import com.googleit.telecom.dao.ServiceDAO;
 import com.googleit.telecom.dao.UserDAO;
 import com.googleit.telecom.dao.packageDAO;
-import com.googleit.telecom.Notifier.Bill;
-import com.googleit.telecom.models.items.*;
-import com.googleit.telecom.models.items.Package;
 import com.googleit.telecom.models.users.Customer;
 import com.googleit.telecom.models.users.User;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -76,11 +72,8 @@ public class DashboardController {
     public String service(Model model) {
         User dude = getAuthenticated();
         long user_id = dude.getId();
-        List<Service> subscribedServices = serviceDAO.getSubscribedService(dude.getId());
-        List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(dude.getId());
-        model.addAttribute("subscribedServices", subscribedServices);
-        model.addAttribute("unsubscribedServices", unsubscribedServices);
-        model.addAttribute("user", dude.getEmail());
+        Customer cust = customerDAO.getCustomer(user_id, serviceDAO, packageDao);
+        model.addAttribute("CUSTOMER", cust);
         String type = "services";
         model.addAttribute("type", type);
         return "dashboard/services";
@@ -92,15 +85,10 @@ public class DashboardController {
 //        User dude = userDAO.getUser(email);
 //        long user_id = dude.getId();
         System.out.println("customer id : " + user_id );
-        List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
-        List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(Long.valueOf(user_id));
-        model.addAttribute("subscribedServices", subscribedServices);
-        model.addAttribute("unsubscribedServices", unsubscribedServices);
-//        model.addAttribute("user", dude.getEmail());
+        Customer cust = customerDAO.getCustomer(Long.parseLong(user_id), serviceDAO, packageDao);
         String type = "customerServicesUpdate";
-
         model.addAttribute("type", type);
-        model.addAttribute("user_id", user_id);
+        model.addAttribute("CUSTOMER", cust);
         return "dashboard/services";
     }
 
@@ -110,14 +98,10 @@ public class DashboardController {
 //        User dude = userDAO.getUser(email);
 //        long user_id = dude.getId();
         System.out.println("customer id : " + user_id );
-        List<Package> subscribedServices = packageDao.getSubscribedPackage(Long.valueOf(user_id));
-        List<Package> unsubscribedServices = packageDao.getUnsubscribedPackage(Long.valueOf(user_id));
-        model.addAttribute("subscribedPackages", subscribedServices);
-        model.addAttribute("unsubscribedPackages", unsubscribedServices);
-//        model.addAttribute("user", dude.getEmail());
+        Customer cust = customerDAO.getCustomer(Long.parseLong(user_id), serviceDAO, packageDao);
         String type = "customerPackagesUpdate";
         model.addAttribute("type", type);
-        model.addAttribute("user_id", user_id);
+        model.addAttribute("CUSTOMER", cust);
         return "dashboard/packages";
     }
 
@@ -136,14 +120,10 @@ public class DashboardController {
             for(String service_id : cancel)
                 serviceDAO.unsubscribeService(Long.valueOf(service_id), Long.valueOf(user_id));
 
-        List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
-        List<Service> unsubscribedServices = serviceDAO.getUnsubscribedService(Long.valueOf(user_id));
-        model.addAttribute("subscribedServices", subscribedServices);
-        model.addAttribute("unsubscribedServices", unsubscribedServices);
-//        model.addAttribute("user", dude.getEmail());
+        Customer cust = customerDAO.getCustomer(Long.parseLong(user_id), serviceDAO, packageDao);
         String type = "customerServicesUpdate";
         model.addAttribute("type", type);
-        model.addAttribute("user_id", user_id);
+        model.addAttribute("CUSTOMER", cust);
         return "dashboard/services";
     }
 
@@ -153,9 +133,9 @@ public class DashboardController {
         User dude = getAuthenticated();
         long user_id = dude.getId();
 
-        List<Customer> myCustomers = customerDAO.getCustomers(user_id, userDAO);
+        List<Customer> myCustomers = customerDAO.getCustomers(user_id, serviceDAO, packageDao);
         System.out.println(myCustomers);
-        model.addAttribute("myCustomers", myCustomers);
+        model.addAttribute("CUSTOMERS", myCustomers);
         return "dashboard/customers";
     }
     
@@ -163,26 +143,8 @@ public class DashboardController {
     public String bill(Model model){
        User dude = getAuthenticated();
        long user_id = dude.getId();
-       Customer cust = (Customer) userDAO.getUser(user_id);
-       List<Service> subscribedServices = serviceDAO.getSubscribedService(Long.valueOf(user_id));
-       List<Package> addedPackages = packageDao.getSubscribedPackage(Long.valueOf(user_id));
-       System.out.println(subscribedServices);
-       Bill myBill =  cust.getCustomerBill();
-       
-       for(Service service: subscribedServices)
-       {
-    	   cust.AddService(service);
-       }
-
-        for(Package pkg: addedPackages)
-        {
-            cust.AddPackage(pkg);
-        }
-
-        model.addAttribute("myServices", subscribedServices);
-       model.addAttribute("myPackages", addedPackages);
-       model.addAttribute("myBill",  myBill);
-        model.addAttribute("Customer", cust);
+       Customer cust = customerDAO.getCustomer(user_id, serviceDAO, packageDao);
+        model.addAttribute("CUSTOMER", cust);
 
        return "dashboard/bill";
     }
@@ -191,18 +153,11 @@ public class DashboardController {
     public String packages(Model model){
         User dude = getAuthenticated();
         long user_id = dude.getId();
-        List<Package> subscribedPackages = packageDao.getSubscribedPackage(dude.getId());
-        List<Package> unsubscribedPackages = packageDao.getUnsubscribedPackage(dude.getId());
-
-        for(Package pkg : subscribedPackages)
-            System.out.println(pkg.getPackagedService());
-
-        model.addAttribute("subscribedPackages", subscribedPackages);
-        model.addAttribute("unsubscribedPackages", unsubscribedPackages);
-        model.addAttribute("user", dude.getEmail());
+        Customer cust = customerDAO.getCustomer(user_id, serviceDAO, packageDao);
         String type = "customerPackagesUpdate";
         model.addAttribute("type", type);
-        model.addAttribute("user_id", user_id);
+        model.addAttribute("CUSTOMER", cust);
+
        return "dashboard/packages";
     }
 
@@ -219,15 +174,10 @@ public class DashboardController {
         if(cancel != null && cancel.length>0)
             for(String package_id : cancel)
             packageDao.unsubscribePackage(Long.valueOf(package_id), Long.valueOf(user_id));
-
-        List<Package> subscribedPackages = packageDao.getSubscribedPackage(Long.valueOf(user_id));
-        List<Package> unsubscribedPackage = packageDao.getUnsubscribedPackage(Long.valueOf(user_id));
-        model.addAttribute("subscribedPackages", subscribedPackages);
-        model.addAttribute("unsubscribedPackages", unsubscribedPackage);
-//        model.addAttribute("user", dude.getEmail());
+        Customer cust = customerDAO.getCustomer(Long.parseLong(user_id), serviceDAO, packageDao);
         String type = "customerPackagesUpdate";
         model.addAttribute("type", type);
-        model.addAttribute("user_id", user_id);
+        model.addAttribute("CUSTOMER", cust);
         return "dashboard/packages";
     }
     @RequestMapping(value={"/setThreshold"}, method = RequestMethod.POST)
