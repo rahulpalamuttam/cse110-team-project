@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ServicesController {
-	
-	@RequestMapping("/services")
-	public String login(Model model) {
-		return "pages/services";
-	}
+    @RequestMapping("/services")
+    public String login(Model model) {
+        return "pages/services";
+    }
 }
