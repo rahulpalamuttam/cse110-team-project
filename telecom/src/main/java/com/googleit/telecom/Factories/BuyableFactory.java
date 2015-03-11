@@ -19,7 +19,7 @@ import java.util.Map;
  * returns the type of Buyable specified by the BuyableType.
  */
 public class BuyableFactory {
-    public Buyable getService(Map<String, Object> tuple){
+    public Buyable CreateService(Map<String, Object> tuple){
         Service service = new Service();
         service.setServiceID((Long)tuple.get("service_id"));
         service.setServiceName((String) tuple.get("service_name"));
@@ -31,7 +31,7 @@ public class BuyableFactory {
         return service;
     }
 
-    public Buyable getPackage(Map<String, Object> tuple){
+    public Buyable CreatePackage(Map<String, Object> tuple){
         Package pkg = new Package();
         pkg.setPackageID((Long) tuple.get("package_id"));
         pkg.setPackageName((String) tuple.get("package_name"));
@@ -41,14 +41,14 @@ public class BuyableFactory {
         return pkg;
     }
 
-    public Buyable getBuyable(Map<String, Object> tuple, BuyableType type){
+    public Buyable CreateBuyable(Map<String, Object> tuple, BuyableType type){
         Buyable buyable = null;
         switch(type){
             case SERVICE_TYPE:
-                buyable = getService(tuple);
+                buyable = CreateService(tuple);
                 break;
             case PACKAGE_TYPE:
-                buyable = getPackage(tuple);
+                buyable = CreatePackage(tuple);
                 break;
         }
 
@@ -62,34 +62,34 @@ public class BuyableFactory {
      * @param tuples
      * @return
      */
-    public List<Buyable> getServiceList(List<Map<String, Object>> tuples){
+    public List<Buyable> CreateServiceList(List<Map<String, Object>> tuples){
         List<Buyable> services = new ArrayList<>();
         for(Map<String,Object> tuple : tuples){
-            Service returned = (Service) this.getBuyable(tuple, BuyableType.SERVICE_TYPE);
+            Service returned = (Service) this.CreateBuyable(tuple, BuyableType.SERVICE_TYPE);
             services.add(returned);
         }
 
         return services;
     }
 
-    public List<Buyable> getPackageList(List<Map<String, Object>> tuples){
+    public List<Buyable> CreatePackageList(List<Map<String, Object>> tuples){
         List<Buyable> packages = new ArrayList<>();
         for(Map<String,Object> tuple : tuples){
-            Package returned = (Package) this.getBuyable(tuple, BuyableType.PACKAGE_TYPE);
+            Package returned = (Package) this.CreateBuyable(tuple, BuyableType.PACKAGE_TYPE);
             packages.add(returned);
         }
 
         return packages;
     }
 
-    public List<Buyable> getBuyableList(List<Map<String, Object>> tuples, BuyableType type){
+    public List<Buyable> CreateBuyableList(List<Map<String, Object>> tuples, BuyableType type){
         List<Buyable> buyableList = null;
         switch(type){
             case SERVICE_TYPE:
-                buyableList = getServiceList(tuples);
+                buyableList = CreateServiceList(tuples);
                 break;
             case PACKAGE_TYPE:
-                buyableList = getPackageList(tuples);
+                buyableList = CreatePackageList(tuples);
                 break;
         }
 

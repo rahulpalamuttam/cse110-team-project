@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +34,7 @@ public class ServiceDAOImpl implements ServiceDAO {
         } catch (EmptyResultDataAccessException e) {
             e.printStackTrace();
         }
-        return (List<Service>)(List<?>)buyableFactory.getBuyableList(queried, BuyableType.SERVICE_TYPE);
+        return (List<Service>)(List<?>)buyableFactory.CreateBuyableList(queried, BuyableType.SERVICE_TYPE);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class ServiceDAOImpl implements ServiceDAO {
             e.printStackTrace();
         }
 
-        return (List<Service>)(List<?>)buyableFactory.getBuyableList(queried, BuyableType.SERVICE_TYPE);
+        return (List<Service>)(List<?>)buyableFactory.CreateBuyableList(queried, BuyableType.SERVICE_TYPE);
     }
 
     @Override
@@ -98,7 +97,7 @@ public class ServiceDAOImpl implements ServiceDAO {
             e.printStackTrace();
         }
 
-        return (List<Service>)(List<?>)buyableFactory.getBuyableList(queried, BuyableType.SERVICE_TYPE);
+        return (List<Service>)(List<?>)buyableFactory.CreateBuyableList(queried, BuyableType.SERVICE_TYPE);
 	}
 
 	@Override

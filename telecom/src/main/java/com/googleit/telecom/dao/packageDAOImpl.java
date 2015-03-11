@@ -82,7 +82,7 @@ public class packageDAOImpl implements packageDAO {
      * @return
      */
     public List<Package> MapPackagesToList(List<Map<String,Object>> tuples){
-        List<Package> packages = (List<Package>)(List<?>)buyableFactory.getBuyableList(tuples, BuyableType.PACKAGE_TYPE);
+        List<Package> packages = (List<Package>)(List<?>)buyableFactory.CreateBuyableList(tuples, BuyableType.PACKAGE_TYPE);
         for(Package pkg : packages){
             pkg.setPackagedServices(getSubscribedService(pkg.getPackageID()));
         }
@@ -129,7 +129,7 @@ public class packageDAOImpl implements packageDAO {
             e.printStackTrace();
         }
 
-        return (List<Service>)(List<?>)buyableFactory.getBuyableList(queried, BuyableType.SERVICE_TYPE);
+        return (List<Service>)(List<?>)buyableFactory.CreateBuyableList(queried, BuyableType.SERVICE_TYPE);
     }
 
     @Override
@@ -146,7 +146,7 @@ public class packageDAOImpl implements packageDAO {
             e.printStackTrace();
         }
 
-        return (List<Service>)(List<?>)buyableFactory.getBuyableList(queried, BuyableType.SERVICE_TYPE);
+        return (List<Service>)(List<?>)buyableFactory.CreateBuyableList(queried, BuyableType.SERVICE_TYPE);
     }
 
     @Override
