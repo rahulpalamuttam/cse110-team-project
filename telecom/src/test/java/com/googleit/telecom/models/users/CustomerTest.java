@@ -1,5 +1,5 @@
 package com.googleit.telecom.models.users;
-import com.googleit.telecom.Notifier.Bill;
+import com.googleit.telecom.models.Notifier.Bill;
 import com.googleit.telecom.models.items.Service;
 import com.googleit.telecom.models.items.Package;
 import org.junit.Before;

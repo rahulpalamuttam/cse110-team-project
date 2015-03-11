@@ -1,6 +1,6 @@
 package com.googleit.telecom.models;
 
-import com.googleit.telecom.Notifier.Bill;
+import com.googleit.telecom.models.Notifier.Bill;
 import com.googleit.telecom.models.items.Service;
 import org.junit.Before;
 import org.junit.Test;

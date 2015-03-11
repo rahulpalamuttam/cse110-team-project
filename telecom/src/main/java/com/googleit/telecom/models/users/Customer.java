@@ -1,6 +1,6 @@
 package com.googleit.telecom.models.users;
 
-import com.googleit.telecom.models.Bill;
+import com.googleit.telecom.models.Notifier.Bill;
 
 import java.util.ArrayList;
 
@@ -14,6 +14,9 @@ public class Customer extends User {
     private Bill customerBill;
     private double balance;
 
+    public Customer(){
+        this.customerBill = new Bill();
+    }
     public Customer(String email, String password, String role) {
         super(email, password, role);
 

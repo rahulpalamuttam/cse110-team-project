@@ -29,6 +29,9 @@ public abstract class User implements UserDetails {
     private String password;
 
     private String role;
+    public User(){
+
+    }
 
     public User(Long id, String email, String role) {
         this.id = id;

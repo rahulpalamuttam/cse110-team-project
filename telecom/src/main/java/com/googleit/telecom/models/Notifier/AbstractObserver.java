@@ -1,4 +1,4 @@
-package com.googleit.telecom.Notifier;
+package com.googleit.telecom.models.Notifier;
 
 /**
  * Created by rahul on 3/10/15.
