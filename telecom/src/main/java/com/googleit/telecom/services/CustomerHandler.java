@@ -36,8 +36,9 @@ public class CustomerHandler {
         return "dashboard/services/subscribed_service_list";
     }
 
-    public String servicesForm(Model model, HttpSession session) {
+    public String servicesForm(Model model) {
         logger.info("servicesForm method");
+        
         return "dashboard/services/service_subscription_form";
     }
 

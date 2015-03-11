@@ -61,9 +61,9 @@ public class DashboardController {
     }
 
     @RequestMapping(value = {"/serviceForm"})
-    public String serviceForm(Model model, HttpSession session) {
+    public String serviceForm(Model model) {
         logger.info("serviceForm method");
-        return customerHandler.servicesForm(model, session);
+        return customerHandler.servicesForm(model);
     }
 
 
