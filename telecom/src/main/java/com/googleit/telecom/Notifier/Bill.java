@@ -125,7 +125,6 @@ public class Bill implements AbstractSubject {
     }
 
 
-
     public void applyRule(){
         if(assessor.asses(amountLeft, threshold)) {
             notifyObserver("You are above your threshold limit by " + (totalAmount - threshold));

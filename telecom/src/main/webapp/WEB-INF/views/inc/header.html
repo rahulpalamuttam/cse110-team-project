@@ -20,8 +20,9 @@
                 </ul>
 
                 <!-- If not logged in -->
-                <ul class="nav navbar-nav navbar-right" sec:authorize="!hasAnyRole('ROLE_USER','ROLE_CUSTOMER_REP','ROLE_CUSTOMER', 'ROLE_MARK_REP')">
+                <ul class="nav navbar-nav navbar-right" sec:authorize="!hasAnyRole('ROLE_USER','ROLE_CUSTOMER_REP','ROLE_CUSTOMER', 'ROLE_MARK_REP', 'ROLE_COMPANY')">
                     <li><a th:href="@{/register}">Register</a></li>
+                    <li><a th:href="@{/registerCommercial}">Corporate Registration</a></li>
                     <li><a th:href="@{/auth/login}">Sign in</a></li>
                 </ul>
             </div>

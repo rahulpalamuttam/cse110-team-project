@@ -1,6 +1,8 @@
 package com.googleit.telecom.controllers;
 
 import com.googleit.telecom.dao.UserDAO;
+import com.googleit.telecom.models.users.CommercialCustomer;
+import com.googleit.telecom.models.users.RetailCustomer;
 import com.googleit.telecom.models.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -54,8 +56,13 @@ public class RegisterController {
      * @return string of regiter.html path
      */
     @RequestMapping("/register")
-    public String registerForm(User user) {
+    public String registerForm(RetailCustomer retailCustomer) {
         return "register/register";
+    }
+
+    @RequestMapping("/registerCommercial")
+    public String registerCompanyForm(CommercialCustomer commercialCustomer) {
+        return "register/registerCommercial";
     }
 
     /**
@@ -67,12 +74,12 @@ public class RegisterController {
      * @return redirect to dashboard;
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@Valid User user, BindingResult bindingResult, HttpServletRequest request, Model model) {
+    public String register(@Valid RetailCustomer retailCustomer, BindingResult bindingResult, HttpServletRequest request, Model model) {
         boolean duplicate = false;
-        String email = user.getEmail();
-        String password = user.getPassword();
+        String email = retailCustomer.getEmail();
+        String password = retailCustomer.getPassword();
 
-        if ( duplicate = userDAO.isDuplicate(user.getEmail()) ) {
+        if ( duplicate = userDAO.isDuplicate(retailCustomer.getEmail()) ) {
             model.addAttribute("duplicate", "Email already exists.");
         }
 
@@ -80,7 +87,7 @@ public class RegisterController {
         if (bindingResult.hasErrors() || duplicate) return "register/register";
 
         /* TODO :: Check for SQL error exception */
-        userDAO.insert(user);
+        userDAO.insert(retailCustomer);
 
         autoLogin(email, password, request);
 

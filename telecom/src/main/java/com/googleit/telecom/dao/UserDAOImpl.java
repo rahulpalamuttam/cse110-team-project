@@ -3,6 +3,7 @@ package com.googleit.telecom.dao;
 import com.googleit.telecom.Notifier.Bill;
 import com.googleit.telecom.models.users.Customer;
 import com.googleit.telecom.models.users.User;
+import com.googleit.telecom.models.users.UserType;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -59,6 +60,7 @@ public class UserDAOImpl implements UserDAO {
         String sql2 = "INSERT INTO user_roles (email, role)" + " VALUES (?,?)";
         this.jdbcTemplate.update(sql2, user.getEmail(), "ROLE_CUSTOMER");
     }
+
 
     public void insert(final User user, final User dude) {
 

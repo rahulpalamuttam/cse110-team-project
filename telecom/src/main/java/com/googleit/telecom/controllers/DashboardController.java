@@ -5,7 +5,9 @@ import com.googleit.telecom.dao.CustomerDAO;
 import com.googleit.telecom.dao.ServiceDAO;
 import com.googleit.telecom.dao.UserDAO;
 import com.googleit.telecom.dao.packageDAO;
+import com.googleit.telecom.models.users.CommercialCustomer;
 import com.googleit.telecom.models.users.Customer;
+import com.googleit.telecom.models.users.RetailCustomer;
 import com.googleit.telecom.models.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -193,7 +195,12 @@ public class DashboardController {
     }
 
     @RequestMapping(value={"/createCustomer"})
-    public String createCustomer(User user){
+    public String createCustomer(RetailCustomer retailCustomer){
         return "register/register";
+    }
+
+    @RequestMapping(value={"/createCommercialCustomer"})
+    public String createCommecrialCustomer(CommercialCustomer commercialCustomer){
+        return "register/registerCommercial";
     }
 }

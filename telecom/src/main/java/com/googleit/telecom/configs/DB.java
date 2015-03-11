@@ -44,6 +44,8 @@ public class DB {
                     + "enabled BOOLEAN NOT NULL,"
                     + "threshold DOUBLE unsigned DEFAULT 1000000,"
                     + "cancellation DOUBLE unsigned DEFAULT 0,"
+                    + "firstName VARCHAR(50),"
+                    + "lastName VARCHAR(50),"
                     + "PRIMARY KEY(`id`),"
                     + "UNIQUE KEY `email` (`email`) "
                     + ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");

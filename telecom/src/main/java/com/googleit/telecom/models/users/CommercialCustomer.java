@@ -5,10 +5,13 @@ import java.util.List;
 /**
  * Created by rahul on 2/1/15.
  */
-public class CommercialCustomer extends Customer{
+public class CommercialCustomer extends Customer {
     private String CompanyName;
     private List<Customer> customers;
 
+    public CommercialCustomer(){
+
+    }
     public CommercialCustomer(Customer... customer){
         customers = new ArrayList<Customer>();
         for(Customer newcust : customer){

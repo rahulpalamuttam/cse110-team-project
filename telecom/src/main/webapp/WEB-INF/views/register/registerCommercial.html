@@ -7,10 +7,10 @@
     <div class="container">
         <div class="row">
             <div sec:authorize="!hasRole('ROLE_CUSTOMER_REP')" class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
-                <form th:action="@{/register}" method="post" class="form-horizontal" th:object="${retailCustomer}">
+                <form th:action="@{/register}" method="post" class="form-horizontal" th:object="${commercialCustomer}">
                     <fieldset>
                         <legend>Register</legend>
-                        
+
                         <!-- Email -->
                         <div class="form-group">
                             <label class="col-md-4 col-sm-4" for="input01">E-mail</label>
@@ -20,28 +20,16 @@
                                 <label th:if="${duplicate}" class="error" th:text="${duplicate}"></label>
                             </div>
                         </div>
-
+                        <!-- TODO :: use javscript to update password strength -->
                         <!-- First Name -->
                         <div class="form-group">
-                            <label class="col-md-4 col-sm-4" for="input01">First Name</label>
+                            <label class="col-md-4 col-sm-4" for="input01">Company Name</label>
                             <div class="col-md-8 col-sm-8">
-                                <input type="firstname" id="input21" class="form-control" name="fname" th:field="*{firstName}" required="true" />
-                                <label th:errors="*{firstName}" th:errorclass="error">Error</label>
+                                <input type="CompanyName" id="input21" class="form-control" name="cname" th:field="*{CompanyName}" required="true" />
+                                <label th:errors="*{CompanyName}" th:errorclass="error">Error</label>
 
                             </div>
                         </div>
-
-                        <!-- Last Name -->
-                        <div class="form-group">
-                            <label class="col-md-4 col-sm-4" for="input01">Last Name</label>
-                            <div class="col-md-8 col-sm-8">
-                                <input type="lastname" id="input21" class="form-control" name="lname" th:field="*{lastName}" required="true" />
-                                <label th:errors="*{lastName}" th:errorclass="error">Error</label>
-
-                            </div>
-                        </div>
-                        <!-- TODO :: use javscript to update password strength -->
-
                         <!-- Password -->
                         <div class="form-group">
                             <label class="col-md-4 col-sm-4" for="input02">Password</label>
@@ -62,7 +50,7 @@
 
                         <script language='javascript' type='text/javascript'>
                             var password = document.getElementById("input02"),
-                                confirm_password = document.getElementById("input03");
+                                    confirm_password = document.getElementById("input03");
 
                             function validatePassword(){
                                 if(password.value != confirm_password.value) {
@@ -101,7 +89,7 @@
 
 
             <div sec:authorize="hasRole('ROLE_CUSTOMER_REP')" class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
-                <form th:action="@{/register}" method="post" class="form-horizontal" th:object="${retailCustomer}">
+                <form th:action="@{/register}" method="post" class="form-horizontal" th:object="${commercialCustomer}">
                     <fieldset>
                         <legend>Register</legend>
 
@@ -115,27 +103,15 @@
                             </div>
                         </div>
                         <!-- TODO :: use javscript to update password strength -->
-
                         <!-- First Name -->
                         <div class="form-group">
-                            <label class="col-md-4 col-sm-4" for="input01">First Name</label>
+                            <label class="col-md-4 col-sm-4" for="input01">Company Name</label>
                             <div class="col-md-8 col-sm-8">
-                                <input type="firstname" id="input21" class="form-control" name="fname" th:field="*{firstName}" required="true" />
-                                <label th:errors="*{firstName}" th:errorclass="error">Error</label>
+                                <input type="CompanyName" id="input21" class="form-control" name="cname" th:field="*{CompanyName}" required="true" />
+                                <label th:errors="*{CompanyName}" th:errorclass="error">Error</label>
 
                             </div>
                         </div>
-
-                        <!-- Last Name -->
-                        <div class="form-group">
-                            <label class="col-md-4 col-sm-4" for="input01">Last Name</label>
-                            <div class="col-md-8 col-sm-8">
-                                <input type="lastname" id="input21" class="form-control" name="lname" th:field="*{lastName}" required="true" />
-                                <label th:errors="*{lastName}" th:errorclass="error">Error</label>
-
-                            </div>
-                        </div>
-
                         <!-- Password -->
                         <div class="form-group">
                             <label class="col-md-4 col-sm-4" for="input02">Password</label>
