@@ -22,6 +22,7 @@
                         <th>Price</th>
                         <th>Duration</th>
                         <th>Modify</th>
+                        <th>Perma-Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -35,6 +36,13 @@
                             <form th:action="@{/dashboard/modifyPackage}" method="post">
                                 <button type="submit" class="btn btn-primary" th:name="package_id"
                                         th:value="${package.getPackageID()}">Modify
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/dashboard/wipePackage}" method="post">
+                                <button type="submit" class="btn btn-primary" th:name="package_id"
+                                        th:value="${package.getPackageID()}">Delete
                                 </button>
                             </form>
                         </td>

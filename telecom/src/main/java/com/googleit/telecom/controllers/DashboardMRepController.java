@@ -75,6 +75,11 @@ public class DashboardMRepController {
         return "redirect:/dashboard/serviceslist";
     }
 
+    @RequestMapping(value="/wipePackage", method = RequestMethod.POST)
+    public String wipePackage(@RequestParam(value = "package_id",    required = false) long packageID){
+                serviceDAO.wipePackage(packageID);
+        return "redirect:/dashboard/packageslist";
+    }
     @RequestMapping(value="/modifyPackage", method = RequestMethod.POST)
     public String modifyPackage(Model model, @RequestParam(value="package_id") long packageID) {
 
