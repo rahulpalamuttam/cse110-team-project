@@ -130,7 +130,27 @@ public class RegisterController {
         if (bindingResult.hasErrors() || duplicate) return "register/register";
 
         /* TODO :: Check for SQL error exception */
-        userDAO.insert(user, dude);
+        userDAO.insert(user, dude, UserType.CUSTOMER);
+
+        return "redirect:dashboard";
+    }
+
+    @RequestMapping(value = "/registerCommercialCustomerRep", method = RequestMethod.POST)
+    public String registerCommercialCustomerRep(@Valid User user, BindingResult bindingResult, Model model) {
+        boolean duplicate = false;
+        User dude = getAuthenticated();
+        String email = user.getEmail();
+        String password = user.getPassword();
+
+        if ( duplicate = userDAO.isDuplicate(user.getEmail()) ) {
+            model.addAttribute("duplicate", "Email already exists.");
+        }
+
+        // Invalid form -> show register form page
+        if (bindingResult.hasErrors() || duplicate) return "register/register";
+
+        /* TODO :: Check for SQL error exception */
+        userDAO.insert(user, dude, UserType.COMMERCIAL_CUSTOMER);
 
         return "redirect:dashboard";
     }

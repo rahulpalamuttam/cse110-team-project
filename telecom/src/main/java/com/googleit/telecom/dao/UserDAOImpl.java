@@ -63,7 +63,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
 
-    public void insert(final User user, final User dude) {
+    public void insert(final User user, final User dude, UserType userType) {
 
         // Encrypte password
         BCryptPasswordEncoder passEncryp = new BCryptPasswordEncoder();
@@ -90,9 +90,10 @@ public class UserDAOImpl implements UserDAO {
 
         // Set primary key id to user
         user.setId(keyHolder.getKey().intValue());
-
+String role = "ROLE_CUSTOMER";
+        if(userType == UserType.COMMERCIAL_CUSTOMER) role = "ROLE_COMMERCIAL";
         String sql2 = "INSERT INTO user_roles (email, role)" + " VALUES (?,?)";
-        this.jdbcTemplate.update(sql2, user.getEmail(), "ROLE_CUSTOMER");
+        this.jdbcTemplate.update(sql2, user.getEmail(), role);
 
         String sql3 = "INSERT INTO customer_relations (customer_id, customer_rep_id)" + " VALUES (?,?)";
         this.jdbcTemplate.update(sql3, user.getId(), dude.getId());
