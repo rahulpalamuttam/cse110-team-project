@@ -4,7 +4,7 @@
 <!-- Side navigation bar-->
 <div class="col-sm-3 col-md-2 sidebar" th:fragment="sidebar">
     <ul class="nav nav-sidebar">
-        <li class="active"><a href="/dashboard/">Summary</a></li>
+        <li class="active"><a href="/dashboard/">Home</a></li>
         <!--CUSTOMER-->
         <li sec:authorize="hasRole('ROLE_CUSTOMER')"><a th:href="@{/dashboard/services}">Service</a></li>
         <li sec:authorize="hasRole('ROLE_CUSTOMER')"><a th:href="@{/dashboard/packages}">Packages</a></li>

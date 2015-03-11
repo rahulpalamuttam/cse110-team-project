@@ -13,14 +13,13 @@
           <intercept-url pattern="/dashboard" access="hasAnyRole('ROLE_USER','ROLE_CUSTOMER_REP','ROLE_CUSTOMER' ,'ROLE_MARK_REP')" />
           <intercept-url pattern="/dashboard/" access="hasAnyRole('ROLE_USER','ROLE_CUSTOMER_REP','ROLE_CUSTOMER', 'ROLE_MARK_REP')" />
 
-
           <access-denied-handler error-page="/"/>
           
           <form-login login-page="/auth/login"
                       username-parameter="email"
                       password-parameter="password"
                       login-processing-url="/auth/loginProcess"
-                      default-target-url="/dashboard"
+                      authentication-success-handler-ref="loginTargetUrlHandler"
                       authentication-failure-url="/auth/login?error" />
 
           <logout invalidate-session="true" logout-url="/logout" logout-success-url="/" />
@@ -31,12 +30,10 @@
      </http>
 
     <authentication-manager alias="authenticationManager">
-        <authentication-provider>
-            <password-encoder hash="bcrypt"/>
-            <jdbc-user-service data-source-ref="dataSource"
-                              users-by-username-query="select email, password, enabled from users where email=?"
-                              authorities-by-username-query="select u1.email, u2.role from users u1, user_roles u2 where u1.email=u2.email and u1.email=?"/>
-        </authentication-provider>
+        <authentication-provider ref="telecomAuthenticationProvider" />
     </authentication-manager>
+
+    <beans:bean id="telecomAuthenticationProvider" class="com.googleit.telecom.authentication.TelecomAuthenticationProvider" />
+    <beans:bean id="loginTargetUrlHandler" class="com.googleit.telecom.authentication.AuthenticationLoginTargetUrlHandler" />
 
 </beans:beans>

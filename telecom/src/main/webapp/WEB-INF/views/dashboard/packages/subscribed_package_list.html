@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="inc/head :: head"></head>
+<body>
+<header th:replace="inc/header :: header"></header>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="inc/sidebar"></div>
+        <!-- Subscription List-->
+        <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2 class="sub-header">Packages</h2>
+
+            <div class="table">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Click to Add</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <div class="accordion" id="msyaccordion">
+                            <div class="accordion-group">
+                                <tr th:each="package : ${subscribedPackages}">
+
+                                    <td th:text="${package.getPackageName()}" id="package-toggle"
+                                        class="accodion-toggle" data-toggle="collapse" data-parent="#myaccordion"
+                                        th:href="'#'+${package.getPackageID()}"></td>
+                                    <td th:text="${package.getDescription()}"></td>
+                                    <td th:text="${package.getPrice()}"></td>
+                                    <td><input type="checkbox" th:name="cancel"
+                                               th:value="${package.getPackageID()}"/></td>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div th:id="${package.getPackageID()}" class="accordion-body collapse">
+                                                <div class="accordion-inner" th:if="${!package.getPackagedService().isEmpty()}" th:text="${package.getPackagedService()}"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tr>
+                            </div>
+                        </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="inc/footer :: footer"></footer>
+</body>
+</html>
