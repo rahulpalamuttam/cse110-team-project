@@ -8,7 +8,7 @@ import java.util.*;
 
 import javax.sql.DataSource;
 
-import com.googleit.telecom.models.Bill;
+import com.googleit.telecom.Notifier.Bill;
 import com.googleit.telecom.models.users.Customer;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -74,7 +74,7 @@ public class UserDAOImpl implements UserDAO {
         cust.setId(Long.valueOf((Long) queried.get("id")));
         cust.setEmail((String) queried.get("email"));
         cust.setReg_date(queried.get("reg_date").toString());
-
+        cust.setCustomerBill(new Bill());
         return cust;
     }
 
@@ -104,9 +104,9 @@ public class UserDAOImpl implements UserDAO {
         cust.setEmail((String) queried.get("email"));
         cust.setReg_date(queried.get("reg_date").toString());
         double threshold = (double) queried.get("threshold");
-        Bill bill = new Bill();
+        Bill bill = cust.getCustomerBill();
         bill.setThreshold(threshold);
-        cust.setCustomerBill(bill);
+        bill.addObserver(cust);
         return cust;
     }
 

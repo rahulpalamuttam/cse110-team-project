@@ -5,7 +5,7 @@ import com.googleit.telecom.dao.CustomerDAO;
 import com.googleit.telecom.dao.ServiceDAO;
 import com.googleit.telecom.dao.UserDAO;
 import com.googleit.telecom.dao.packageDAO;
-import com.googleit.telecom.models.Bill;
+import com.googleit.telecom.Notifier.Bill;
 import com.googleit.telecom.models.items.*;
 import com.googleit.telecom.models.items.Package;
 import com.googleit.telecom.models.users.Customer;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -170,18 +169,20 @@ public class DashboardController {
        System.out.println(subscribedServices);
        Bill myBill =  cust.getCustomerBill();
        
-       for(Buyable item: subscribedServices)
+       for(Service service: subscribedServices)
        {
-    	   myBill.addItem(item);
+    	   cust.AddService(service);
        }
 
-        for(Buyable item : addedPackages)
+        for(Package pkg: addedPackages)
         {
-            myBill.addItem(item);
+            cust.AddPackage(pkg);
         }
+
         model.addAttribute("myServices", subscribedServices);
        model.addAttribute("myPackages", addedPackages);
        model.addAttribute("myBill",  myBill);
+        model.addAttribute("Customer", cust);
 
        return "dashboard/bill";
     }

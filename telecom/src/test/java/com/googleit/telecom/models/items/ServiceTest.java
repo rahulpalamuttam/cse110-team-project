@@ -1,6 +1,5 @@
 package com.googleit.telecom.models.items;
 
-import com.googleit.telecom.models.Bill;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Date;

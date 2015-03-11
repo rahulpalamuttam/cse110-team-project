@@ -1,6 +1,7 @@
 package com.googleit.telecom.models.users;
 
-import com.googleit.telecom.models.*;
+import com.googleit.telecom.Notifier.AbstractObserver;
+import com.googleit.telecom.Notifier.Bill;
 import com.googleit.telecom.models.items.Package;
 import com.googleit.telecom.models.items.Service;
 
@@ -10,16 +11,18 @@ import java.util.ArrayList;
 /**
  * Created by rahul on 2/1/15.
  */
-public class Customer extends User {
+public class Customer extends User implements AbstractObserver {
     private ArrayList<Service> subscribedServices;
     private ArrayList<Package> subscribedPackages;
     private String address;
     private double balance;
     private Bill customerBill;
+    private String thresholdMessage = "";
     public Customer(){
         subscribedServices = new ArrayList<Service>();
         subscribedPackages = new ArrayList<Package>();
         customerBill = new Bill();
+        customerBill.addObserver(this);
     }
 
 
@@ -51,6 +54,7 @@ public class Customer extends User {
      */
     public void AddPackage(Package newPackage){
         subscribedPackages.add(newPackage);
+        customerBill.addItem(newPackage);
     }
 
     /**
@@ -102,4 +106,13 @@ public class Customer extends User {
     }
 
     public void payBalance(double amount){}
+
+    @Override
+    public void update(String thresholdmessage) {
+        this.thresholdMessage = thresholdmessage;
+    }
+
+    public String getthresholdMessage(){
+        return this.thresholdMessage;
+    }
 }

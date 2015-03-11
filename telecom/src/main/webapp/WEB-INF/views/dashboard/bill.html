@@ -47,6 +47,18 @@
                     	    <td></td>
                     	</tr>
                         <tr>
+                            <td>Amount Paid</td>
+                            <td></td>
+                            <td th:text="${myBill.getAmountPaid()}"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Balance</td>
+                            <td></td>
+                            <td th:text="${myBill.getAmountLeft()}"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
                             <td>Threshold</td>
                             <td></td>
                             <td th:text="${myBill.getThreshold()}"></td>
@@ -60,7 +72,7 @@
                 <input th:if="${user_id}" th:type="hidden" th:name="identification" th:value="${user_id}" />
                 <button class="btn btn-default" type="submit">Pay Now</button>
             </div>
-
+        <p th:text="${Customer.getthresholdMessage()}"></p>
         <form method="post" class="addPackage" th:action="@{/dashboard/setThreshold}" autocomplete="off">
             <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <label>Set Threshold</label>
@@ -71,6 +83,7 @@
 
     </div>
 </div>
+
 <footer th:replace="inc/footer :: footer"></footer>
 </body>
 </html>
