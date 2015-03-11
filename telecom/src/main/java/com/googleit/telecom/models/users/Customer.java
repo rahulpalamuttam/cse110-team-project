@@ -12,8 +12,8 @@ import java.util.ArrayList;
  * Created by rahul on 2/1/15.
  */
 public class Customer extends User {
-    private ArrayList<Service> subscribedServices;
-    private ArrayList<Package> subscribedPackages;
+    private ArrayList<Long> subscribedServices;
+    private ArrayList<Long> subscribedPackages;
     private Bill customerBill;
     private double balance;
 
@@ -26,27 +26,27 @@ public class Customer extends User {
         this.balance = 0;
     }
 
-    public void subscribeService(Service newService){
-        this.subscribedServices.add(newService);
+    public void subscribeService(Long serviceId){
+        this.subscribedServices.add(serviceId);
     }
 
-    public void unsubscribeService(Service noService){
-        this.subscribedServices.remove(noService);
+    public void unsubscribeService(Long serviceId){
+        this.subscribedServices.remove(serviceId);
     }
 
-    public void subscribePackage(Package newPackage){
-        this.subscribedPackages.add(newPackage);
+    public void subscribePackage(Long packageId){
+        this.subscribedPackages.add(packageId);
     }
 
-    public void unsubscribePackage(Package newPackage){
-        this.subscribedPackages.remove(newPackage);
+    public void unsubscribePackage(Long packageId){
+        this.subscribedPackages.remove(packageId);
     }
 
-    public ArrayList<Service> getSubscribedServices() {
+    public ArrayList<Long> getSubscribedServices() {
         return this.subscribedServices;
     }
 
-    public ArrayList<Package> getSubscribedPackages() {
+    public ArrayList<Long> getSubscribedPackages() {
         return this.subscribedPackages;
     }
 

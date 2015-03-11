@@ -12,27 +12,27 @@ import java.util.Map;
 public class UserRepository implements UserDAO {
     private static final Logger logger = LoggerFactory.getLogger(UserRepository.class);
 
-    private Map<String, User> users = new HashMap<>();
+    private Map<String, User> userRepo = new HashMap<>();
 
     @Override
     public void register(User user) {
-        logger.info("registering user {}", user.getEmail());
+        logger.info("Registering user {}", user.getEmail());
 
         user.setId(++User.total_user);
-        users.put(user.getEmail(), user);
+        userRepo.put(user.getEmail(), user);
 
-        logger.info("register success on user (Email: {}, ID: {})", user.getEmail(), user.getId());
+        logger.info("Register success on user (Email: {}, ID: {})", user.getEmail(), user.getId());
     }
 
     @Override
     public boolean isDuplicate(User user) {
-        logger.info("is user {} duplicate ? => {}", user.getEmail(), users.containsValue(user));
-        return users.containsValue(user);
+        logger.info("Is user {} duplicate ? => {}", user.getEmail(), userRepo.containsValue(user));
+        return userRepo.containsValue(user);
     }
 
     @Override
     public User getUserByEmail(String email) {
-        logger.info("getUser who's email is {} => {}", email, users.get(email));
-        return users.get(email);
+        logger.info("Get user who's email is {} => {}", email, userRepo.get(email));
+        return userRepo.get(email);
     }
 }

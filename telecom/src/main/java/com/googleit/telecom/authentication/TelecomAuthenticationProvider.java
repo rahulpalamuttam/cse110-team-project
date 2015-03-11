@@ -1,9 +1,6 @@
 package com.googleit.telecom.authentication;
 
 import com.googleit.telecom.dao.UserDAO;
-import com.googleit.telecom.models.users.Customer;
-import com.googleit.telecom.models.users.CustomerRepresentative;
-import com.googleit.telecom.models.users.SalesRep;
 import com.googleit.telecom.models.users.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

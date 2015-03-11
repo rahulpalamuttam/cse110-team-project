@@ -43,7 +43,7 @@ public class AuthenticationLoginTargetUrlHandler implements AuthenticationSucces
         logger.info("User : {}", sessionUser);
 
         logger.info("Set session");
-        session.setAttribute("user", user);
+        session.setAttribute("user", sessionUser);
         logger.info("Session : {}", session);
 
         logger.info("Set status for Http response");

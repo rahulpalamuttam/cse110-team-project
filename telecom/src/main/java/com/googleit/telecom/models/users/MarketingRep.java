@@ -6,9 +6,9 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-public class SalesRep extends User {
+public class MarketingRep extends User {
 
-    public SalesRep(String email, String password, String role) {
+    public MarketingRep(String email, String password, String role) {
         super(email, password, role);
     }
 
