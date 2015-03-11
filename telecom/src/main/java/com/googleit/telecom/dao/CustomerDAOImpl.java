@@ -1,17 +1,12 @@
 package com.googleit.telecom.dao;
 
 import com.googleit.telecom.models.users.Customer;
-import com.googleit.telecom.models.users.CustomerRepresentative;
-import com.googleit.telecom.models.users.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CustomerDAOImpl implements  CustomerDAO {
     private JdbcTemplate jdbcTemplate;

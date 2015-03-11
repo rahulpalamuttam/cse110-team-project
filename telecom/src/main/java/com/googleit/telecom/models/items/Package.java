@@ -1,8 +1,6 @@
 package com.googleit.telecom.models.items;
 
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

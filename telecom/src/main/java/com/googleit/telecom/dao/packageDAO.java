@@ -1,7 +1,7 @@
 package com.googleit.telecom.dao;
 
-import com.googleit.telecom.models.items.*;
 import com.googleit.telecom.models.items.Package;
+import com.googleit.telecom.models.items.Service;
 
 import java.util.List;
 

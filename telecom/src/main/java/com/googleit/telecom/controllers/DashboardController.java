@@ -6,11 +6,11 @@ import com.googleit.telecom.dao.ServiceDAO;
 import com.googleit.telecom.dao.UserDAO;
 import com.googleit.telecom.dao.packageDAO;
 import com.googleit.telecom.models.Bill;
-import com.googleit.telecom.models.items.*;
+import com.googleit.telecom.models.items.Buyable;
 import com.googleit.telecom.models.items.Package;
+import com.googleit.telecom.models.items.Service;
 import com.googleit.telecom.models.users.Customer;
 import com.googleit.telecom.models.users.User;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

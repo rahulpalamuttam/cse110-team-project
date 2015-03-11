@@ -1,13 +1,9 @@
 package com.googleit.telecom.configs;
 
-import com.googleit.telecom.dao.packageDAO;
-import org.springframework.beans.factory.annotation.Autowired;
-
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.sql.DataSource;
 
 /**
  * TODO :: We should drop all the tables first before creation.
