@@ -20,6 +20,7 @@
                             <th>Title</th>
                             <th>Description</th>
                             <th>Price</th>
+                            <th>Duration</th>
                             <th>Modify</th>
                         </tr>
                         </thead>
@@ -28,6 +29,7 @@
                             <td th:text="${package.getPackageName()}"> </td>
                             <td th:text="${package.getDescription()}"></td>
                             <td th:text="${package.getPrice()}"></td>
+                            <td th:text="${package.getDuration()}"></td>
                             <td>
                                 <button type="submit" class="btn btn-primary" th:name="package_id" th:value="${package.getPackageID()}">Modify</button>
                             </td>

@@ -24,7 +24,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="customer : ${myCustomers}">
+                        <tr th:each="customer : ${CUSTOMERS}">
                             <td>
                                 <input th:type="hidden" th:name="identification" th:value="${customer.getId()}"/>
                                 <input th:type="submit" class="linkButton" th:name="email"
@@ -49,7 +49,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="customer : ${myCustomers}">
+                        <tr th:each="customer : ${CUSTOMERS}">
                             <td>
                                 <input th:type="hidden" th:name="identification" th:value="${customer.getId()}"/>
                                 <input th:type="submit" class="linkButton" th:name="email"

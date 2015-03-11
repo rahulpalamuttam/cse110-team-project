@@ -46,6 +46,8 @@ public class MRepCreatepackageTest {
     driver.findElement(By.name("description")).sendKeys("sfwef1");
     driver.findElement(By.name("price")).clear();
     driver.findElement(By.name("price")).sendKeys("23");
+      driver.findElement(By.name("Duration")).clear();
+      driver.findElement(By.name("Duration")).sendKeys("454");
     driver.findElement(By.xpath("//input[@value='Submit']")).click();
     // ERROR: Caught exception [ERROR: Unsupported command [getTable | css=table.table.table-striped.3.0 | ]]
     driver.findElement(By.linkText("Sign out")).click();

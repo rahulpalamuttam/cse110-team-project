@@ -41,6 +41,8 @@ public class CreatePackageTest {
     driver.findElement(By.name("description")).sendKeys("new package discription");
     driver.findElement(By.name("price")).clear();
     driver.findElement(By.name("price")).sendKeys("200");
+      driver.findElement(By.name("Duration")).clear();
+      driver.findElement(By.name("Duration")).sendKeys("365");
     driver.findElement(By.xpath("(//input[@name='add'])[2]")).click();
     driver.findElement(By.xpath("(//input[@name='add'])[3]")).click();
     driver.findElement(By.xpath("//input[@value='Submit']")).click();

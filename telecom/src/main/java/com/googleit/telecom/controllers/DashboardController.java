@@ -191,4 +191,9 @@ public class DashboardController {
 
         return "redirect:/dashboard/bill";
     }
+
+    @RequestMapping(value={"/createCustomer"})
+    public String createCustomer(User user){
+        return "register/register";
+    }
 }
