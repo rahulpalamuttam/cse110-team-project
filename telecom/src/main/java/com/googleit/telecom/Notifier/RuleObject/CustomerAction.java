@@ -2,8 +2,6 @@ package com.googleit.telecom.Notifier.RuleObject;
 
 import com.googleit.telecom.Notifier.ObserverPattern.AbstractObserver;
 import com.googleit.telecom.configs.MailConfig;
-import com.googleit.telecom.dao.UserDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -20,7 +18,7 @@ import javax.mail.internet.MimeMessage;
 public class CustomerAction implements Action {
     private JavaMailSender mailSender;
 
-    private String from 	= "jjl112ucsd@gmail.com";
+    private String from 	= "git110winter15@gmail.com";
     private String subject	= "Balance Notification";
 
     @Override
@@ -30,7 +28,7 @@ public class CustomerAction implements Action {
             mailSender = MailConfig.getInstance();
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-            messageHelper.setTo("jjl112ucsd@gmail.com");
+            messageHelper.setTo("git110winter15@gmail.com");
             messageHelper.setText("You are above you threshold limit");
             messageHelper.setFrom(from);
             messageHelper.setSubject(subject);
