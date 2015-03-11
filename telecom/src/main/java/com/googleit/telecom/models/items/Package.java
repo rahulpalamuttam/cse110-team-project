@@ -18,9 +18,20 @@ public class Package implements Buyable{
     private double price;
     private Date startDate;
     private Date endDate;
+    private int packageDuration;
     private String description;
 
     public Package(){}
+    
+    public void setPackageDuration(int year)
+    {
+    	packageDuration = year;
+    }
+    
+    public int getPackageDuration()
+    {
+    	return packageDuration;
+    }
     public String getDescription() {
         return description;
     }

@@ -12,18 +12,17 @@ public class Service implements Buyable{
     private double servicePrice;
     private Date serviceStartDate;
     private Date serviceEndDate;
+    private int serviceDuration;
     private Long serviceID;
 
 
     public Service(){}
     public Service(String name,
-                   String description, Date start,
-                   Date end, Double price, Long id){
+                   String description, int duration, Double price, Long id){
 
         serviceName = name;
         serviceDescription = description;
-        serviceStartDate = start;
-        serviceEndDate = end;
+        serviceDuration = duration;
         servicePrice = price;
         // need to check if UUID's have been repeated
         serviceID = id;
@@ -34,9 +33,19 @@ public class Service implements Buyable{
     }
     public double getPrice() { return this.servicePrice;}
 
-    public void setDuration(Date start, Date end){
+/*    public void setDuration(Date start, Date end){
         this.serviceStartDate = start;
         this.serviceEndDate = end;
+    }*/
+    
+    public void setDuration(int year)
+    {
+    	this.serviceDuration = year;
+    }
+    
+    public int getDuration()
+    {
+    	return serviceDuration;
     }
 
     public void setServiceDescription(String description){
