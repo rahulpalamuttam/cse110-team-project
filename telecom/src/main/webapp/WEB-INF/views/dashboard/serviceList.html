@@ -20,6 +20,8 @@
                            <th>Title</th>
                            <th>Description</th>
                            <th>Price</th>
+                           <th>Duration</th>
+
                        </tr>
                        </thead>
                        <tbody>
@@ -27,6 +29,8 @@
                            <td th:text="${service.getServiceName()}"></td>
                            <td th:text="${service.getServiceDescription()}"></td>
                            <td th:text="${service.getPrice()}"></td>
+                           <td th:text="${service.getDuration()}"></td>
+
                        </tr>
                        </tbody>
                    </table>

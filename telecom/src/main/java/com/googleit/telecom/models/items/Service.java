@@ -11,14 +11,26 @@ public class Service implements Buyable{
     private Date serviceStartDate;
     private Date serviceEndDate;
     private Long serviceID;
+    private int Duration;
 
+    public int getDuration() {
+        return Duration;
+    }
+
+    public void setDuration(int duration) {
+        Duration = duration;
+    }
 
     public Service(){}
+
+
+
     public Service(String name,
                    String description, Date start,
                    Date end, Double price, Long id){
 
         serviceName = name;
+
         serviceDescription = description;
         serviceStartDate = start;
         serviceEndDate = end;
@@ -86,6 +98,13 @@ public class Service implements Buyable{
         return serviceStartDate;
     }
 
+    public void setServiceStartDate(Date serviceStartDate) {
+        this.serviceStartDate = serviceStartDate;
+    }
+
+    public void setServiceEndDate(Date serviceEndDate) {
+        this.serviceEndDate = serviceEndDate;
+    }
     @Override
     public String toString() {
         return getServiceName();

@@ -23,7 +23,7 @@ public class ServiceDAOImpl implements ServiceDAO {
     public List<Service> getUnsubscribedService(long user_id) {
         // No join necessary here
 
-        String sql = "SELECT service_id, service_name, price, start_date, end_date, service_description FROM services "  +
+        String sql = "SELECT service_id, service_name, price, start_date, end_date, service_description, duration FROM services "  +
                 "WHERE NOT EXISTS (" +
                 "SELECT * FROM service_subscriptions WHERE service_subscriptions.service_id=services.service_id AND service_subscriptions.customer_id=?" +
                 " )";
@@ -39,7 +39,7 @@ public class ServiceDAOImpl implements ServiceDAO {
 
     @Override
     public List<Service> getSubscribedService(long user_id) {
-        String sql = "SELECT service_id, service_name, price, start_date, end_date, service_description FROM services "  +
+        String sql = "SELECT service_id, service_name, price, start_date, end_date, service_description, duration FROM services "  +
                 "WHERE EXISTS(" +
                 "SELECT * FROM service_subscriptions WHERE service_subscriptions.service_id=services.service_id AND service_subscriptions.customer_id=?" +
                 " )";
@@ -69,7 +69,7 @@ public class ServiceDAOImpl implements ServiceDAO {
 
 	@Override
 	public List<Service> getAllService() {
-        String sql = "SELECT service_id, service_name, service_description, price FROM services";
+        String sql = "SELECT service_id, service_name, service_description, price, start_date, end_date, duration FROM services";
 
         List<Map<String,Object>> queried = new ArrayList<>();
         try {
@@ -82,10 +82,10 @@ public class ServiceDAOImpl implements ServiceDAO {
 	}
 
 	@Override
-	public void createServie(Service service) {
+	public void createService(Service service) {
 		// TODO Auto-generated method stub
-        String sql2 = "INSERT INTO services (service_name, service_description, price)" + " VALUES (?,?,?)";
-        this.jdbcTemplate.update(sql2, service.getServiceName(), service.getServiceDescription(), service.getPrice());
+        String sql2 = "INSERT INTO services (service_name, service_description, price, duration)" + " VALUES (?,?,?,?)";
+        this.jdbcTemplate.update(sql2, service.getServiceName(), service.getServiceDescription(), service.getPrice(), service.getDuration());
 
 		
 	}

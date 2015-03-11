@@ -114,6 +114,7 @@ public class DB {
                     + "price DOUBLE NOT NULL,"
                     + "start_date DATE,"
                     + "end_date DATE,"
+                    + "duration INT UNSIGNED DEFAULT  30,"
                     + "service_description VARCHAR(200) NOT NULL,"
                     + "PRIMARY KEY (service_id)"
                     + ");");
@@ -124,8 +125,9 @@ public class DB {
                     + "package_id INT UNSIGNED NOT NULL AUTO_INCREMENT,"
                     + "package_name VARCHAR(40) NOT NULL,"
                     + "price DOUBLE NOT NULL,"
-                    + "start_date DATE,"
-                    + "end_date DATE,"
+                    + "start_date DATE DEFAULT '" + sqlFormat.format(curr) + "',"
+                    + "end_date DATE DEFAULT '" + sqlFormat.format(curr) + "',"
+                    + "duration INT DEFAULT 30,"
                     + "package_description VARCHAR(200) NOT NULL,"
                     + "PRIMARY KEY (package_id)"
                     + ");");

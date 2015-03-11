@@ -26,6 +26,8 @@ public class BuyableFactory {
         service.setDuration((Date)tuple.get("start_date"), (Date)tuple.get("end_date"));
         service.setPrice((Double)tuple.get("price"));
         service.setServiceDescription((String)tuple.get("service_description"));
+        service.setDuration( Integer.valueOf(tuple.get("duration").toString()));
+
         return service;
     }
 

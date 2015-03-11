@@ -62,7 +62,7 @@ public class DashboardMRepController {
     
 	@RequestMapping(value="/addService", method = RequestMethod.POST)
 	public String addService(Service service) {
-		serviceDAO.createServie(service);
+		serviceDAO.createService(service);
 		return "redirect:/dashboard/serviceslist";
 	}
 
