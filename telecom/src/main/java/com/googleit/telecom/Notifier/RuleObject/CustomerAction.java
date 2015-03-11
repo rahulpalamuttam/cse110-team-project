@@ -20,7 +20,7 @@ import javax.mail.internet.MimeMessage;
 public class CustomerAction implements Action {
     private JavaMailSender mailSender;
 
-    private String from 	= "huliopalam@gmail.com";
+    private String from 	= "git110winter15@gmail.com";
     private String subject	= "Balance Notification";
 
     @Override
