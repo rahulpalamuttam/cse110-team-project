@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.fail;
 
-public class ModifyPackageTest {
+public class CancelAndSubscribePackage {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -29,14 +29,15 @@ public class ModifyPackageTest {
     driver.get(baseUrl + "/");
     driver.findElement(By.linkText("Sign in")).click();
     driver.findElement(By.name("email")).clear();
-    driver.findElement(By.name("email")).sendKeys("mrep");
+    driver.findElement(By.name("email")).sendKeys("git110@ucsd.edu");
     driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys("a");
+    driver.findElement(By.name("password")).sendKeys("hello");
     driver.findElement(By.xpath("//input[@value='Log in']")).click();
     driver.findElement(By.linkText("Packages")).click();
-    driver.findElement(By.xpath("(//button[@name='package_id'])[3]")).click();
-    driver.findElement(By.name("subscribe")).click();
-    driver.findElement(By.cssSelector("button.btn.btn-default")).click();
+      driver.findElement(By.name("subscribe")).click();
+      driver.findElement(By.cssSelector("button.btn.btn-default")).click();
+    driver.findElement(By.name("cancel")).click();
+      driver.findElement(By.cssSelector("button.btn.btn-default")).click();
     // ERROR: Caught exception [ERROR: Unsupported command [getTable | css=table.table.table-striped.3.0 | ]]
     driver.findElement(By.linkText("Sign out")).click();
   }

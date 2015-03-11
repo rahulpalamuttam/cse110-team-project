@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -38,13 +39,13 @@ public class Services {
     }
     driver.get(baseUrl + "/dashboard/services");
     driver.findElement(By.name("cancel")).click();
-    driver.findElement(By.xpath("(//input[@name='cancel'])[2]")).click();
+    driver.findElement(By.xpath("(//input[@name='cancel'])[1]")).click();
     driver.findElement(By.cssSelector("button.btn.btn-default")).click();
     // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.1.0 | ]]
     // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.2.0 | ]]
     // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.3.0 | ]]
     // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.4.0 | ]]
-    driver.findElement(By.xpath("(//input[@name='subscribePackage'])[3]")).click();
+    driver.findElement(By.name("subscribe")).click();
     driver.findElement(By.cssSelector("button.btn.btn-default")).click();
     // ERROR: Caught exception [ERROR: Unsupported command [getTable | css=table.table.table-striped.1.0 | ]]
     // ERROR: Caught exception [ERROR: Unsupported command [getTable | //div[2]/div/table.1.0 | ]]
