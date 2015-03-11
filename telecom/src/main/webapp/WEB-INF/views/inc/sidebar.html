@@ -6,9 +6,9 @@
     <ul class="nav nav-sidebar">
         <li class="active"><a href="/dashboard/">Summary</a></li>
         <!--CUSTOMER-->
-        <li sec:authorize="hasRole('ROLE_CUSTOMER')"><a th:href="@{/dashboard/services}">Service</a></li>
-        <li sec:authorize="hasRole('ROLE_CUSTOMER')"><a th:href="@{/dashboard/packages}">Packages</a></li>
-        <li sec:authorize="hasRole('ROLE_CUSTOMER')"><a th:href="@{/dashboard/bill}">Bill</a></li>
+        <li sec:authorize="hasRole('ROLE_CUSTOMER') or hasRole('ROLE_COMMERCIAL')"><a th:href="@{/dashboard/services}">Service</a></li>
+        <li sec:authorize="hasRole('ROLE_CUSTOMER') or hasRole('ROLE_COMMERCIAL')"><a th:href="@{/dashboard/packages}">Packages</a></li>
+        <li sec:authorize="hasRole('ROLE_CUSTOMER') or hasRole('ROLE_COMMERCIAL')"><a th:href="@{/dashboard/bill}">Bill</a></li>
 
         <!--CUSTOMER_REP-->
         <li sec:authorize="hasRole('ROLE_CUSTOMER_REP')"><a th:href="@{/dashboard/customers}">Customer</a></li>

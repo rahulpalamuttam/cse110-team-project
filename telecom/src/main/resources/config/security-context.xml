@@ -10,8 +10,8 @@
 
      <http auto-config="true" use-expressions="true" disable-url-rewriting="true">
           <intercept-url pattern="/login" access="permitAll" />
-          <intercept-url pattern="/dashboard" access="hasAnyRole('ROLE_USER','ROLE_CUSTOMER_REP','ROLE_CUSTOMER' ,'ROLE_MARK_REP')" />
-          <intercept-url pattern="/dashboard/" access="hasAnyRole('ROLE_USER','ROLE_CUSTOMER_REP','ROLE_CUSTOMER', 'ROLE_MARK_REP')" />
+          <intercept-url pattern="/dashboard" access="hasAnyRole('ROLE_USER','ROLE_CUSTOMER_REP','ROLE_CUSTOMER' ,'ROLE_MARK_REP', 'ROLE_COMMERCIAL')" />
+          <intercept-url pattern="/dashboard/" access="hasAnyRole('ROLE_USER','ROLE_CUSTOMER_REP','ROLE_CUSTOMER', 'ROLE_MARK_REP', 'ROLE_COMMERCIAL')" />
 
 
           <access-denied-handler error-page="/"/>

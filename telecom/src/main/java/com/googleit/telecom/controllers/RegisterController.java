@@ -4,6 +4,7 @@ import com.googleit.telecom.dao.UserDAO;
 import com.googleit.telecom.models.users.CommercialCustomer;
 import com.googleit.telecom.models.users.RetailCustomer;
 import com.googleit.telecom.models.users.User;
+import com.googleit.telecom.models.users.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -87,13 +88,33 @@ public class RegisterController {
         if (bindingResult.hasErrors() || duplicate) return "register/register";
 
         /* TODO :: Check for SQL error exception */
-        userDAO.insert(retailCustomer);
+        userDAO.insert(retailCustomer, UserType.CUSTOMER);
 
         autoLogin(email, password, request);
 
         return "register/register_success";
     }
 
+    @RequestMapping(value = "/registerCommercial", method = RequestMethod.POST)
+    public String registerCommercial(@Valid CommercialCustomer retailCustomer, BindingResult bindingResult, HttpServletRequest request, Model model) {
+        boolean duplicate = false;
+        String email = retailCustomer.getEmail();
+        String password = retailCustomer.getPassword();
+
+        if ( duplicate = userDAO.isDuplicate(retailCustomer.getEmail()) ) {
+            model.addAttribute("duplicate", "Email already exists.");
+        }
+
+        // Invalid form -> show register form page
+        if (bindingResult.hasErrors() || duplicate) return "register/register";
+
+        /* TODO :: Check for SQL error exception */
+        userDAO.insert(retailCustomer, UserType.COMMERCIAL_CUSTOMER);
+
+        autoLogin(email, password, request);
+
+        return "register/register_success";
+    }
     @RequestMapping(value = "/registerCustomerRep", method = RequestMethod.POST)
     public String registerCustomerRep(@Valid User user, BindingResult bindingResult, Model model) {
         boolean duplicate = false;

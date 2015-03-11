@@ -14,13 +14,13 @@
                 </ul>
 
                 <!-- If logged in -->
-                <ul class="nav navbar-nav navbar-right" sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_CUSTOMER_REP') or hasRole('ROLE_CUSTOMER') or hasRole('ROLE_MARK_REP')">
+                <ul class="nav navbar-nav navbar-right" sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_CUSTOMER_REP') or hasRole('ROLE_COMMERCIAL') or hasRole('ROLE_CUSTOMER') or hasRole('ROLE_MARK_REP')">
                     <li><a th:href="@{/dashboard}">Dashboard</a></li>
                     <li><a th:href="@{/logout}">Sign out</a></li>
                 </ul>
 
                 <!-- If not logged in -->
-                <ul class="nav navbar-nav navbar-right" sec:authorize="!hasAnyRole('ROLE_USER','ROLE_CUSTOMER_REP','ROLE_CUSTOMER', 'ROLE_MARK_REP', 'ROLE_COMPANY')">
+                <ul class="nav navbar-nav navbar-right" sec:authorize="!hasAnyRole('ROLE_USER','ROLE_CUSTOMER_REP','ROLE_CUSTOMER', 'ROLE_MARK_REP', 'ROLE_COMMERCIAL')">
                     <li><a th:href="@{/register}">Register</a></li>
                     <li><a th:href="@{/registerCommercial}">Corporate Registration</a></li>
                     <li><a th:href="@{/auth/login}">Sign in</a></li>

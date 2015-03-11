@@ -16,6 +16,10 @@
 
                 </li>
 
+                <li sec:authorize="hasRole('ROLE_COMMERCIAL')">
+                    You are a commercial customer
+
+                </li>
                 <!--CUSTOMER_REP-->
                 <li sec:authorize="hasRole('ROLE_CUSTOMER_REP')">You are a customer representative</li>
 
