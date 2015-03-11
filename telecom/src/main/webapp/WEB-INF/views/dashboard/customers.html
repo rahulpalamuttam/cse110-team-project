@@ -15,7 +15,7 @@
             <h2 class="sub-header">Customer List</h2>
 
             <div class="table">
-                <form action="/dashboard/customerServices" method="post">
+
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -25,22 +25,24 @@
                         </thead>
                         <tbody>
                         <tr th:each="customer : ${CUSTOMERS}">
+                            <form action="/dashboard/customerServices" method="post">
                             <td>
                                 <input th:type="hidden" th:name="identification" th:value="${customer.getId()}"/>
                                 <input th:type="submit" class="linkButton" th:name="email"
                                        th:value="${customer.getEmail()}"/>
                             </td>
+                            </form>
                             <td>2015-01-01</td>
                         </tr>
                         </tbody>
                     </table>
-                </form>
+
             </div>
 
             <h2 class="sub-header">Customer Packages</h2>
 
             <div class="table">
-                <form action="/dashboard/customerPackages" method="post">
+
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -50,16 +52,18 @@
                         </thead>
                         <tbody>
                         <tr th:each="customer : ${CUSTOMERS}">
+                            <form action="/dashboard/customerPackages" method="post">
                             <td>
                                 <input th:type="hidden" th:name="identification" th:value="${customer.getId()}"/>
                                 <input th:type="submit" class="linkButton" th:name="email"
                                        th:value="${customer.getEmail()}"/>
                             </td>
+                            </form>
                             <td>2015-01-01</td>
                         </tr>
                         </tbody>
                     </table>
-                </form>
+
             </div>
         </div>
     </div>

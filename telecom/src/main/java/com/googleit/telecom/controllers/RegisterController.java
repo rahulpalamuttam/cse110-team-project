@@ -33,8 +33,19 @@ public class RegisterController {
     @Autowired
     private UserDAO userDAO;
 
+
     @Autowired
     AuthenticationManager authenticationManager;
+
+    /**
+     * Fetches the authenticated user
+     */
+    private User getAuthenticated(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User dude = userDAO.getUser(email);
+        return dude;
+    }
 
     /**
      * Shows the registeration form
@@ -74,6 +85,26 @@ public class RegisterController {
         autoLogin(email, password, request);
 
         return "register/register_success";
+    }
+
+    @RequestMapping(value = "/registerCustomerRep", method = RequestMethod.POST)
+    public String registerCustomerRep(@Valid User user, BindingResult bindingResult, Model model) {
+        boolean duplicate = false;
+        User dude = getAuthenticated();
+        String email = user.getEmail();
+        String password = user.getPassword();
+
+        if ( duplicate = userDAO.isDuplicate(user.getEmail()) ) {
+            model.addAttribute("duplicate", "Email already exists.");
+        }
+
+        // Invalid form -> show register form page
+        if (bindingResult.hasErrors() || duplicate) return "register/register";
+
+        /* TODO :: Check for SQL error exception */
+        userDAO.insert(user, dude);
+
+        return "redirect:dashboard";
     }
 
     public void autoLogin(String email, String password, HttpServletRequest request) {

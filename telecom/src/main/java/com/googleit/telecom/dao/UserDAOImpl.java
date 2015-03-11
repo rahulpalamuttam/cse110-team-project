@@ -60,6 +60,41 @@ public class UserDAOImpl implements UserDAO {
         this.jdbcTemplate.update(sql2, user.getEmail(), "ROLE_CUSTOMER");
     }
 
+    public void insert(final User user, final User dude) {
+
+        // Encrypte password
+        BCryptPasswordEncoder passEncryp = new BCryptPasswordEncoder();
+        user.setPassword(passEncryp.encode(user.getPassword()));
+
+        // Set current time having "yyy-MM-dd" format
+        user.setReg_date(new SimpleDateFormat("yyy-MM-dd").format(new Date()));
+
+        final String sql1 = "INSERT INTO users (email, password, reg_date, enabled)"
+                + " VALUES (?, ?, ?, ?)";
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        this.jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement ps = connection.prepareStatement(sql1, new String[] { "id" });
+                ps.setString(1, user.getEmail());
+                ps.setString(2, user.getPassword());
+                ps.setString(3, user.getReg_date());
+                ps.setBoolean(4, true);
+                return ps;
+            }
+        }, keyHolder);
+
+        // Set primary key id to user
+        user.setId(keyHolder.getKey().intValue());
+
+        String sql2 = "INSERT INTO user_roles (email, role)" + " VALUES (?,?)";
+        this.jdbcTemplate.update(sql2, user.getEmail(), "ROLE_CUSTOMER");
+
+        String sql3 = "INSERT INTO customer_relations (customer_id, customer_rep_id)" + " VALUES (?,?)";
+        this.jdbcTemplate.update(sql3, user.getId(), dude.getId());
+    }
+
     @Override
     public User getUser(String email){
         String sql = "SELECT id, email, reg_date FROM users WHERE email=?";
