@@ -6,81 +6,79 @@
 <div class="container-fluid">
     <div class="row">
         <div th:replace="inc/sidebar"></div>
-            <!-- Subscription List-->
-            <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h2 class="sub-header">Bill Summary</h2>
-                <div class="table">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Item ID</th>
-                            <th>Item Type</th>
-                            <th>Price</th>
-                            <th>Date</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="service : ${CUSTOMER.getSubscribedServices()}">
-                            <td th:text="${service.getServiceID()}"></td>
-                            <td>service</td>
-                            <td th:text="${service.getPrice()}"></td>
-                            <td> SAMPLE DATE</td>
-                        </tr>
-                        <tr th:each="package : ${CUSTOMER.getSubscribedPackages()}">
-                            <td th:text="${package.getPackageID()}"></td>
-                            <td>package</td>
-                            <td th:text="${package.getPrice()}"></td>
-                            <td> SAMPLE DATE</td>
-                        </tr>
-                        </tbody>
-                    
-                    	<tr>
-                    	    <td>Tax</td>
-                    	    <td></td>
-                    	    <td></td>
-                    	    <td></td>
-                    	</tr>
-                    	<tr>
-                    	    <td>Total</td>
-                    	    <td></td>
-                    	    <td th:text="${CUSTOMER.getCustomerBill().getTotalAmount()}"></td>
-                    	    <td></td>
-                    	</tr>
-                        <tr>
-                            <td>Amount Paid</td>
-                            <td></td>
-                            <td th:text="${CUSTOMER.getCustomerBill().getAmountPaid()}"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Balance</td>
-                            <td></td>
-                            <td th:text="${CUSTOMER.getCustomerBill().getAmountLeft()}"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Threshold</td>
-                            <td></td>
-                            <td th:text="${CUSTOMER.getCustomerBill().getThreshold()}"></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+        <!-- Subscription List-->
+        <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2 class="sub-header">Bill Summary</h2>
+            <div class="table">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Item Type</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="service : ${CUSTOMER.getSubscribedServices()}">
+                        <td th:text="${service.getServiceID()}"></td>
+                        <td>service</td>
+                        <td th:text="${service.getPrice()}"></td>
+                        <td> SAMPLE DATE</td>
+                    </tr>
+                    <tr th:each="package : ${CUSTOMER.getSubscribedPackages()}">
+                        <td th:text="${package.getPackageID()}"></td>
+                        <td>package</td>
+                        <td th:text="${package.getPrice()}"></td>
+                        <td> SAMPLE DATE</td>
+                    </tr>
+                    </tbody>
 
-            <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+                    <tr>
+                        <td>Tax</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td></td>
+                        <td th:text="${CUSTOMER.getCustomerBill().getTotalAmount()}"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Amount Paid</td>
+                        <td></td>
+                        <td th:text="${CUSTOMER.getCustomerBill().getAmountPaid()}"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Balance</td>
+                        <td></td>
+                        <td th:text="${CUSTOMER.getCustomerBill().getAmountLeft()}"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Threshold</td>
+                        <td></td>
+                        <td th:text="${CUSTOMER.getCustomerBill().getThreshold()}"></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
                 <input th:if="${CUSTOMER.getId()}" th:type="hidden" th:name="identification" th:value="${CUSTOMER.getId()}" />
                 <button class="btn btn-default" type="submit">Pay Now</button>
             </div>
-        <p th:text="${CUSTOMER.getthresholdMessage()}"></p>
-        <form method="post" class="addPackage" th:action="@{/dashboard/setThreshold}" autocomplete="off">
-            <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <label>Set Threshold</label>
-                <input type="text" class="form-control" th:name="threshold" />
-            </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Submit" />
-        </form>
-
+            <p th:text="${CUSTOMER.getthresholdMessage()}"></p>
+            <form method="post" class="addPackage" th:action="@{/dashboard/setThreshold}" autocomplete="off">
+                <div class="col-md-3 pull-right">
+                    <label>Set Threshold</label>
+                    <input type="text" class="form-control" th:name="threshold" />
+                    <button type="submit" class="btn btn-success btn-block" value="Submit">Set Threshold</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

@@ -1,9 +1,13 @@
 package com.googleit.telecom.Notifier.RuleObject;
 
 import com.googleit.telecom.Notifier.ObserverPattern.AbstractObserver;
+import com.googleit.telecom.configs.MailConfig;
+import com.googleit.telecom.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Controller;
+
 
 import javax.mail.internet.MimeMessage;
 
@@ -11,8 +15,9 @@ import javax.mail.internet.MimeMessage;
 /**
  * Created by rahul on 3/11/15.
  */
-public class CustomerAction implements Action{
-    @Autowired
+
+@Controller
+public class CustomerAction implements Action {
     private JavaMailSender mailSender;
 
     private String from 	= "jjl112ucsd@gmail.com";
@@ -20,8 +25,9 @@ public class CustomerAction implements Action{
 
     @Override
     public void execute(AbstractObserver observer) {
-        System.out.println(observer.getEmail() + "You are above your threshold limit");
+        System.out.println(observer.getEmail() + " You are above your threshold limit");
         try {
+            mailSender = MailConfig.getInstance();
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
             messageHelper.setTo("jjl112ucsd@gmail.com");
