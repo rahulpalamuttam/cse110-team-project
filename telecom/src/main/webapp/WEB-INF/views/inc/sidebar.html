@@ -12,7 +12,7 @@
 
         <!--CUSTOMER_REP-->
         <li sec:authorize="hasRole('ROLE_CUSTOMER_REP')"><a th:href="@{/dashboard/customers}">Customer</a></li>
-
+        <li sec:authorize="hasRole('ROLE_CUSTOMER_REP')"><a th:href="@{/dashboard/createCustomer}">Add a Customer</a></li>
         <!--MARK_REP-->
         <li sec:authorize="hasRole('ROLE_MARK_REP')"><a th:href="@{/dashboard/serviceslist}">Service</a></li>
         <li sec:authorize="hasRole('ROLE_MARK_REP')"><a th:href="@{/dashboard/packageslist}">Packages</a></li>

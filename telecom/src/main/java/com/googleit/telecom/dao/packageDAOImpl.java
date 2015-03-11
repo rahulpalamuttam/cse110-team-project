@@ -31,7 +31,7 @@ public class packageDAOImpl implements packageDAO {
     public List<Package> getUnsubscribedPackage(long user_id){
         // No join necessary here
 
-        String sql = "SELECT package_id, package_name, price, start_date, end_date, package_description FROM packages "  +
+        String sql = "SELECT package_id, package_name, price, start_date, end_date, package_description, duration FROM packages "  +
                 "WHERE NOT EXISTS (" +
                 "SELECT * FROM package_subscriptions AS subscriptions WHERE subscriptions.package_id=packages.package_id AND subscriptions.customer_id=?" +
                 " )";
@@ -48,7 +48,7 @@ public class packageDAOImpl implements packageDAO {
 
     @Override
     public List<Package> getSubscribedPackage(long user_id) {
-        String sql = "SELECT package_id, package_name, price, start_date, end_date, package_description FROM packages "  +
+        String sql = "SELECT package_id, package_name, price, start_date, end_date, package_description, duration FROM packages "  +
                 "WHERE EXISTS(" +
                 "SELECT * FROM package_subscriptions WHERE package_subscriptions.package_id=packages.package_id AND package_subscriptions.customer_id=?" +
                 " )";
@@ -96,7 +96,7 @@ public class packageDAOImpl implements packageDAO {
         //String sql = "INSERT INTO packages (package_name, package_description, price)" + " VALUES (?,?,?)";
         //this.jdbcTemplate.update(sql, pack.getPackageName(), pack.getDescription(), pack.getPrice());
 
-        final String sql1 = "INSERT INTO packages (package_name, package_description, price) VALUES (?,?,?)";
+        final String sql1 = "INSERT INTO packages (package_name, package_description, price, duration) VALUES (?,?,?,?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         this.jdbcTemplate.update(new PreparedStatementCreator() {
@@ -106,6 +106,7 @@ public class packageDAOImpl implements packageDAO {
                 ps.setString(1, pack.getPackageName());
                 ps.setString(2, pack.getDescription());
                 ps.setString(3, String.valueOf(pack.getPrice()));
+                ps.setString(4, String.valueOf(pack.getDuration()));
                 return ps;
             }
         }, keyHolder);
@@ -116,7 +117,7 @@ public class packageDAOImpl implements packageDAO {
 
     @Override
     public List<Service> getSubscribedService(long packageID) {
-        String sql = "SELECT service_id, service_name, price, start_date, end_date, service_description FROM services "  +
+        String sql = "SELECT service_id, service_name, price, start_date, end_date, service_description, duration FROM services "  +
                 "WHERE EXISTS(" +
                 "SELECT * FROM package_service_relations WHERE package_service_relations.service_id=services.service_id AND package_service_relations.package_id=?" +
                 " )";
@@ -164,7 +165,7 @@ public class packageDAOImpl implements packageDAO {
 
     @Override
     public List<Package> getAllPackage() {
-        String sql = "SELECT package_id, package_name, package_description, price FROM packages";
+        String sql = "SELECT package_id, package_name, package_description, price, duration FROM packages";
 
         List<Map<String,Object>> queried = new ArrayList<>();
         try {

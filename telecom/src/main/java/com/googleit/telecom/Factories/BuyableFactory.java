@@ -37,6 +37,7 @@ public class BuyableFactory {
         pkg.setPackageName((String) tuple.get("package_name"));
         pkg.setPrice((Double) tuple.get("price"));
         pkg.setDescription((String) tuple.get("package_description"));
+        pkg.setDuration(Integer.valueOf(tuple.get("duration").toString()));
         return pkg;
     }
 
