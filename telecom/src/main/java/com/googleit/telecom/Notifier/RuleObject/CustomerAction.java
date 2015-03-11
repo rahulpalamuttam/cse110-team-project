@@ -20,7 +20,7 @@ import javax.mail.internet.MimeMessage;
 public class CustomerAction implements Action {
     private JavaMailSender mailSender;
 
-    private String from 	= "jjl112ucsd@gmail.com";
+    private String from 	= "huliopalam@gmail.com";
     private String subject	= "Balance Notification";
 
     @Override
@@ -30,7 +30,7 @@ public class CustomerAction implements Action {
             mailSender = MailConfig.getInstance();
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-            messageHelper.setTo("jjl112ucsd@gmail.com");
+            messageHelper.setTo(observer.getEmail());
             messageHelper.setText("You are above you threshold limit");
             messageHelper.setFrom(from);
             messageHelper.setSubject(subject);
