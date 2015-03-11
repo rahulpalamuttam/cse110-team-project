@@ -134,7 +134,7 @@ public class packageDAOImpl implements packageDAO {
 
     @Override
     public List<Service> getUnsubscribedService(long packageID) {
-        String sql = "SELECT service_id, service_name, price, start_date, end_date, service_description FROM services "  +
+        String sql = "SELECT service_id, service_name, price, start_date, end_date, service_description, duration FROM services "  +
                 "WHERE NOT EXISTS (" +
                 "SELECT * FROM package_service_relations WHERE package_service_relations.service_id=services.service_id AND package_service_relations.package_id=?" +
                 " )";

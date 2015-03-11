@@ -1,41 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:include="inc/head :: head"></head>
 <body>
 <header th:replace="inc/header :: header"></header>
 <div class="container-fluid">
     <div class="row">
         <div th:replace="inc/sidebar"></div>
+        <form th:action="@{/dashboard/permaDelete}" method="post">
             <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            	<h2 class="sub-header">Services</h2>
-            	<div class="pull-right">
-            		<a class="btn btn-primary" th:href="@{/dashboard/addService}" role="button">Add Service</a>
-            	</div>
-           		<!-- Service List -->    
+                <h2 class="sub-header">Services</h2>
+
+                <div class="pull-right">
+                    <a class="btn btn-primary" th:href="@{/dashboard/addService}" role="button">Add Service</a>
+                </div>
+                <!-- Service List -->
                 <div class="table">
-               	<!-- Service List Table -->
-                   <table class="table table-striped">
-                       <thead>
-                       <tr>
-                           <th>Title</th>
-                           <th>Description</th>
-                           <th>Price</th>
-                           <th>Duration</th>
+                    <!-- Service List Table -->
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Duration</th>
+                            <th>Click to Perma-Delete</th>
 
-                       </tr>
-                       </thead>
-                       <tbody>
-                       <tr th:each="service : ${allServices}">
-                           <td th:text="${service.getServiceName()}"></td>
-                           <td th:text="${service.getServiceDescription()}"></td>
-                           <td th:text="${service.getPrice()}"></td>
-                           <td th:text="${service.getDuration()}"></td>
-
-                       </tr>
-                       </tbody>
-                   </table>
-               </div>
-           </div>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="service : ${allServices}">
+                            <td th:text="${service.getServiceName()}"></td>
+                            <td th:text="${service.getServiceDescription()}"></td>
+                            <td th:text="${service.getPrice()}"></td>
+                            <td th:text="${service.getDuration()}"></td>
+                            <td><input type="checkbox" th:name="delete" th:value="${service.getServiceID()}"/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+                <button class="btn btn-default" type="submit">Delete</button>
+            </div>
+        </form>
     </div>
 </div>
 <footer th:replace="inc/footer :: footer"></footer>

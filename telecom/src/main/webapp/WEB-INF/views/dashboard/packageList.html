@@ -12,33 +12,38 @@
             </div>
             <h2 class="sub-header">Packages</h2>
             <!-- Service List -->
-            <form th:action="@{/dashboard/modifyPackage}" method="post">
-                <div class="table">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Duration</th>
-                            <th>Modify</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="package : ${allPackages}">
-                            <td th:text="${package.getPackageName()}"> </td>
-                            <td th:text="${package.getDescription()}"></td>
-                            <td th:text="${package.getPrice()}"></td>
-                            <td th:text="${package.getDuration()}"></td>
-                            <td>
-                                <button type="submit" class="btn btn-primary" th:name="package_id" th:value="${package.getPackageID()}">Modify</button>
-                            </td>
 
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </form>
+            <div class="table">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Duration</th>
+                        <th>Modify</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="package : ${allPackages}">
+                        <td th:text="${package.getPackageName()}"></td>
+                        <td th:text="${package.getDescription()}"></td>
+                        <td th:text="${package.getPrice()}"></td>
+                        <td th:text="${package.getDuration()}"></td>
+
+                        <td>
+                            <form th:action="@{/dashboard/modifyPackage}" method="post">
+                                <button type="submit" class="btn btn-primary" th:name="package_id"
+                                        th:value="${package.getPackageID()}">Modify
+                                </button>
+                            </form>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>

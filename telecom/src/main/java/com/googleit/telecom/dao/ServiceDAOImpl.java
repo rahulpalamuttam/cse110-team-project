@@ -70,6 +70,23 @@ public class ServiceDAOImpl implements ServiceDAO {
         this.jdbcTemplate.update(sql2);
     }
 
+    public void wipeService(long service_id){
+        String sql = "DELETE FROM service_subscriptions WHERE service_id=?";
+        this.jdbcTemplate.update(sql, service_id);
+        String sql2 = "DELETE FROM package_service_relations WHERE service_id=?";
+        this.jdbcTemplate.update(sql2, service_id);
+        String sql3 = "DELETE FROM services WHERE service_id=?";
+        this.jdbcTemplate.update(sql3, service_id);
+    }
+
+    public void wipePackage(long package_id){
+        String sql = "DELETE FROM package_subscriptions WHERE package_id=?";
+        this.jdbcTemplate.update(sql, package_id);
+        String sql2 = "DELETE FROM package_service_relations WHERE package_id=?";
+        this.jdbcTemplate.update(sql2, package_id);
+        String sql3 = "DELETE FROM packages WHERE package_id=?";
+        this.jdbcTemplate.update(sql3, package_id);
+    }
 	@Override
 	public List<Service> getAllService() {
         String sql = "SELECT service_id, service_name, service_description, price, start_date, end_date, duration FROM services";

@@ -11,4 +11,6 @@ public interface ServiceDAO {
     public void unsubscribeService(long service_id, long user_id);
     public List<Service> getAllService();
     public void createService(Service service);
+    public void wipeService(long service_id);
+    public void wipePackage(long package_id);
 }

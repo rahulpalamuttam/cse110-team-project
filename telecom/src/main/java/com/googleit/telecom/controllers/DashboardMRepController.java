@@ -66,6 +66,15 @@ public class DashboardMRepController {
 		return "redirect:/dashboard/serviceslist";
 	}
 
+    @RequestMapping(value="/permaDelete")
+    public String permaDelete(@RequestParam(value = "delete",    required = false) String[] cancel){
+        if(cancel != null && cancel.length>0)
+            for(String package_id : cancel)
+                serviceDAO.wipeService(Long.valueOf(package_id));
+
+        return "redirect:/dashboard/serviceslist";
+    }
+
     @RequestMapping(value="/modifyPackage", method = RequestMethod.POST)
     public String modifyPackage(Model model, @RequestParam(value="package_id") long packageID) {
 
