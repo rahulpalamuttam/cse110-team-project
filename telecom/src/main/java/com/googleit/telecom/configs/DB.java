@@ -43,6 +43,7 @@ public class DB {
                     + "reg_date DATE DEFAULT '" + sqlFormat.format(curr) + "',"
                     + "enabled BOOLEAN NOT NULL,"
                     + "threshold DOUBLE unsigned DEFAULT 1000000,"
+                    + "cancellation DOUBLE unsigned DEFAULT 0,"
                     + "PRIMARY KEY(`id`),"
                     + "UNIQUE KEY `email` (`email`) "
                     + ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");

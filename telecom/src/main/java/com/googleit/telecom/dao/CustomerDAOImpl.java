@@ -46,7 +46,7 @@ public class CustomerDAOImpl implements  CustomerDAO {
     }
 
     public Customer getCustomer(long customer_id, ServiceDAO serviceDAO, packageDAO PackageDAO){
-        String sql = "SELECT id, email, reg_date, threshold FROM users WHERE id=?";
+        String sql = "SELECT id, email, reg_date, threshold, cancellation FROM users WHERE id=?";
         Map queried = new HashMap();
         try {
             queried = this.jdbcTemplate.queryForMap(sql, new Object[]{customer_id});
@@ -69,7 +69,7 @@ public class CustomerDAOImpl implements  CustomerDAO {
         for(Package pkg : subscribedPackages){
             cust.AddPackage(pkg);
         }
-
+        cust.getCustomerBill().addCharge((Double) queried.get("cancellation"));
         cust.setUnsubscribedPackages(unsubscribedPackages);
         cust.setUnsubscribedServices(unsubscribedServices);
 

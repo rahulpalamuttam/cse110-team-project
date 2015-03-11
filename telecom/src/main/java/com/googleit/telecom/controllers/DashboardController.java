@@ -117,9 +117,9 @@ public class DashboardController {
                 serviceDAO.addService(Long.valueOf(service_id), Long.valueOf(user_id));
         System.out.println(cancel);
         if(cancel != null && cancel.length>0)
-            for(String service_id : cancel)
+            for(String service_id : cancel) {
                 serviceDAO.unsubscribeService(Long.valueOf(service_id), Long.valueOf(user_id));
-
+            }
         Customer cust = customerDAO.getCustomer(Long.parseLong(user_id), serviceDAO, packageDao);
         String type = "customerServicesUpdate";
         model.addAttribute("type", type);

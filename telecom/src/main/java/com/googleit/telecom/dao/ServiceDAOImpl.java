@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -65,6 +66,8 @@ public class ServiceDAOImpl implements ServiceDAO {
     public void unsubscribeService(long service_id, long user_id) {
         String sql = "DELETE FROM service_subscriptions WHERE service_id=? AND customer_id=?";
         this.jdbcTemplate.update(sql, service_id, user_id);
+        String sql2 = "UPDATE users SET cancellation = cancellation + 10.00 WHERE id=" + user_id;
+        this.jdbcTemplate.update(sql2);
     }
 
 	@Override
@@ -86,7 +89,6 @@ public class ServiceDAOImpl implements ServiceDAO {
 		// TODO Auto-generated method stub
         String sql2 = "INSERT INTO services (service_name, service_description, price, duration)" + " VALUES (?,?,?,?)";
         this.jdbcTemplate.update(sql2, service.getServiceName(), service.getServiceDescription(), service.getPrice(), service.getDuration());
-
-		
 	}
+
 }
