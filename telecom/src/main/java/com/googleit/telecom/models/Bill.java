@@ -1,7 +1,6 @@
 package com.googleit.telecom.models;
 
 import com.googleit.telecom.models.items.Buyable;
-import com.googleit.telecom.models.items.Service;
 
 /**
  * Created by rahul on 2/1/15.

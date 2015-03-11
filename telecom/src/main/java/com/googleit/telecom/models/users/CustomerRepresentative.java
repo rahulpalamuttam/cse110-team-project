@@ -1,6 +1,5 @@
 package com.googleit.telecom.models.users;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,7 +2,6 @@ package com.googleit.telecom.models.users;
 
 import com.googleit.telecom.models.items.Service;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 

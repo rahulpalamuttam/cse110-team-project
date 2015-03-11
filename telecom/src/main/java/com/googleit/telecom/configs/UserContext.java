@@ -5,7 +5,6 @@ import com.googleit.telecom.dao.UserRepository;
 import com.googleit.telecom.models.users.Customer;
 import com.googleit.telecom.models.users.CustomerRepresentative;
 import com.googleit.telecom.models.users.MarketingRep;
-import com.googleit.telecom.models.users.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;

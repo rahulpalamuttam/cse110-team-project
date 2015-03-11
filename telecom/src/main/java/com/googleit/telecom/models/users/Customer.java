@@ -1,10 +1,7 @@
 package com.googleit.telecom.models.users;
 
 import com.googleit.telecom.models.Bill;
-import com.googleit.telecom.models.items.Package;
-import com.googleit.telecom.models.items.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 
