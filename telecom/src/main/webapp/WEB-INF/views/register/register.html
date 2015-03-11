@@ -81,7 +81,7 @@
 
 
             <div sec:authorize="hasRole('ROLE_CUSTOMER_REP')" class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
-                <form th:action="@{/registerCustomerRep}" method="post" class="form-horizontal" th:object="${user}">
+                <form th:action="@{/register}" method="post" class="form-horizontal" th:object="${user}">
                     <fieldset>
                         <legend>Register</legend>
 

@@ -71,10 +71,13 @@ public class Bill implements AbstractSubject {
     public void deleteItem(Buyable service){
         Double amount = service.getPrice();
         totalAmount -= amount;
-        amountLeft += 10;
         applyRule();
     }
 
+    public void addCharge(Double fee){
+        totalAmount += fee;
+        amountLeft += fee;
+    }
     public double getAmountLeft() {
         return amountLeft;
     }
